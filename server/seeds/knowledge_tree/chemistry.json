@@ -1,0 +1,59 @@
+[
+  {
+    "name": "化学基本概念",
+    "level": 1,
+    "display_order": 1,
+    "children": [
+      { "name": "物质的分类", "level": 2, "display_order": 1, "children": [] },
+      { "name": "化学用语", "level": 2, "display_order": 2, "children": [] },
+      { "name": "物质的量", "level": 2, "display_order": 3, "children": [] },
+      { "name": "离子反应", "level": 2, "display_order": 4, "children": [] },
+      { "name": "氧化还原反应", "level": 2, "display_order": 5, "children": [] }
+    ]
+  },
+  {
+    "name": "元素化合物",
+    "level": 1,
+    "display_order": 2,
+    "children": [
+      { "name": "金属及其化合物", "level": 2, "display_order": 1, "children": [] },
+      { "name": "非金属及其化合物", "level": 2, "display_order": 2, "children": [] },
+      { "name": "元素周期表与元素周期律", "level": 2, "display_order": 3, "children": [] },
+      { "name": "化学键", "level": 2, "display_order": 4, "children": [] }
+    ]
+  },
+  {
+    "name": "有机化学",
+    "level": 1,
+    "display_order": 3,
+    "children": [
+      { "name": "烃", "level": 2, "display_order": 1, "children": [] },
+      { "name": "烃的衍生物", "level": 2, "display_order": 2, "children": [] },
+      { "name": "有机合成与推断", "level": 2, "display_order": 3, "children": [] },
+      { "name": "生物大分子", "level": 2, "display_order": 4, "children": [] }
+    ]
+  },
+  {
+    "name": "化学反应原理",
+    "level": 1,
+    "display_order": 4,
+    "children": [
+      { "name": "化学反应速率", "level": 2, "display_order": 1, "children": [] },
+      { "name": "化学平衡", "level": 2, "display_order": 2, "children": [] },
+      { "name": "电化学", "level": 2, "display_order": 3, "children": [] },
+      { "name": "溶液中的离子平衡", "level": 2, "display_order": 4, "children": [] },
+      { "name": "热化学", "level": 2, "display_order": 5, "children": [] }
+    ]
+  },
+  {
+    "name": "化学实验",
+    "level": 1,
+    "display_order": 5,
+    "children": [
+      { "name": "实验基本操作", "level": 2, "display_order": 1, "children": [] },
+      { "name": "常见气体的制备", "level": 2, "display_order": 2, "children": [] },
+      { "name": "物质的检验与鉴别", "level": 2, "display_order": 3, "children": [] },
+      { "name": "实验方案设计与评价", "level": 2, "display_order": 4, "children": [] }
+    ]
+  }
+]

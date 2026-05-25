@@ -1,0 +1,56 @@
+[
+  {
+    "name": "力学",
+    "level": 1,
+    "display_order": 1,
+    "children": [
+      { "name": "运动学", "level": 2, "display_order": 1, "children": [] },
+      { "name": "牛顿运动定律", "level": 2, "display_order": 2, "children": [] },
+      { "name": "功与能", "level": 2, "display_order": 3, "children": [] },
+      { "name": "动量", "level": 2, "display_order": 4, "children": [] },
+      { "name": "圆周运动与万有引力", "level": 2, "display_order": 5, "children": [] }
+    ]
+  },
+  {
+    "name": "电磁学",
+    "level": 1,
+    "display_order": 2,
+    "children": [
+      { "name": "静电场", "level": 2, "display_order": 1, "children": [] },
+      { "name": "恒定电流", "level": 2, "display_order": 2, "children": [] },
+      { "name": "磁场", "level": 2, "display_order": 3, "children": [] },
+      { "name": "电磁感应", "level": 2, "display_order": 4, "children": [] },
+      { "name": "交变电流", "level": 2, "display_order": 5, "children": [] }
+    ]
+  },
+  {
+    "name": "热学",
+    "level": 1,
+    "display_order": 3,
+    "children": [
+      { "name": "分子动理论", "level": 2, "display_order": 1, "children": [] },
+      { "name": "气体定律", "level": 2, "display_order": 2, "children": [] },
+      { "name": "热力学定律", "level": 2, "display_order": 3, "children": [] }
+    ]
+  },
+  {
+    "name": "光学",
+    "level": 1,
+    "display_order": 4,
+    "children": [
+      { "name": "几何光学", "level": 2, "display_order": 1, "children": [] },
+      { "name": "波动光学", "level": 2, "display_order": 2, "children": [] },
+      { "name": "光的本性", "level": 2, "display_order": 3, "children": [] }
+    ]
+  },
+  {
+    "name": "近代物理",
+    "level": 1,
+    "display_order": 5,
+    "children": [
+      { "name": "原子结构", "level": 2, "display_order": 1, "children": [] },
+      { "name": "原子核与核能", "level": 2, "display_order": 2, "children": [] },
+      { "name": "波粒二象性", "level": 2, "display_order": 3, "children": [] }
+    ]
+  }
+]

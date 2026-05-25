@@ -1,0 +1,48 @@
+[
+  {
+    "name": "现代文阅读",
+    "level": 1,
+    "display_order": 1,
+    "children": [
+      { "name": "论述类文本阅读", "level": 2, "display_order": 1, "children": [] },
+      { "name": "文学类文本阅读", "level": 2, "display_order": 2, "children": [] },
+      { "name": "实用类文本阅读", "level": 2, "display_order": 3, "children": [] },
+      { "name": "现代诗歌鉴赏", "level": 2, "display_order": 4, "children": [] }
+    ]
+  },
+  {
+    "name": "古代诗文",
+    "level": 1,
+    "display_order": 2,
+    "children": [
+      { "name": "文言文阅读", "level": 2, "display_order": 1, "children": [] },
+      { "name": "古代诗歌鉴赏", "level": 2, "display_order": 2, "children": [] },
+      { "name": "名篇名句默写", "level": 2, "display_order": 3, "children": [] },
+      { "name": "文言文常用实词虚词", "level": 2, "display_order": 4, "children": [] },
+      { "name": "文言句式与翻译", "level": 2, "display_order": 5, "children": [] }
+    ]
+  },
+  {
+    "name": "语言文字运用",
+    "level": 1,
+    "display_order": 3,
+    "children": [
+      { "name": "字音字形", "level": 2, "display_order": 1, "children": [] },
+      { "name": "词语与成语", "level": 2, "display_order": 2, "children": [] },
+      { "name": "病句辨析与修改", "level": 2, "display_order": 3, "children": [] },
+      { "name": "修辞手法", "level": 2, "display_order": 4, "children": [] },
+      { "name": "语言表达简明连贯得体", "level": 2, "display_order": 5, "children": [] }
+    ]
+  },
+  {
+    "name": "写作",
+    "level": 1,
+    "display_order": 4,
+    "children": [
+      { "name": "审题立意", "level": 2, "display_order": 1, "children": [] },
+      { "name": "议论文写作", "level": 2, "display_order": 2, "children": [] },
+      { "name": "记叙文写作", "level": 2, "display_order": 3, "children": [] },
+      { "name": "素材积累与运用", "level": 2, "display_order": 4, "children": [] }
+    ]
+  }
+]

@@ -1,0 +1,157 @@
+/* pages/index/index.wxss — Homepage styles */
+
+.home-page {
+  padding-bottom: 40rpx;
+}
+
+/* Quote Card */
+.quote-card {
+  background: linear-gradient(135deg, #4A90D9, #6BA3E0);
+  color: #FFFFFF;
+  padding: 40rpx 32rpx;
+  border-radius: 16rpx;
+}
+
+.quote-text {
+  font-size: 30rpx;
+  line-height: 1.8;
+  margin-bottom: 16rpx;
+}
+
+.quote-card .quote-source {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 24rpx;
+  text-align: right;
+}
+
+/* Countdown Card */
+.countdown-card {
+  text-align: center;
+  padding: 40rpx 32rpx;
+}
+
+.countdown-label {
+  font-size: 26rpx;
+  margin-bottom: 12rpx;
+}
+
+.countdown-days {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+}
+
+.countdown-number {
+  font-size: 80rpx;
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+.countdown-unit {
+  font-size: 32rpx;
+  color: var(--color-primary);
+  margin-left: 8rpx;
+}
+
+.countdown-date {
+  font-size: 24rpx;
+  margin-top: 8rpx;
+}
+
+/* Section Card */
+.section-card {
+  padding: 32rpx;
+}
+
+/* Milestone Items */
+.milestone-item {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 0;
+}
+
+.milestone-dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  background-color: var(--color-border);
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+.milestone-dot.active {
+  background-color: var(--color-primary);
+  box-shadow: 0 0 0 6rpx var(--color-primary-light);
+}
+
+.milestone-info {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.milestone-name {
+  font-size: 28rpx;
+  color: var(--color-text-primary);
+}
+
+.milestone-date {
+  font-size: 24rpx;
+}
+
+/* Quick Entry Grid */
+.quick-entries {
+  margin-top: 16rpx;
+}
+
+.quick-entry-title {
+  margin-bottom: 24rpx;
+}
+
+.quick-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24rpx;
+}
+
+.quick-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.quick-icon {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+.quick-icon-errors {
+  background-color: #FF4D4F;
+}
+
+.quick-icon-exams {
+  background-color: #FAAD14;
+}
+
+.quick-icon-growth {
+  background-color: #52C41A;
+}
+
+.quick-icon-knowledge {
+  background-color: #4A90D9;
+}
+
+.quick-label {
+  font-size: 24rpx;
+  color: var(--color-text-secondary);
+}

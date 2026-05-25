@@ -1,0 +1,70 @@
+<!-- pages/profile/index.wxml — Profile Page -->
+<view class="container profile-page">
+
+  <!-- User Info Section -->
+  <view class="card user-card" bindtap="onLogin" wx:if="{{!isLoggedIn}}">
+    <view class="user-avatar-placeholder flex-center">
+      <text class="avatar-text">登录</text>
+    </view>
+    <view class="user-info">
+      <text class="h3">点击登录</text>
+      <text class="caption mt-8">登录后同步所有数据</text>
+    </view>
+  </view>
+
+  <view class="card user-card" wx:else>
+    <view class="user-avatar">
+      <image wx:if="{{userInfo.avatar_url}}" src="{{userInfo.avatar_url}}" class="avatar-image" mode="aspectFill"></image>
+      <view wx:else class="user-avatar-placeholder flex-center">
+        <text class="avatar-text">{{userInfo.nickname ? userInfo.nickname[0] : 'U'}}</text>
+      </view>
+    </view>
+    <view class="user-info">
+      <text class="h3">{{userInfo.nickname || '用户'}}</text>
+      <view class="tag tag-primary mt-8">{{planName}}</view>
+    </view>
+  </view>
+
+  <!-- Student Info -->
+  <view class="card" wx:if="{{currentStudent}}">
+    <view class="card-header">
+      <text class="card-title">当前学生</text>
+      <navigator url="/pages/profile/student-manage" class="btn-text">管理</navigator>
+    </view>
+    <view class="student-info">
+      <text class="body-text">{{currentStudent.name}}</text>
+      <text class="caption mt-8">{{currentStudent.grade_display}} · {{currentStudent.district_name}}</text>
+      <text class="caption">选考科目：{{currentStudent.elective_display}}</text>
+    </view>
+  </view>
+
+  <!-- Settings Links -->
+  <view class="card settings-card">
+    <navigator url="/pages/profile/student-manage" class="settings-item flex-between">
+      <text>学生管理</text>
+      <text class="text-hint">></text>
+    </navigator>
+    <navigator url="/pages/profile/subscription" class="settings-item flex-between">
+      <text>订阅管理</text>
+      <text class="text-hint">></text>
+    </navigator>
+    <navigator url="/pages/quotes/favorites" class="settings-item flex-between">
+      <text>收藏的金句</text>
+      <text class="text-hint">></text>
+    </navigator>
+    <navigator url="/pages/profile/privacy" class="settings-item flex-between">
+      <text>隐私设置</text>
+      <text class="text-hint">></text>
+    </navigator>
+    <navigator url="/pages/profile/about" class="settings-item flex-between last">
+      <text>关于我们</text>
+      <text class="text-hint">></text>
+    </navigator>
+  </view>
+
+  <!-- Logout Button -->
+  <view wx:if="{{isLoggedIn}}" class="mt-24">
+    <button class="btn btn-outline btn-block" bindtap="onLogout">退出登录</button>
+  </view>
+
+</view>

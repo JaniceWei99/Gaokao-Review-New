@@ -1,0 +1,482 @@
+[
+  {
+    "content": "每一天的努力，都是在为未来的自己铺路。",
+    "author": null,
+    "category": "daily_encouragement",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "all",
+    "display_order": 1
+  },
+  {
+    "content": "你今天的坚持，是明天最大的底气。",
+    "author": null,
+    "category": "daily_encouragement",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "all",
+    "display_order": 2
+  },
+  {
+    "content": "进步不一定每天都看得见，但每天都在发生。",
+    "author": null,
+    "category": "daily_encouragement",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "all",
+    "display_order": 3
+  },
+  {
+    "content": "没有白走的路，每一步都算数。",
+    "author": null,
+    "category": "daily_encouragement",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "all",
+    "display_order": 4
+  },
+  {
+    "content": "比昨天的自己进步一点点，就是今天最大的成功。",
+    "author": null,
+    "category": "daily_encouragement",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "all",
+    "display_order": 5
+  },
+  {
+    "content": "梦想不会辜负每一个认真努力的人。",
+    "author": null,
+    "category": "daily_encouragement",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "all",
+    "display_order": 6
+  },
+  {
+    "content": "星光不负赶路人，时光不负有心人。",
+    "author": null,
+    "category": "daily_encouragement",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "all",
+    "display_order": 7
+  },
+  {
+    "content": "把「我不行」换成「我再试一次」，奇迹就会慢慢发生。",
+    "author": null,
+    "category": "daily_encouragement",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "all",
+    "display_order": 8
+  },
+  {
+    "content": "能坚持到底的人，运气都不会太差。",
+    "author": null,
+    "category": "daily_encouragement",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "all",
+    "display_order": 9
+  },
+  {
+    "content": "今天你觉得难的事，终有一天会成为你的骄傲。",
+    "author": null,
+    "category": "daily_encouragement",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "all",
+    "display_order": 10
+  },
+  {
+    "content": "种一棵树最好的时间是十年前，其次是现在。从今天开始，一切都来得及。",
+    "author": null,
+    "category": "daily_encouragement",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "all",
+    "display_order": 11
+  },
+  {
+    "content": "不要和别人比进度，按自己的节奏稳步前进就好。",
+    "author": null,
+    "category": "daily_encouragement",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "all",
+    "display_order": 12
+  },
+  {
+    "content": "学习最高效的方法：先理解，再记忆，最后练习。理解是一切的基础。",
+    "author": null,
+    "category": "study_method",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "normal",
+    "display_order": 13
+  },
+  {
+    "content": "做错题不可怕，可怕的是同一道题错两次。整理错题本，是提分最快的方法。",
+    "author": null,
+    "category": "study_method",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "normal",
+    "display_order": 14
+  },
+  {
+    "content": "番茄工作法：专注25分钟，休息5分钟。让大脑在专注和放松中高效切换。",
+    "author": null,
+    "category": "study_method",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "normal",
+    "display_order": 15
+  },
+  {
+    "content": "费曼学习法：如果你能把一个知识点讲给别人听，说明你真正理解了。",
+    "author": null,
+    "category": "study_method",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "normal",
+    "display_order": 16
+  },
+  {
+    "content": "先把课本上的例题吃透，比盲目刷题有效十倍。",
+    "author": null,
+    "category": "study_method",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "normal",
+    "display_order": 17
+  },
+  {
+    "content": "学会给知识「编网」：把零散的知识点连成知识网络，记忆更牢固，应用更灵活。",
+    "author": null,
+    "category": "study_method",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "normal",
+    "display_order": 18
+  },
+  {
+    "content": "复习的最佳时间点：学完当天、第三天、第七天、第十四天。间隔重复，事半功倍。",
+    "author": null,
+    "category": "study_method",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "normal",
+    "display_order": 19
+  },
+  {
+    "content": "你已经为这一天准备了很久，相信自己的积累，上考场只需正常发挥。",
+    "author": null,
+    "category": "pre_exam_motivation",
+    "applicable_grades": ["gao3"],
+    "applicable_phase": "pre_exam_7d",
+    "display_order": 20
+  },
+  {
+    "content": "考试是检验学习的手段，不是定义你的标签。放下包袱，轻装上阵。",
+    "author": null,
+    "category": "pre_exam_motivation",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "pre_exam_7d",
+    "display_order": 21
+  },
+  {
+    "content": "深呼吸，告诉自己：我准备好了。你比自己想象的更强大。",
+    "author": null,
+    "category": "pre_exam_motivation",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "pre_exam_7d",
+    "display_order": 22
+  },
+  {
+    "content": "考前最重要的事：吃好、睡好、心态好。知识已经在你脑子里了。",
+    "author": null,
+    "category": "pre_exam_motivation",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "pre_exam_7d",
+    "display_order": 23
+  },
+  {
+    "content": "稳住心态，先做会做的，再攻有把握的，最后试难的。一步一步来。",
+    "author": null,
+    "category": "pre_exam_motivation",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "pre_exam_7d",
+    "display_order": 24
+  },
+  {
+    "content": "紧张是正常的，适度紧张反而能帮你集中注意力。把紧张当作战斗力的一部分。",
+    "author": null,
+    "category": "pre_exam_motivation",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "pre_exam_30d",
+    "display_order": 25
+  },
+  {
+    "content": "不是只有你觉得压力大，每个正在拼搏的人都一样。但你选择了坚持，这就是你的勇气。",
+    "author": null,
+    "category": "pre_exam_motivation",
+    "applicable_grades": ["gao3"],
+    "applicable_phase": "pre_exam_30d",
+    "display_order": 26
+  },
+  {
+    "content": "累了就休息一下，但不要放弃。短暂的停歇是为了走更远的路。",
+    "author": null,
+    "category": "stress_relief",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "all",
+    "display_order": 27
+  },
+  {
+    "content": "觉得撑不住的时候，去操场跑两圈，或者听一首喜欢的歌。身体放松了，心情也会好起来。",
+    "author": null,
+    "category": "stress_relief",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "all",
+    "display_order": 28
+  },
+  {
+    "content": "偶尔考不好不代表什么，人生是长跑，一次摔倒不影响最终的方向。",
+    "author": null,
+    "category": "stress_relief",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "all",
+    "display_order": 29
+  },
+  {
+    "content": "焦虑来了不要逃避，写下让你焦虑的事，然后逐一解决。化焦虑为行动。",
+    "author": null,
+    "category": "stress_relief",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "all",
+    "display_order": 30
+  },
+  {
+    "content": "你不需要做到完美，只需要做到最好的自己。接受不完美，才能走得更远。",
+    "author": null,
+    "category": "stress_relief",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "all",
+    "display_order": 31
+  },
+  {
+    "content": "压力大的时候，试试5-4-3-2-1法：看5样东西、摸4样东西、听3种声音、闻2种气味、尝1种味道。让自己回到当下。",
+    "author": null,
+    "category": "stress_relief",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "all",
+    "display_order": 32
+  },
+  {
+    "content": "考完了就翻篇吧！不管结果如何，你的努力已经值得骄傲。",
+    "author": null,
+    "category": "post_exam_relief",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "post_exam",
+    "display_order": 33
+  },
+  {
+    "content": "考试结束了，别急着对答案。好好休息，犒劳一下自己。",
+    "author": null,
+    "category": "post_exam_relief",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "post_exam",
+    "display_order": 34
+  },
+  {
+    "content": "无论成绩如何，你度过了人生中一段非常重要的时光。这段经历本身就是宝贵的财富。",
+    "author": null,
+    "category": "post_exam_relief",
+    "applicable_grades": ["gao3"],
+    "applicable_phase": "post_exam",
+    "display_order": 35
+  },
+  {
+    "content": "高考只是人生的一个节点，不是终点。未来还有无限的可能等着你。",
+    "author": null,
+    "category": "post_exam_relief",
+    "applicable_grades": ["gao3"],
+    "applicable_phase": "post_exam",
+    "display_order": 36
+  },
+  {
+    "content": "你已经尽力了，这就够了。结果交给时间，你值得一个好好的假期。",
+    "author": null,
+    "category": "post_exam_relief",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "post_exam",
+    "display_order": 37
+  },
+  {
+    "content": "孩子，无论成绩好坏，你都是爸妈的骄傲。",
+    "author": null,
+    "category": "parent_child_warmth",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "all",
+    "display_order": 38
+  },
+  {
+    "content": "回家的灯永远为你亮着。学习累了，记得家是最温暖的港湾。",
+    "author": null,
+    "category": "parent_child_warmth",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "all",
+    "display_order": 39
+  },
+  {
+    "content": "我们陪你走过的每一天，都是幸福的日子。",
+    "author": null,
+    "category": "parent_child_warmth",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "all",
+    "display_order": 40
+  },
+  {
+    "content": "谢谢你这么努力。作为家长，看到你的付出，我们很感动。",
+    "author": null,
+    "category": "parent_child_warmth",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "all",
+    "display_order": 41
+  },
+  {
+    "content": "别怕，有我们在。我们不是来给你压力的，是来和你一起扛的。",
+    "author": null,
+    "category": "parent_child_warmth",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "all",
+    "display_order": 42
+  },
+  {
+    "content": "孩子加油，但也别忘了笑。你的笑容，比任何分数都珍贵。",
+    "author": null,
+    "category": "parent_child_warmth",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "all",
+    "display_order": 43
+  },
+  {
+    "content": "一家人一起努力的日子，以后回想起来都是温暖的回忆。",
+    "author": null,
+    "category": "parent_child_warmth",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "all",
+    "display_order": 44
+  },
+  {
+    "content": "高考只是一场考试，但你是我们一辈子的孩子。不管怎样，我们都爱你。",
+    "author": null,
+    "category": "parent_child_warmth",
+    "applicable_grades": ["gao3"],
+    "applicable_phase": "pre_exam_30d",
+    "display_order": 45
+  },
+  {
+    "content": "不积跬步，无以至千里；不积小流，无以成江海。",
+    "author": "荀子",
+    "category": "famous_quotes",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "all",
+    "display_order": 46
+  },
+  {
+    "content": "天行健，君子以自强不息。",
+    "author": "《周易》",
+    "category": "famous_quotes",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "all",
+    "display_order": 47
+  },
+  {
+    "content": "宝剑锋从磨砺出，梅花香自苦寒来。",
+    "author": null,
+    "category": "famous_quotes",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "all",
+    "display_order": 48
+  },
+  {
+    "content": "书山有路勤为径，学海无涯苦作舟。",
+    "author": "韩愈",
+    "category": "famous_quotes",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "all",
+    "display_order": 49
+  },
+  {
+    "content": "长风破浪会有时，直挂云帆济沧海。",
+    "author": "李白",
+    "category": "famous_quotes",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "all",
+    "display_order": 50
+  },
+  {
+    "content": "千磨万击还坚劲，任尔东西南北风。",
+    "author": "郑燮",
+    "category": "famous_quotes",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "all",
+    "display_order": 51
+  },
+  {
+    "content": "博学之，审问之，慎思之，明辨之，笃行之。",
+    "author": "《中庸》",
+    "category": "famous_quotes",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "all",
+    "display_order": 52
+  },
+  {
+    "content": "生活不是等待风暴过去，而是学会在风雨中起舞。",
+    "author": null,
+    "category": "famous_quotes",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "all",
+    "display_order": 53
+  },
+  {
+    "content": "知之者不如好之者，好之者不如乐之者。",
+    "author": "孔子",
+    "category": "famous_quotes",
+    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_phase": "all",
+    "display_order": 54
+  },
+  {
+    "content": "欢迎来到高中！这里是新的起点，一切都充满可能。",
+    "author": null,
+    "category": "gao1_special",
+    "applicable_grades": ["gao1"],
+    "applicable_phase": "all",
+    "display_order": 55
+  },
+  {
+    "content": "高一是打基础的黄金时期，现在养成好的学习习惯，高三会轻松很多。",
+    "author": null,
+    "category": "gao1_special",
+    "applicable_grades": ["gao1"],
+    "applicable_phase": "normal",
+    "display_order": 56
+  },
+  {
+    "content": "不用急着和高三学长比，你有充足的时间去探索自己擅长什么、喜欢什么。",
+    "author": null,
+    "category": "gao1_special",
+    "applicable_grades": ["gao1"],
+    "applicable_phase": "all",
+    "display_order": 57
+  },
+  {
+    "content": "高一的课程可能比初中难不少，这是正常的。给自己一些时间适应，你会越来越好的。",
+    "author": null,
+    "category": "gao1_special",
+    "applicable_grades": ["gao1"],
+    "applicable_phase": "all",
+    "display_order": 58
+  },
+  {
+    "content": "多尝试、多探索、多提问。高一是最好的试错时期，不要怕犯错。",
+    "author": null,
+    "category": "gao1_special",
+    "applicable_grades": ["gao1"],
+    "applicable_phase": "all",
+    "display_order": 59
+  },
+  {
+    "content": "合格考只需要及格就好，不要给自己太大压力。把精力放在真正喜欢的科目上。",
+    "author": null,
+    "category": "gao1_special",
+    "applicable_grades": ["gao1"],
+    "applicable_phase": "pre_exam_30d",
+    "display_order": 60
+  }
+]

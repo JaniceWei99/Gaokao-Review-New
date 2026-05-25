@@ -1,0 +1,66 @@
+/* pages/profile/index.wxss */
+
+.profile-page {
+  padding-bottom: 60rpx;
+}
+
+/* User Card */
+.user-card {
+  display: flex;
+  align-items: center;
+  padding: 32rpx;
+}
+
+.user-avatar {
+  margin-right: 24rpx;
+  flex-shrink: 0;
+}
+
+.avatar-image {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+}
+
+.user-avatar-placeholder {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background-color: var(--color-primary-light);
+  margin-right: 24rpx;
+  flex-shrink: 0;
+}
+
+.avatar-text {
+  font-size: 36rpx;
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.user-info {
+  flex: 1;
+}
+
+/* Student Info */
+.student-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+/* Settings Card */
+.settings-card {
+  padding: 0;
+}
+
+.settings-item {
+  display: flex;
+  padding: 32rpx;
+  font-size: 28rpx;
+  color: var(--color-text-primary);
+  border-bottom: 1rpx solid var(--color-border);
+}
+
+.settings-item.last {
+  border-bottom: none;
+}

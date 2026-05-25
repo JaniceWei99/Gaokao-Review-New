@@ -1,0 +1,89 @@
+/* pages/errors/list.wxss */
+
+.errors-page {
+  padding-bottom: 120rpx;
+}
+
+/* Filter Bar */
+.filter-bar {
+  margin-bottom: 16rpx;
+}
+
+.filter-scroll {
+  white-space: nowrap;
+  padding: 8rpx 0;
+}
+
+.filter-item {
+  display: inline-block;
+  padding: 12rpx 28rpx;
+  margin-right: 16rpx;
+  border-radius: 9999rpx;
+  font-size: 26rpx;
+  color: var(--color-text-secondary);
+  background-color: var(--color-card-bg);
+}
+
+.filter-item.active {
+  color: #FFFFFF;
+  background-color: var(--color-primary);
+}
+
+/* Status Bar */
+.status-bar {
+  margin-bottom: 24rpx;
+  gap: 24rpx;
+}
+
+.status-item {
+  font-size: 26rpx;
+  color: var(--color-text-hint);
+  padding-bottom: 8rpx;
+  border-bottom: 4rpx solid transparent;
+}
+
+.status-item.active {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* Error Card */
+.error-card {
+  display: block;
+  padding: 28rpx;
+}
+
+.error-header {
+  margin-bottom: 8rpx;
+}
+
+.error-content {
+  line-height: 1.6;
+}
+
+.error-footer {
+  padding-top: 12rpx;
+}
+
+/* FAB (Floating Action Button) */
+.fab {
+  position: fixed;
+  right: 40rpx;
+  bottom: 140rpx;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 24rpx rgba(74, 144, 217, 0.4);
+}
+
+.fab-icon {
+  color: #FFFFFF;
+  font-size: 48rpx;
+  font-weight: 300;
+  line-height: 1;
+}

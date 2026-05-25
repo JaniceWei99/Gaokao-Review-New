@@ -1,0 +1,48 @@
+[
+  {
+    "name": "经济生活",
+    "level": 1,
+    "display_order": 1,
+    "children": [
+      { "name": "货币与价格", "level": 2, "display_order": 1, "children": [] },
+      { "name": "消费", "level": 2, "display_order": 2, "children": [] },
+      { "name": "生产与经济制度", "level": 2, "display_order": 3, "children": [] },
+      { "name": "分配制度", "level": 2, "display_order": 4, "children": [] },
+      { "name": "社会主义市场经济", "level": 2, "display_order": 5, "children": [] }
+    ]
+  },
+  {
+    "name": "政治生活",
+    "level": 1,
+    "display_order": 2,
+    "children": [
+      { "name": "公民的政治生活", "level": 2, "display_order": 1, "children": [] },
+      { "name": "我国的政府", "level": 2, "display_order": 2, "children": [] },
+      { "name": "我国的政治制度", "level": 2, "display_order": 3, "children": [] },
+      { "name": "国际社会与外交", "level": 2, "display_order": 4, "children": [] }
+    ]
+  },
+  {
+    "name": "文化生活",
+    "level": 1,
+    "display_order": 3,
+    "children": [
+      { "name": "文化与社会", "level": 2, "display_order": 1, "children": [] },
+      { "name": "文化传承与创新", "level": 2, "display_order": 2, "children": [] },
+      { "name": "中华文化与民族精神", "level": 2, "display_order": 3, "children": [] },
+      { "name": "文化建设", "level": 2, "display_order": 4, "children": [] }
+    ]
+  },
+  {
+    "name": "哲学",
+    "level": 1,
+    "display_order": 4,
+    "children": [
+      { "name": "唯物论", "level": 2, "display_order": 1, "children": [] },
+      { "name": "认识论", "level": 2, "display_order": 2, "children": [] },
+      { "name": "唯物辩证法", "level": 2, "display_order": 3, "children": [] },
+      { "name": "历史唯物主义", "level": 2, "display_order": 4, "children": [] },
+      { "name": "人生观与价值观", "level": 2, "display_order": 5, "children": [] }
+    ]
+  }
+]

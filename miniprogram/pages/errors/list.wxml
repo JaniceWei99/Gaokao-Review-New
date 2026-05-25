@@ -1,0 +1,72 @@
+<!-- pages/errors/list.wxml — Error Notes List -->
+<view class="container errors-page">
+
+  <!-- Filter Bar -->
+  <view class="filter-bar">
+    <scroll-view scroll-x class="filter-scroll">
+      <view class="filter-item {{currentSubject === '' ? 'active' : ''}}" bindtap="onFilterSubject" data-subject="">
+        全部
+      </view>
+      <view
+        class="filter-item {{currentSubject === item.id ? 'active' : ''}}"
+        wx:for="{{subjects}}"
+        wx:key="id"
+        bindtap="onFilterSubject"
+        data-subject="{{item.id}}"
+      >
+        {{item.name}}
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- Status Filter -->
+  <view class="status-bar flex-row">
+    <view class="status-item {{currentStatus === '' ? 'active' : ''}}" bindtap="onFilterStatus" data-status="">
+      全部
+    </view>
+    <view class="status-item {{currentStatus === 'unresolved' ? 'active' : ''}}" bindtap="onFilterStatus" data-status="unresolved">
+      未解决
+    </view>
+    <view class="status-item {{currentStatus === 'resolved' ? 'active' : ''}}" bindtap="onFilterStatus" data-status="resolved">
+      已解决
+    </view>
+  </view>
+
+  <!-- Error Notes List -->
+  <view class="error-list">
+    <block wx:if="{{errorNotes.length > 0}}">
+      <navigator
+        class="card error-card"
+        wx:for="{{errorNotes}}"
+        wx:key="id"
+        url="/pages/errors/detail?id={{item.id}}"
+      >
+        <view class="error-header flex-between">
+          <view class="tag {{item.status === 'resolved' ? 'tag-success' : 'tag-error'}}">
+            {{item.status === 'resolved' ? '已解决' : '未解决'}}
+          </view>
+          <text class="tag tag-outline">{{item.subject_name}}</text>
+        </view>
+        <view class="error-content mt-8">
+          <text class="body-text">{{item.title || '错题记录'}}</text>
+        </view>
+        <view class="error-footer mt-8 flex-between">
+          <text class="caption">{{item.created_at_display}}</text>
+          <text class="caption">{{item.source || ''}}</text>
+        </view>
+      </navigator>
+    </block>
+
+    <!-- Empty State -->
+    <view wx:else class="empty-state">
+      <text class="empty-state-text">还没有错题记录</text>
+      <navigator url="/pages/errors/add" class="btn btn-primary btn-sm mt-16">记录第一道错题</navigator>
+    </view>
+  </view>
+
+  <!-- Add Button (FAB) -->
+  <navigator url="/pages/errors/add" class="fab">
+    <text class="fab-icon">+</text>
+  </navigator>
+
+</view>

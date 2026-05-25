@@ -1,0 +1,423 @@
+/* ============================================
+   Global Styles — 高考复习助手
+   ============================================ */
+
+/* ---------------------------
+   CSS Variables (Design System)
+   --------------------------- */
+page {
+  --color-primary: #4A90D9;
+  --color-primary-light: #E8F0FE;
+  --color-success: #52C41A;
+  --color-warning: #FAAD14;
+  --color-error: #FF4D4F;
+  --color-text-primary: #333333;
+  --color-text-secondary: #666666;
+  --color-text-hint: #999999;
+  --color-bg: #F5F7FA;
+  --color-card-bg: #FFFFFF;
+  --color-border: #E8E8E8;
+
+  /* Spacing scale */
+  --spacing-4: 8rpx;
+  --spacing-8: 16rpx;
+  --spacing-12: 24rpx;
+  --spacing-16: 32rpx;
+  --spacing-24: 48rpx;
+  --spacing-32: 64rpx;
+
+  /* Border radius */
+  --radius-sm: 8rpx;
+  --radius-md: 16rpx;
+  --radius-lg: 24rpx;
+  --radius-full: 9999rpx;
+
+  /* Font sizes */
+  --font-xs: 22rpx;
+  --font-sm: 24rpx;
+  --font-base: 28rpx;
+  --font-md: 30rpx;
+  --font-lg: 34rpx;
+  --font-xl: 40rpx;
+  --font-2xl: 48rpx;
+
+  font-size: var(--font-base);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg);
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue',
+    'Microsoft YaHei', sans-serif;
+  line-height: 1.6;
+  box-sizing: border-box;
+}
+
+/* ---------------------------
+   Base Reset
+   --------------------------- */
+view, text, image, scroll-view, swiper, button, input, textarea, navigator {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+button::after {
+  border: none;
+}
+
+button {
+  background: none;
+  padding: 0;
+  margin: 0;
+  line-height: inherit;
+  font-size: inherit;
+}
+
+/* ---------------------------
+   Layout Utilities
+   --------------------------- */
+.container {
+  padding: var(--spacing-16);
+  min-height: 100vh;
+  background-color: var(--color-bg);
+}
+
+.page-padding {
+  padding: var(--spacing-16);
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-bold {
+  font-weight: 600;
+}
+
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-secondary {
+  color: var(--color-text-secondary);
+}
+
+.text-hint {
+  color: var(--color-text-hint);
+}
+
+.text-success {
+  color: var(--color-success);
+}
+
+.text-warning {
+  color: var(--color-warning);
+}
+
+.text-error {
+  color: var(--color-error);
+}
+
+/* ---------------------------
+   Typography
+   --------------------------- */
+.h1 {
+  font-size: var(--font-2xl);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--color-text-primary);
+}
+
+.h2 {
+  font-size: var(--font-xl);
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--color-text-primary);
+}
+
+.h3 {
+  font-size: var(--font-lg);
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--color-text-primary);
+}
+
+.body-text {
+  font-size: var(--font-base);
+  line-height: 1.6;
+  color: var(--color-text-primary);
+}
+
+.caption {
+  font-size: var(--font-sm);
+  line-height: 1.5;
+  color: var(--color-text-hint);
+}
+
+/* ---------------------------
+   Spacing Utilities
+   --------------------------- */
+.mt-8 {
+  margin-top: 16rpx;
+}
+
+.mt-16 {
+  margin-top: 32rpx;
+}
+
+.mt-24 {
+  margin-top: 48rpx;
+}
+
+.mb-8 {
+  margin-bottom: 16rpx;
+}
+
+.mb-16 {
+  margin-bottom: 32rpx;
+}
+
+.mb-24 {
+  margin-bottom: 48rpx;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.p-16 {
+  padding: 32rpx;
+}
+
+.p-24 {
+  padding: 48rpx;
+}
+
+/* ---------------------------
+   Card Styles
+   --------------------------- */
+.card {
+  background-color: var(--color-card-bg);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-16);
+  margin-bottom: var(--spacing-16);
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-12);
+}
+
+.card-title {
+  font-size: var(--font-lg);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.card-body {
+  font-size: var(--font-base);
+  color: var(--color-text-secondary);
+}
+
+.card-footer {
+  margin-top: var(--spacing-12);
+  padding-top: var(--spacing-12);
+  border-top: 1rpx solid var(--color-border);
+}
+
+/* ---------------------------
+   Button Styles
+   --------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 80rpx;
+  padding: 0 var(--spacing-24);
+  border-radius: var(--radius-md);
+  font-size: var(--font-base);
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.btn:active {
+  opacity: 0.8;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+}
+
+.btn-secondary {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 2rpx solid var(--color-primary);
+}
+
+.btn-text {
+  background-color: transparent;
+  color: var(--color-primary);
+  padding: 0 var(--spacing-8);
+  height: auto;
+}
+
+.btn-block {
+  display: flex;
+  width: 100%;
+}
+
+.btn-sm {
+  height: 60rpx;
+  padding: 0 var(--spacing-16);
+  font-size: var(--font-sm);
+  border-radius: var(--radius-sm);
+}
+
+.btn-lg {
+  height: 96rpx;
+  padding: 0 var(--spacing-32);
+  font-size: var(--font-lg);
+  border-radius: var(--radius-lg);
+}
+
+.btn-disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ---------------------------
+   Tag / Chip Styles
+   --------------------------- */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48rpx;
+  padding: 0 var(--spacing-12);
+  border-radius: var(--radius-full);
+  font-size: var(--font-xs);
+  font-weight: 500;
+}
+
+.tag-primary {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.tag-success {
+  background-color: #E6F7E6;
+  color: var(--color-success);
+}
+
+.tag-warning {
+  background-color: #FFF7E6;
+  color: var(--color-warning);
+}
+
+.tag-error {
+  background-color: #FFF1F0;
+  color: var(--color-error);
+}
+
+.tag-outline {
+  background-color: transparent;
+  border: 1rpx solid var(--color-border);
+  color: var(--color-text-secondary);
+}
+
+.tag-selected {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+}
+
+/* ---------------------------
+   Divider
+   --------------------------- */
+.divider {
+  height: 1rpx;
+  background-color: var(--color-border);
+  margin: var(--spacing-16) 0;
+}
+
+/* ---------------------------
+   Empty State
+   --------------------------- */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-32) 0;
+}
+
+.empty-state-icon {
+  width: 200rpx;
+  height: 200rpx;
+  margin-bottom: var(--spacing-16);
+}
+
+.empty-state-text {
+  font-size: var(--font-base);
+  color: var(--color-text-hint);
+  margin-bottom: var(--spacing-16);
+}
+
+/* ---------------------------
+   Loading
+   --------------------------- */
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-32) 0;
+}
+
+/* ---------------------------
+   Safe Area (iPhone X+)
+   --------------------------- */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}

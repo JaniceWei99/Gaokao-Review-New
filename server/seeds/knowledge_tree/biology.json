@@ -1,0 +1,48 @@
+[
+  {
+    "name": "分子与细胞",
+    "level": 1,
+    "display_order": 1,
+    "children": [
+      { "name": "细胞的分子组成", "level": 2, "display_order": 1, "children": [] },
+      { "name": "细胞的结构", "level": 2, "display_order": 2, "children": [] },
+      { "name": "细胞的代谢", "level": 2, "display_order": 3, "children": [] },
+      { "name": "细胞的增殖", "level": 2, "display_order": 4, "children": [] },
+      { "name": "细胞的分化、衰老与凋亡", "level": 2, "display_order": 5, "children": [] }
+    ]
+  },
+  {
+    "name": "遗传与进化",
+    "level": 1,
+    "display_order": 2,
+    "children": [
+      { "name": "遗传的分子基础", "level": 2, "display_order": 1, "children": [] },
+      { "name": "遗传的基本规律", "level": 2, "display_order": 2, "children": [] },
+      { "name": "基因突变与重组", "level": 2, "display_order": 3, "children": [] },
+      { "name": "生物的进化", "level": 2, "display_order": 4, "children": [] }
+    ]
+  },
+  {
+    "name": "稳态与调节",
+    "level": 1,
+    "display_order": 3,
+    "children": [
+      { "name": "内环境与稳态", "level": 2, "display_order": 1, "children": [] },
+      { "name": "神经调节", "level": 2, "display_order": 2, "children": [] },
+      { "name": "体液调节", "level": 2, "display_order": 3, "children": [] },
+      { "name": "免疫调节", "level": 2, "display_order": 4, "children": [] },
+      { "name": "植物的激素调节", "level": 2, "display_order": 5, "children": [] }
+    ]
+  },
+  {
+    "name": "生态与环境",
+    "level": 1,
+    "display_order": 4,
+    "children": [
+      { "name": "种群与群落", "level": 2, "display_order": 1, "children": [] },
+      { "name": "生态系统", "level": 2, "display_order": 2, "children": [] },
+      { "name": "生态环境保护", "level": 2, "display_order": 3, "children": [] },
+      { "name": "生物技术与工程", "level": 2, "display_order": 4, "children": [] }
+    ]
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "name": "自然地理",
+    "level": 1,
+    "display_order": 1,
+    "children": [
+      { "name": "地球运动", "level": 2, "display_order": 1, "children": [] },
+      { "name": "大气与气候", "level": 2, "display_order": 2, "children": [] },
+      { "name": "水循环与洋流", "level": 2, "display_order": 3, "children": [] },
+      { "name": "地质作用与地貌", "level": 2, "display_order": 4, "children": [] },
+      { "name": "自然地理环境的整体性与差异性", "level": 2, "display_order": 5, "children": [] }
+    ]
+  },
+  {
+    "name": "人文地理",
+    "level": 1,
+    "display_order": 2,
+    "children": [
+      { "name": "人口", "level": 2, "display_order": 1, "children": [] },
+      { "name": "城市与城镇化", "level": 2, "display_order": 2, "children": [] },
+      { "name": "农业", "level": 2, "display_order": 3, "children": [] },
+      { "name": "工业", "level": 2, "display_order": 4, "children": [] },
+      { "name": "交通运输", "level": 2, "display_order": 5, "children": [] }
+    ]
+  },
+  {
+    "name": "区域地理",
+    "level": 1,
+    "display_order": 3,
+    "children": [
+      { "name": "中国地理概况", "level": 2, "display_order": 1, "children": [] },
+      { "name": "中国区域差异", "level": 2, "display_order": 2, "children": [] },
+      { "name": "世界地理概况", "level": 2, "display_order": 3, "children": [] },
+      { "name": "区域可持续发展", "level": 2, "display_order": 4, "children": [] }
+    ]
+  },
+  {
+    "name": "地理信息技术",
+    "level": 1,
+    "display_order": 4,
+    "children": [
+      { "name": "地图与遥感", "level": 2, "display_order": 1, "children": [] },
+      { "name": "全球定位系统", "level": 2, "display_order": 2, "children": [] },
+      { "name": "地理信息系统", "level": 2, "display_order": 3, "children": [] }
+    ]
+  }
+]

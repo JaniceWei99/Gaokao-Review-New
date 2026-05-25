@@ -1,0 +1,69 @@
+[
+  {
+    "name": "中国古代史",
+    "level": 1,
+    "display_order": 1,
+    "children": [
+      { "name": "先秦时期", "level": 2, "display_order": 1, "children": [] },
+      { "name": "秦汉时期", "level": 2, "display_order": 2, "children": [] },
+      { "name": "魏晋南北朝至隋唐", "level": 2, "display_order": 3, "children": [] },
+      { "name": "宋元时期", "level": 2, "display_order": 4, "children": [] },
+      { "name": "明清时期", "level": 2, "display_order": 5, "children": [] }
+    ]
+  },
+  {
+    "name": "中国近代史",
+    "level": 1,
+    "display_order": 2,
+    "children": [
+      { "name": "列强侵华与中国人民的反抗", "level": 2, "display_order": 1, "children": [] },
+      { "name": "近代化的探索", "level": 2, "display_order": 2, "children": [] },
+      { "name": "新民主主义革命", "level": 2, "display_order": 3, "children": [] },
+      { "name": "近代经济与社会生活", "level": 2, "display_order": 4, "children": [] }
+    ]
+  },
+  {
+    "name": "中国现代史",
+    "level": 1,
+    "display_order": 3,
+    "children": [
+      { "name": "新中国的成立与巩固", "level": 2, "display_order": 1, "children": [] },
+      { "name": "社会主义建设", "level": 2, "display_order": 2, "children": [] },
+      { "name": "改革开放", "level": 2, "display_order": 3, "children": [] },
+      { "name": "新时代中国特色社会主义", "level": 2, "display_order": 4, "children": [] }
+    ]
+  },
+  {
+    "name": "世界古代史",
+    "level": 1,
+    "display_order": 4,
+    "children": [
+      { "name": "古代文明的产生与发展", "level": 2, "display_order": 1, "children": [] },
+      { "name": "古代希腊罗马", "level": 2, "display_order": 2, "children": [] },
+      { "name": "中世纪的欧洲", "level": 2, "display_order": 3, "children": [] }
+    ]
+  },
+  {
+    "name": "世界近代史",
+    "level": 1,
+    "display_order": 5,
+    "children": [
+      { "name": "资本主义的兴起", "level": 2, "display_order": 1, "children": [] },
+      { "name": "资产阶级革命", "level": 2, "display_order": 2, "children": [] },
+      { "name": "工业革命", "level": 2, "display_order": 3, "children": [] },
+      { "name": "马克思主义与国际工人运动", "level": 2, "display_order": 4, "children": [] },
+      { "name": "殖民扩张与民族解放", "level": 2, "display_order": 5, "children": [] }
+    ]
+  },
+  {
+    "name": "世界现代史",
+    "level": 1,
+    "display_order": 6,
+    "children": [
+      { "name": "两次世界大战", "level": 2, "display_order": 1, "children": [] },
+      { "name": "苏联社会主义建设", "level": 2, "display_order": 2, "children": [] },
+      { "name": "冷战与国际格局", "level": 2, "display_order": 3, "children": [] },
+      { "name": "当代世界的发展", "level": 2, "display_order": 4, "children": [] }
+    ]
+  }
+]

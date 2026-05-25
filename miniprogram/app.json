@@ -1,0 +1,83 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/onboarding/welcome",
+    "pages/onboarding/grade-select",
+    "pages/onboarding/subject-select",
+    "pages/onboarding/english-exam",
+    "pages/onboarding/district-select",
+    "pages/onboarding/complete",
+    "pages/milestones/timeline",
+    "pages/milestones/action-card",
+    "pages/milestones/add-custom",
+    "pages/knowledge/browse",
+    "pages/exams/list",
+    "pages/exams/add",
+    "pages/exams/trend",
+    "pages/errors/list",
+    "pages/errors/add",
+    "pages/errors/detail",
+    "pages/growth/timeline",
+    "pages/growth/add",
+    "pages/growth/export",
+    "pages/quotes/favorites",
+    "pages/profile/index",
+    "pages/profile/student-manage",
+    "pages/profile/subscription",
+    "pages/profile/privacy",
+    "pages/profile/about"
+  ],
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#4A90D9",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "assets/tab-home.png",
+        "selectedIconPath": "assets/tab-home-active.png"
+      },
+      {
+        "pagePath": "pages/errors/list",
+        "text": "错题本",
+        "iconPath": "assets/tab-errors.png",
+        "selectedIconPath": "assets/tab-errors-active.png"
+      },
+      {
+        "pagePath": "pages/growth/timeline",
+        "text": "成长册",
+        "iconPath": "assets/tab-growth.png",
+        "selectedIconPath": "assets/tab-growth-active.png"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "text": "我的",
+        "iconPath": "assets/tab-profile.png",
+        "selectedIconPath": "assets/tab-profile-active.png"
+      }
+    ]
+  },
+  "window": {
+    "navigationBarBackgroundColor": "#4A90D9",
+    "navigationBarTitleText": "高考复习助手",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#F5F7FA",
+    "backgroundTextStyle": "dark"
+  },
+  "permission": {
+    "scope.camera": {
+      "desc": "用于拍照记录错题和证书"
+    },
+    "scope.writePhotosAlbum": {
+      "desc": "用于保存金句分享图片到相册"
+    }
+  },
+  "requiredPrivateInfos": [
+    "chooseImage",
+    "chooseMedia"
+  ],
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

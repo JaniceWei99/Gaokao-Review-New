@@ -1,0 +1,302 @@
+[
+  {
+    "milestone_category": "level_exam",
+    "timing": "15d_before",
+    "title": "等级考准备",
+    "description": "距离等级考还有两周，是时候进入系统复习阶段了",
+    "action_items": [
+      {
+        "icon": "📋",
+        "text": "梳理知识薄弱点",
+        "detail": "打开知识图谱，标记红色（不会）和橙色（模糊）的知识点，列出需要重点突破的内容",
+        "category": "review"
+      },
+      {
+        "icon": "📝",
+        "text": "制定复习计划",
+        "detail": "根据剩余天数，将薄弱知识点分配到每天的复习任务中",
+        "category": "plan"
+      },
+      {
+        "icon": "📚",
+        "text": "整理错题本",
+        "detail": "回顾近期模考和练习中的错题，按知识点分类整理",
+        "category": "review"
+      },
+      {
+        "icon": "🎯",
+        "text": "做一套真题或模拟卷",
+        "detail": "限时完成一套完整试卷，检验当前水平，发现盲区",
+        "category": "practice"
+      }
+    ],
+    "footer_tip": "等级考采用等级赋分制，每一分的提升都可能影响赋分等级，加油！",
+    "applicable_grades": ["gao3"],
+    "applicable_subjects": null,
+    "quote_category": "pre_exam_motivation"
+  },
+  {
+    "milestone_category": "level_exam",
+    "timing": "3d_before",
+    "title": "等级考最后检查",
+    "description": "考试近在眼前，做好最后的准备工作",
+    "action_items": [
+      {
+        "icon": "✅",
+        "text": "检查考试用品",
+        "detail": "准考证、身份证、2B铅笔、黑色签字笔、橡皮、直尺、计算器（如允许）",
+        "category": "logistics"
+      },
+      {
+        "icon": "🗺️",
+        "text": "确认考场信息",
+        "detail": "查看准考证上的考场地址，提前规划交通路线，预留充足时间",
+        "category": "logistics"
+      },
+      {
+        "icon": "📖",
+        "text": "回顾核心知识",
+        "detail": "翻看知识图谱中标记为重点的内容，不做新题，以回顾巩固为主",
+        "category": "review"
+      },
+      {
+        "icon": "😴",
+        "text": "调整作息",
+        "detail": "保持正常作息时间，考前一晚不要熬夜，适当运动放松",
+        "category": "wellbeing"
+      }
+    ],
+    "footer_tip": "你已经准备了很久，相信自己的积累，从容应考！",
+    "applicable_grades": ["gao3"],
+    "applicable_subjects": null,
+    "quote_category": "pre_exam_motivation"
+  },
+  {
+    "milestone_category": "autumn_exam",
+    "timing": "15d_before",
+    "title": "高考准备",
+    "description": "距离高考还有两周，最后的冲刺阶段，做好全面准备",
+    "action_items": [
+      {
+        "icon": "📊",
+        "text": "回顾知识图谱",
+        "detail": "查看各科知识图谱的掌握情况，聚焦高频考点和薄弱环节",
+        "category": "review"
+      },
+      {
+        "icon": "📝",
+        "text": "回归课本基础",
+        "detail": "重新过一遍课本中的核心概念、公式、定理，确保基础扎实",
+        "category": "review"
+      },
+      {
+        "icon": "🔄",
+        "text": "限时模拟训练",
+        "detail": "每天安排一科限时模拟，保持做题手感和时间管理能力",
+        "category": "practice"
+      },
+      {
+        "icon": "💪",
+        "text": "保持健康作息",
+        "detail": "规律饮食和作息，适度运动，保持最佳身心状态",
+        "category": "wellbeing"
+      },
+      {
+        "icon": "🎯",
+        "text": "确定答题策略",
+        "detail": "每科明确答题顺序和时间分配，先易后难，确保会做的题不丢分",
+        "category": "strategy"
+      }
+    ],
+    "footer_tip": "高考不仅考知识，更考心态。稳扎稳打，发挥正常水平就是最好的结果。",
+    "applicable_grades": ["gao3"],
+    "applicable_subjects": null,
+    "quote_category": "pre_exam_motivation"
+  },
+  {
+    "milestone_category": "autumn_exam",
+    "timing": "3d_before",
+    "title": "高考最后准备",
+    "description": "决战在即，做好最后的身心准备",
+    "action_items": [
+      {
+        "icon": "✅",
+        "text": "准备考试物品",
+        "detail": "准考证、身份证（缺一不可）、2B铅笔（至少2支）、黑色签字笔（至少2支）、橡皮、直尺、三角板、量角器",
+        "category": "logistics"
+      },
+      {
+        "icon": "🗺️",
+        "text": "踩点确认考场",
+        "detail": "提前到考场踩点，确认座位位置、洗手间位置、交通路线和所需时间",
+        "category": "logistics"
+      },
+      {
+        "icon": "📖",
+        "text": "轻松回顾",
+        "detail": "只翻看笔记和错题本，不刷新题。回顾高频考点和易错点即可",
+        "category": "review"
+      },
+      {
+        "icon": "😌",
+        "text": "放松心情",
+        "detail": "听听音乐、散散步、和家人聊聊天，保持积极平和的心态",
+        "category": "wellbeing"
+      },
+      {
+        "icon": "⏰",
+        "text": "设定闹钟",
+        "detail": "设好起床闹钟，预留充足的出门时间，考前30分钟到达考场",
+        "category": "logistics"
+      }
+    ],
+    "footer_tip": "三年的努力即将绽放，你是最棒的！轻装上阵，一切都会好的。",
+    "applicable_grades": ["gao3"],
+    "applicable_subjects": null,
+    "quote_category": "pre_exam_motivation"
+  },
+  {
+    "milestone_category": "spring_exam",
+    "timing": "15d_before",
+    "title": "春季高考准备",
+    "description": "春季高考即将到来，这是外语一考的重要机会",
+    "action_items": [
+      {
+        "icon": "🔤",
+        "text": "外语专项复习",
+        "detail": "重点复习外语听力、阅读、写作，春考外语成绩可用于秋季高考",
+        "category": "review"
+      },
+      {
+        "icon": "📐",
+        "text": "语数查漏补缺",
+        "detail": "语文和数学以回顾基础为主，整理常见题型的解题思路",
+        "category": "review"
+      },
+      {
+        "icon": "⏱️",
+        "text": "限时练习",
+        "detail": "按照春考时间安排，做几套完整的限时模拟训练",
+        "category": "practice"
+      },
+      {
+        "icon": "📋",
+        "text": "了解春招政策",
+        "detail": "如有意向参加春招，提前了解目标院校和专业的招生要求",
+        "category": "info"
+      }
+    ],
+    "footer_tip": "春考是一次宝贵的练兵机会，外语一考更是可以为秋考减压，认真对待！",
+    "applicable_grades": ["gao3"],
+    "applicable_subjects": null,
+    "quote_category": "pre_exam_motivation"
+  },
+  {
+    "milestone_category": "school_exam",
+    "timing": "15d_before",
+    "title": "期末考试准备",
+    "description": "期末考试临近，合理安排复习计划",
+    "action_items": [
+      {
+        "icon": "📋",
+        "text": "列出考试科目和范围",
+        "detail": "确认每门科目的考试时间和范围，按重要性和难度排序",
+        "category": "plan"
+      },
+      {
+        "icon": "📅",
+        "text": "制定复习时间表",
+        "detail": "将复习内容分配到剩余天数中，保证每科都有足够的复习时间",
+        "category": "plan"
+      },
+      {
+        "icon": "📚",
+        "text": "回归课本和笔记",
+        "detail": "系统过一遍本学期的课本内容和课堂笔记，夯实基础",
+        "category": "review"
+      },
+      {
+        "icon": "✏️",
+        "text": "练习典型题目",
+        "detail": "针对每科的核心考点，做一些典型题目练习，巩固理解",
+        "category": "practice"
+      }
+    ],
+    "footer_tip": "期末考试是对一学期学习的检验，踏实复习，稳步提升！",
+    "applicable_grades": ["gao1", "gao2"],
+    "applicable_subjects": null,
+    "quote_category": "daily_encouragement"
+  },
+  {
+    "milestone_category": "registration",
+    "timing": "15d_before",
+    "title": "高考报名提醒",
+    "description": "高考报名即将开始，请提前准备好所需材料",
+    "action_items": [
+      {
+        "icon": "🪪",
+        "text": "准备身份证件",
+        "detail": "确认身份证在有效期内，如即将过期需尽快补办",
+        "category": "logistics"
+      },
+      {
+        "icon": "📷",
+        "text": "准备证件照",
+        "detail": "按学校要求准备近期免冠证件照（电子版和纸质版）",
+        "category": "logistics"
+      },
+      {
+        "icon": "📋",
+        "text": "确认报名信息",
+        "detail": "与班主任确认报名流程、时间和所需材料，注意选科信息是否正确",
+        "category": "info"
+      },
+      {
+        "icon": "🏫",
+        "text": "关注学校通知",
+        "detail": "密切关注学校发布的高考报名相关通知和要求",
+        "category": "info"
+      }
+    ],
+    "footer_tip": "报名是高考的第一步，材料务必准备齐全，信息务必填写准确！",
+    "applicable_grades": ["gao3"],
+    "applicable_subjects": null,
+    "quote_category": "daily_encouragement"
+  },
+  {
+    "milestone_category": "comprehensive_eval",
+    "timing": "15d_before",
+    "title": "综评报名准备",
+    "description": "综合评价批次报名即将开始，提前做好准备",
+    "action_items": [
+      {
+        "icon": "🏫",
+        "text": "确定目标院校",
+        "detail": "了解复旦、交大、同济、华师大等高校的综评招生计划和要求",
+        "category": "info"
+      },
+      {
+        "icon": "📝",
+        "text": "准备申请材料",
+        "detail": "整理高中阶段的成绩单、获奖证书、社会实践证明等材料",
+        "category": "logistics"
+      },
+      {
+        "icon": "✍️",
+        "text": "撰写个人陈述",
+        "detail": "提前准备个人陈述/自荐信，突出个人特长和学科兴趣",
+        "category": "practice"
+      },
+      {
+        "icon": "💬",
+        "text": "准备面试",
+        "detail": "了解综评面试的常见形式和话题，适当进行模拟练习",
+        "category": "practice"
+      }
+    ],
+    "footer_tip": "综合评价是进入顶尖高校的重要途径，充分准备，展现最好的自己！",
+    "applicable_grades": ["gao3"],
+    "applicable_subjects": null,
+    "quote_category": "daily_encouragement"
+  }
+]

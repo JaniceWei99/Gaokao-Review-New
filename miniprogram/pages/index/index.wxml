@@ -1,0 +1,65 @@
+<!-- pages/index/index.wxml — Homepage -->
+<view class="container home-page">
+
+  <!-- Daily Quote Card -->
+  <view class="card quote-card">
+    <view class="quote-text">{{quote || '每一天的努力，都是在为未来铺路。'}}</view>
+    <view class="quote-source text-hint">{{quoteSource || '— 加载中...'}}</view>
+  </view>
+
+  <!-- Gaokao Countdown -->
+  <view class="card countdown-card">
+    <view class="countdown-label text-secondary">距离高考还有</view>
+    <view class="countdown-days">
+      <text class="countdown-number">{{countdown || '--'}}</text>
+      <text class="countdown-unit">天</text>
+    </view>
+    <view class="countdown-date text-hint">{{gaokaoDate || '2026年6月7日'}}</view>
+  </view>
+
+  <!-- Current Milestones -->
+  <view class="card section-card">
+    <view class="card-header">
+      <text class="card-title">当前里程碑</text>
+      <navigator url="/pages/milestones/timeline" class="btn-text">查看全部</navigator>
+    </view>
+    <view class="card-body">
+      <block wx:if="{{milestones.length > 0}}">
+        <view class="milestone-item" wx:for="{{milestones}}" wx:key="id">
+          <view class="milestone-dot {{item.is_current ? 'active' : ''}}"></view>
+          <view class="milestone-info">
+            <text class="milestone-name">{{item.name}}</text>
+            <text class="milestone-date text-hint">{{item.date_display}}</text>
+          </view>
+        </view>
+      </block>
+      <view wx:else class="empty-state">
+        <text class="empty-state-text">暂无里程碑数据</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Quick Entry Grid -->
+  <view class="quick-entries">
+    <view class="quick-entry-title h3">快捷入口</view>
+    <view class="quick-grid">
+      <navigator url="/pages/errors/add" class="quick-item">
+        <view class="quick-icon quick-icon-errors">+</view>
+        <text class="quick-label">记录错题</text>
+      </navigator>
+      <navigator url="/pages/exams/add" class="quick-item">
+        <view class="quick-icon quick-icon-exams">+</view>
+        <text class="quick-label">录入成绩</text>
+      </navigator>
+      <navigator url="/pages/growth/add" class="quick-item">
+        <view class="quick-icon quick-icon-growth">+</view>
+        <text class="quick-label">成长记录</text>
+      </navigator>
+      <navigator url="/pages/knowledge/browse" class="quick-item">
+        <view class="quick-icon quick-icon-knowledge">K</view>
+        <text class="quick-label">知识浏览</text>
+      </navigator>
+    </view>
+  </view>
+
+</view>

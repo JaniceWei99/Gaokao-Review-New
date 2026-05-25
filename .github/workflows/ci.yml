@@ -1,0 +1,77 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: gaokao_companion_test
+          POSTGRES_USER: dev
+          POSTGRES_PASSWORD: devpass
+        ports:
+          - 5433:5432
+        options: >-
+          --health-cmd "pg_isready -U dev -d gaokao_companion_test"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      TEST_DB_HOST: localhost
+      TEST_DB_PORT: 5433
+      TEST_DB_USER: dev
+      TEST_DB_PASSWORD: devpass
+      TEST_DB_NAME: gaokao_companion_test
+      DB_HOST: localhost
+      DB_PORT: 5433
+      DB_USER: dev
+      DB_PASSWORD: devpass
+      DB_NAME: gaokao_companion_test
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: server/requirements.txt
+
+      - name: Install dependencies
+        working-directory: server
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          # Install psycopg2 for sync alembic migrations
+          pip install psycopg2-binary
+
+      - name: Lint
+        working-directory: server
+        run: |
+          ruff check app/ tests/
+          ruff format --check app/ tests/
+
+      - name: Type check
+        working-directory: server
+        run: |
+          mypy app/ --ignore-missing-imports || true
+
+      - name: Run migrations
+        working-directory: server
+        run: |
+          alembic upgrade head
+
+      - name: Run tests
+        working-directory: server
+        run: |
+          python -m pytest tests/ -v --tb=short --cov=app --cov-report=term-missing
