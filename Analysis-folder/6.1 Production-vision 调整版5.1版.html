@@ -3,203 +3,278 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>上海高考复习助手 - Product Vision Document v5.1</title>
+    <title>上海高考复习助手 - Product Vision v5.1</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-            line-height: 1.6;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            line-height: 1.8;
             color: #333;
-            max-width: 1200px;
-            margin: 0 auto;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
             padding: 20px;
-            background-color: #f9f9f9;
         }
-
+        
         .container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
-
-        h1 {
-            color: #2c3e50;
-            border-bottom: 3px solid #3498db;
-            padding-bottom: 10px;
-            margin-bottom: 30px;
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid #4A90D9;
         }
-
-        h2 {
-            color: #34495e;
-            border-bottom: 2px solid #ecf0f1;
-            padding-bottom: 8px;
-            margin-top: 40px;
-            margin-bottom: 20px;
-        }
-
-        h3 {
-            color: #7f8c8d;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        h4 {
-            color: #95a5a6;
-            margin-top: 25px;
+        
+        .header h1 {
+            font-size: 36px;
+            color: #1a1a1a;
             margin-bottom: 12px;
         }
-
+        
+        .version {
+            color: #666;
+            font-size: 16px;
+            margin-top: 8px;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 28px;
+            margin-bottom: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        
+        h1 {
+            font-size: 32px;
+            border-bottom: 3px solid #4A90D9;
+            padding-bottom: 12px;
+            margin-bottom: 24px;
+        }
+        
+        h2 {
+            font-size: 26px;
+            color: #4A90D9;
+            border-left: 4px solid #4A90D9;
+            padding-left: 16px;
+        }
+        
+        h3 {
+            font-size: 22px;
+            color: #555;
+            border-left: 3px solid #e0e0e0;
+            padding-left: 12px;
+        }
+        
+        h4, h5, h6 {
+            font-size: 18px;
+            color: #666;
+        }
+        
         p {
-            margin-bottom: 15px;
+            margin-bottom: 14px;
+            text-align: justify;
+            line-height: 1.8;
         }
-
+        
         blockquote {
-            border-left: 4px solid #3498db;
-            padding-left: 20px;
-            margin: 20px 0;
-            color: #7f8c8d;
-            background-color: #f8f9fa;
-            padding: 15px 20px;
+            border-left: 4px solid #4A90D9;
+            padding-left: 16px;
+            margin-left: 0;
+            margin-bottom: 16px;
+            color: #555;
+            background-color: #f0f4f8;
+            padding: 14px 16px;
             border-radius: 4px;
+            font-style: italic;
         }
-
+        
+        ul, ol {
+            margin-left: 28px;
+            margin-bottom: 14px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+            line-height: 1.7;
+        }
+        
         code {
-            background-color: #f4f4f4;
+            background-color: #f5f5f5;
             padding: 2px 6px;
             border-radius: 3px;
-            font-family: "Courier New", monospace;
-            font-size: 0.9em;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 14px;
+            color: #d63384;
         }
-
+        
         pre {
-            background-color: #2c3e50;
-            color: #ecf0f1;
-            padding: 20px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
             border-radius: 6px;
+            padding: 14px;
             overflow-x: auto;
-            margin: 20px 0;
+            margin-bottom: 16px;
+            line-height: 1.5;
         }
-
+        
         pre code {
             background-color: transparent;
             padding: 0;
-            color: inherit;
+            color: #333;
         }
-
+        
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            font-size: 14px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
-
-        th, td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #3498db;
+        
+        table th {
+            background: linear-gradient(135deg, #4A90D9 0%, #357ABD 100%);
             color: white;
-            font-weight: bold;
+            padding: 14px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid #357ABD;
         }
-
-        tr:nth-child(even) {
+        
+        table td {
+            border: 1px solid #e0e0e0;
+            padding: 12px 14px;
+        }
+        
+        table tr:nth-child(even) {
             background-color: #f9f9f9;
         }
-
-        tr:hover {
-            background-color: #f1f1f1;
+        
+        table tr:hover {
+            background-color: #f0f4f8;
+            transition: background-color 0.2s ease;
         }
-
-        ul, ol {
-            margin: 15px 0;
-            padding-left: 30px;
-        }
-
-        li {
-            margin-bottom: 8px;
-        }
-
-        hr {
-            border: none;
-            border-top: 2px solid #ecf0f1;
-            margin: 30px 0;
-        }
-
-        strong {
-            color: #e74c3c;
-            font-weight: bold;
-        }
-
-        em {
-            color: #9b59b6;
-        }
-
+        
         a {
-            color: #3498db;
+            color: #4A90D9;
             text-decoration: none;
+            transition: color 0.2s ease;
         }
-
+        
         a:hover {
+            color: #357ABD;
             text-decoration: underline;
         }
-
-        .info-box {
-            background-color: #d4edda;
-            border: 1px solid #c3e6cb;
-            color: #155724;
-            padding: 15px;
-            border-radius: 4px;
-            margin: 20px 0;
+        
+        hr {
+            border: none;
+            border-top: 2px solid #e0e0e0;
+            margin: 32px 0;
         }
-
-        .warning-box {
-            background-color: #fff3cd;
-            border: 1px solid #ffeaa7;
-            color: #856404;
-            padding: 15px;
-            border-radius: 4px;
-            margin: 20px 0;
+        
+        .footer {
+            margin-top: 50px;
+            padding-top: 24px;
+            border-top: 2px solid #e0e0e0;
+            text-align: center;
+            color: #999;
+            font-size: 13px;
         }
-
-        .danger-box {
-            background-color: #f8d7da;
-            border: 1px solid #f5c6cb;
-            color: #721c24;
-            padding: 15px;
-            border-radius: 4px;
-            margin: 20px 0;
+        
+        .toc {
+            background-color: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 30px;
         }
-
+        
+        .toc h3 {
+            margin-top: 0;
+            color: #4A90D9;
+        }
+        
+        .toc ul {
+            margin-bottom: 0;
+        }
+        
+        .emoji {
+            font-size: 1.1em;
+            margin-right: 4px;
+        }
+        
         @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
             .container {
-                padding: 20px;
+                padding: 24px;
             }
+            
+            h1 {
+                font-size: 26px;
+            }
+            
+            h2 {
+                font-size: 22px;
+            }
+            
+            h3 {
+                font-size: 18px;
+            }
+            
             table {
-                font-size: 14px;
+                font-size: 12px;
             }
-            th, td {
+            
+            table th, table td {
                 padding: 8px;
+            }
+            
+            .header h1 {
+                font-size: 28px;
+            }
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .container {
+                box-shadow: none;
+                padding: 0;
+            }
+            
+            a {
+                color: #4A90D9;
+                text-decoration: underline;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <p>基于以上，再有一些微调，1. 如果是高一学生，有可能还没有选科，那就不选科，同时成绩录入就是全科成绩。另外即使高二，小三门的满分也不一定按照100来记录，可以增加满分多少的记录。 2. 错题可以有拍照记录的方式，对应一个知识点。随时可调出。 3. 还可以有一个孩子的进步的记录。家长可以记录孩子获得的奖项等。</p>
-<p>好的，我理解您的需求。您希望在 v5 的基础上，<strong>保留里程碑、行动建议、金句等核心功能架构不变</strong>，新增3个模块：①年级适配（高一不选科+满分自定义）；②错题拍照记录；③孩子进步/荣誉记录。以下是完整的 v5.1 版本。</p>
+        <div class="header">
+            <h1>上海高考复习助手</h1>
+            <p class="version">Product Vision Document v5.1</p>
+            <p style="color: #999; font-size: 13px; margin-top: 12px;">最后更新: 2026年5月25日</p>
+        </div>
+        
+        <hr />
+<h1 id="-product-vision-document-v51">上海高考复习助手 - Product Vision Document v5.1</h1>
 <hr />
-<h1>上海高考复习助手 - Product Vision Document v5.1</h1>
-<blockquote>
-<p><strong>版本说明</strong>：v5.1 基于 v5 进行<strong>3项功能新增</strong>，保留 v5 全部核心架构（里程碑驱动行动提醒、每日金句、桌面小组件、知识点树浏览、行动建议系统等）。新增：①年级适配（高一无需选科+满分可自定义）；②错题拍照记录本；③孩子进步成长记录册。</p>
-</blockquote>
-<hr />
-<h2>🎯 Product Vision</h2>
+<h2 id="product-vision">🎯 Product Vision</h2>
 <p><strong>Vision</strong>: 为上海高中生家长提供一个"不需要懂学科知识也能用"的备考陪伴助手，通过里程碑驱动的行动指引、每日励志金句、错题拍照归档和成长记录，让家长从高一到高三<strong>全程陪伴、不焦虑、不缺席、不越界</strong>。</p>
 <p><strong>Mission</strong>: 降低家长参与孩子学习的知识门槛和心理负担，通过"里程碑节点提醒 + 具体行动建议 + 每日金句 + 错题归档 + 成长记录"的五层机制，帮助每个家长——无论是否懂学科知识——都能在正确的时间做正确的事，并留下孩子成长的珍贵轨迹。</p>
 <p><strong>核心设计哲学</strong>:</p>
@@ -208,10 +283,10 @@
 <p><strong>v5.1 扩展定位</strong>：从"仅服务高三"扩展为"高一到高三全程陪伴"。高一用户以成绩记录、错题归档、成长记录为主；高二开始选科后，逐步启用里程碑和行动建议；高三全功能激活。</p>
 </blockquote>
 <hr />
-<h2>⚠️ 合规与监管边界</h2>
-<h3>教育领域监管要求</h3>
+<h2 id="_1">⚠️ 合规与监管边界</h2>
+<h3 id="_2">教育领域监管要求</h3>
 <p>教育领域监管严格，2025年标志着教育智能化进入"深度应用与系统规范并举"的新阶段。产品必须在"育人导向、安全可控"原则下严格运行。</p>
-<h4>🚫 绝对不能做的功能</h4>
+<h4 id="_3">🚫 绝对不能做的功能</h4>
 <ul>
 <li><strong>学科类培训</strong>: 不提供任何形式的学科辅导内容</li>
 <li><strong>拍照搜题给答案</strong>: 不提供题目答案或解题过程（错题拍照仅用于归档记录，不做识别答案）</li>
@@ -220,13 +295,13 @@
 <li><strong>作业批改</strong>: 不提供作业批改服务</li>
 <li><strong>名师对接/课程导流</strong>: 不做付费教师撮合平台</li>
 </ul>
-<h4>✅ 产品定位：家长备考陪伴工具</h4>
+<h4 id="_4">✅ 产品定位：家长备考陪伴工具</h4>
 <ul>
 <li><strong>核心定位</strong>: "家长备考陪伴工具"——不是学习辅导工具，也不是数据追踪工具</li>
 <li><strong>功能边界</strong>: 里程碑提醒、行动建议、金句陪伴、知识点浏览、错题拍照归档、成长记录，不涉及教学内容</li>
 <li><strong>价值主张</strong>: 在正确的时间告诉家长该做什么，帮家长留存孩子的学习痕迹和成长轨迹</li>
 </ul>
-<h4>⚠️ AI功能合规边界（Phase 3+）</h4>
+<h4 id="aiphase-3">⚠️ AI功能合规边界（Phase 3+）</h4>
 <ul>
 <li>✅ <strong>可以做</strong>:</li>
 <li>高考政策、时间节点、报名流程解读</li>
@@ -247,8 +322,8 @@
 <li>推荐公开免费学习资源链接——需确认是否属于"导流学科培训"</li>
 </ul>
 <hr />
-<h2>🔍 竞品分析</h2>
-<h3>市场格局</h3>
+<h2 id="_5">🔍 竞品分析</h2>
+<h3 id="_6">市场格局</h3>
 <pre><code>                    高考前（备考过程）            高考后（志愿填报）
                    ┌────────────────────┐   ┌────────────────────┐
                    │  作业帮(月活9800万+) │   │  夸克(累计1.2亿+)   │
@@ -267,7 +342,7 @@
                    │  本产品面向家长归档   │
                    └────────────────────┘
 </code></pre>
-<h3>竞品对比矩阵</h3>
+<h3 id="_7">竞品对比矩阵</h3>
 <table>
 <thead>
 <tr>
@@ -337,7 +412,7 @@
 </tr>
 </tbody>
 </table>
-<h3>差异化壁垒</h3>
+<h3 id="_8">差异化壁垒</h3>
 <table>
 <thead>
 <tr>
@@ -368,7 +443,7 @@
 </tr>
 </tbody>
 </table>
-<h3>与最大替代品"微信群+Excel"的竞争策略</h3>
+<h3 id="excel">与最大替代品"微信群+Excel"的竞争策略</h3>
 <table>
 <thead>
 <tr>
@@ -411,8 +486,8 @@
 </tbody>
 </table>
 <hr />
-<h2>🎯 市场策略</h2>
-<h3>初期定位：上海高中生家长陪伴工具</h3>
+<h2 id="_9">🎯 市场策略</h2>
+<h3 id="_10">初期定位：上海高中生家长陪伴工具</h3>
 <ul>
 <li><strong>目标市场</strong>: 上海高中生家长（高中存量约15万家庭，每年约5万高三考生）</li>
 <li><strong>v5.1 扩展</strong>：从仅服务高三，扩展到<strong>高一即可使用</strong>，提前锁定用户</li>
@@ -422,7 +497,7 @@
 <blockquote>
 <p>⚠️ 上海考生数据建议通过上海市教委或教育考试院官方渠道核实。</p>
 </blockquote>
-<h3>扩展路径</h3>
+<h3 id="_11">扩展路径</h3>
 <pre><code>Phase 1：上海高三家长工具（验证核心价值）
    ↓ 核心假设验证成功
 Phase 1.5：扩展到高一/高二家长（扩大用户基数）
@@ -433,7 +508,7 @@ Phase 3：扩展到浙江、北京等新高考省份
    ↓ 规模化
 Phase 4：覆盖全国新高考省份
 </code></pre>
-<h3>底层架构可配置化（为扩展准备）</h3>
+<h3 id="_12">底层架构可配置化（为扩展准备）</h3>
 <table>
 <thead>
 <tr>
@@ -469,8 +544,8 @@ Phase 4：覆盖全国新高考省份
 </tbody>
 </table>
 <hr />
-<h2>👥 User Personas</h2>
-<h3>核心用户：高中生家长（高一至高三）</h3>
+<h2 id="user-personas">👥 User Personas</h2>
+<h3 id="_13">核心用户：高中生家长（高一至高三）</h3>
 <table>
 <thead>
 <tr>
@@ -507,22 +582,22 @@ Phase 4：覆盖全国新高考省份
 </tr>
 </tbody>
 </table>
-<p><strong>共同特征</strong>:<br />
-- 年龄40-50岁<br />
-- 关心孩子学习，但工作繁忙<br />
-- 毕业20多年，已不记得高中学科细节<br />
-- 熟练使用微信，但不擅长复杂App<br />
-- 愿意为孩子的教育投入时间和金钱<br />
+<p><strong>共同特征</strong>:
+- 年龄40-50岁
+- 关心孩子学习，但工作繁忙
+- 毕业20多年，已不记得高中学科细节
+- 熟练使用微信，但不擅长复杂App
+- 愿意为孩子的教育投入时间和金钱
 - <strong>不想做太多"任务"（打卡、标记），但希望被动获得有用信息</strong></p>
-<h3>次要用户：高中生（孩子）</h3>
+<h3 id="_14">次要用户：高中生（孩子）</h3>
 <ul>
 <li><strong>角色</strong>: 被动受益者——家长用了这个工具后，关注更有分寸，焦虑传导更少</li>
 <li><strong>参与度</strong>: <strong>零</strong>。产品是纯家长端工具，孩子不需要知道家长在用</li>
 <li><strong>间接受益</strong>: 家长在正确的时间做正确的事（打印公式表、保障睡眠），比"无效关心"更有帮助</li>
 </ul>
 <hr />
-<h2>💡 Value Proposition</h2>
-<h3>对于家长</h3>
+<h2 id="value-proposition">💡 Value Proposition</h2>
+<h3 id="_15">对于家长</h3>
 <table>
 <thead>
 <tr>
@@ -569,7 +644,7 @@ Phase 4：覆盖全国新高考省份
 </tr>
 </tbody>
 </table>
-<h3>对于学生（间接受益）</h3>
+<h3 id="_16">对于学生（间接受益）</h3>
 <table>
 <thead>
 <tr>
@@ -597,12 +672,12 @@ Phase 4：覆盖全国新高考省份
 </tbody>
 </table>
 <hr />
-<h2>🚀 Core Features</h2>
-<h3>0. 年级与选科配置（注册必选）⭐ 前置功能</h3>
+<h2 id="core-features">🚀 Core Features</h2>
+<h3 id="0">0. 年级与选科配置（注册必选）⭐ 前置功能</h3>
 <blockquote>
 <p><strong>v5.1 核心变化</strong>：支持高一到高三全年级。高一不选科，全科模式；高二/高三选科后，系统自动适配。</p>
 </blockquote>
-<h4>注册流程中的年级判断</h4>
+<h4 id="_17">注册流程中的年级判断</h4>
 <pre><code>Step 1：选择年级
        高一 / 高二 / 高三
        ↓
@@ -620,7 +695,7 @@ Phase 4：覆盖全国新高考省份
        │        → 全功能激活                       │
        └───────────────────────────────────────┘
 </code></pre>
-<h4>年级适配对照表</h4>
+<h4 id="_18">年级适配对照表</h4>
 <table>
 <thead>
 <tr>
@@ -687,7 +762,7 @@ Phase 4：覆盖全国新高考省份
 </tr>
 </tbody>
 </table>
-<h4>上海高考"3+3"科目与分值</h4>
+<h4 id="33">上海高考"3+3"科目与分值</h4>
 <table>
 <thead>
 <tr>
@@ -755,11 +830,11 @@ Phase 4：覆盖全国新高考省份
 </tbody>
 </table>
 <hr />
-<h3>1. 里程碑驱动的行动提醒系统 ⭐⭐⭐ 核心功能</h3>
+<h3 id="1">1. 里程碑驱动的行动提醒系统 ⭐⭐⭐ 核心功能</h3>
 <blockquote>
 <p>提醒卡片<strong>完全由里程碑节点自动触发</strong>，家长不需要"打卡"或"记录薄弱点"。</p>
 </blockquote>
-<h4>里程碑时间线（按年级适配）</h4>
+<h4 id="_19">里程碑时间线（按年级适配）</h4>
 <p><strong>高三完整里程碑</strong>：</p>
 <pre><code>高三上学期（9月-1月）
 ├── 9月      开学，进入一轮复习
@@ -787,7 +862,7 @@ Phase 4：覆盖全国新高考省份
 <blockquote>
 <p>⚠️ 具体考试日期以上海市教育考试院官网公告为准，产品内需设计动态更新能力。</p>
 </blockquote>
-<h4>提醒触发规则</h4>
+<h4 id="_20">提醒触发规则</h4>
 <p>每个里程碑触发<strong>两次提醒</strong>：</p>
 <table>
 <thead>
@@ -810,7 +885,7 @@ Phase 4：覆盖全国新高考省份
 </tr>
 </tbody>
 </table>
-<h4>里程碑行动卡片示例</h4>
+<h4 id="_21">里程碑行动卡片示例</h4>
 <p><strong>示例1：等级考前15天</strong></p>
 <pre><code>┌────────────────────────────────────────────┐
 │ 📋 【准备提醒】等级考倒计时 15 天            │
@@ -870,11 +945,11 @@ Phase 4：覆盖全国新高考省份
 └────────────────────────────────────────────┘
 </code></pre>
 <hr />
-<h3>2. 每日励志金句系统 ⭐⭐⭐ 核心功能</h3>
+<h3 id="2">2. 每日励志金句系统 ⭐⭐⭐ 核心功能</h3>
 <blockquote>
 <p>每日一句精选金句，缓解家长和孩子的焦虑，营造正向家庭氛围。</p>
 </blockquote>
-<h4>金句来源与分类</h4>
+<h4 id="_22">金句来源与分类</h4>
 <table>
 <thead>
 <tr>
@@ -926,7 +1001,7 @@ Phase 4：覆盖全国新高考省份
 </tr>
 </tbody>
 </table>
-<h4>金句展示机制</h4>
+<h4 id="_23">金句展示机制</h4>
 <ul>
 <li><strong>每日自动更新</strong>：每天早上8:00更新一条金句</li>
 <li><strong>阶段感知</strong>：根据当前距离最近考试的天数，自动匹配金句类别</li>
@@ -935,18 +1010,18 @@ Phase 4：覆盖全国新高考省份
 <li><strong>可收藏</strong>：家长觉得好的金句可以收藏</li>
 <li><strong>可分享</strong>：一键生成金句图片卡片，分享到微信/朋友圈</li>
 </ul>
-<h4>金句展示位置</h4>
+<h4 id="_24">金句展示位置</h4>
 <ol>
 <li><strong>App首页顶部</strong>：每次打开看到当天金句</li>
 <li><strong>桌面小组件</strong>：与倒计时一起展示</li>
 <li><strong>里程碑行动卡片底部</strong>：每张行动卡片都配一句金句</li>
 </ol>
 <hr />
-<h3>3. 桌面小组件（里程碑+金句）⭐⭐ 关键差异化功能</h3>
+<h3 id="3">3. 桌面小组件（里程碑+金句）⭐⭐ 关键差异化功能</h3>
 <blockquote>
 <p>让里程碑和金句<strong>常驻手机桌面</strong>，家长不用打开App就能看到倒计时和今日金句。</p>
 </blockquote>
-<h4>小组件设计</h4>
+<h4 id="_25">小组件设计</h4>
 <p><strong>小尺寸（2×2）</strong></p>
 <pre><code>┌──────────────────────┐
 │  📅 距高考 78 天       │
@@ -974,18 +1049,18 @@ Phase 4：覆盖全国新高考省份
 │     都是高三的底气。&quot;  │
 └──────────────────────┘
 </code></pre>
-<h4>技术实现</h4>
+<h4 id="_26">技术实现</h4>
 <ul>
 <li><strong>微信小程序</strong>：支持"添加到桌面"快捷方式，打开即显示倒计时+金句</li>
 <li><strong>Phase 4 原生App</strong>：支持iOS Widget / Android桌面小组件</li>
 <li><strong>每日更新</strong>：金句每天8:00自动刷新</li>
 </ul>
 <hr />
-<h3>4. 知识点树浏览（可折叠三级）⭐⭐ 参考功能</h3>
+<h3 id="4">4. 知识点树浏览（可折叠三级）⭐⭐ 参考功能</h3>
 <blockquote>
 <p>知识点树是<strong>家长参考浏览工具</strong>，不是标记/打卡工具。默认展示2级，陪读型家长可展开3级。</p>
 </blockquote>
-<h4>知识点树交互设计</h4>
+<h4 id="_27">知识点树交互设计</h4>
 <pre><code>┌──────────────────────────────────────┐
 │  📚 知识点浏览 — 数学                  │
 │  &quot;了解孩子在学什么，不需要你懂公式&quot;    │
@@ -1012,14 +1087,14 @@ Phase 4：覆盖全国新高考省份
 │    │   ├ 三角函数图像与性质            │
 │    │   └ 三角函数应用                  │
 </code></pre>
-<h4>设计要点</h4>
+<h4 id="_28">设计要点</h4>
 <ul>
 <li><strong>默认展示2级</strong>（一级模块+二级章节），满足大部分家长</li>
 <li><strong>点击可展开3级</strong>（具体知识点），满足陪读型家长</li>
 <li><strong>纯浏览，无标记操作</strong>——降低使用门槛，去除"打卡负担"</li>
 <li><strong>配合行动建议和错题本使用</strong>：行动卡片建议"打印三角函数公式表"时，家长可在知识点树中查看具体内容；错题归档时可关联知识点</li>
 </ul>
-<h4>知识点树数量控制</h4>
+<h4 id="_29">知识点树数量控制</h4>
 <table>
 <thead>
 <tr>
@@ -1099,7 +1174,7 @@ Phase 4：覆盖全国新高考省份
 <blockquote>
 <p>注：高一展示全部9科；高二/高三根据选科只展示6科。</p>
 </blockquote>
-<h4>数据来源与维护</h4>
+<h4 id="_30">数据来源与维护</h4>
 <ol>
 <li><strong>上海市教育考试院</strong>: 高考考试大纲、考试说明</li>
 <li><strong>上海高中教材</strong>: 各科目教材目录和章节结构</li>
@@ -1108,11 +1183,11 @@ Phase 4：覆盖全国新高考省份
 <li><strong>每年高考后更新</strong> + 用户"找不到章节"反馈通道</li>
 </ol>
 <hr />
-<h3>5. 行动建议系统 ⭐⭐⭐ 核心功能</h3>
+<h3 id="5">5. 行动建议系统 ⭐⭐⭐ 核心功能</h3>
 <blockquote>
 <p><strong>v5 核心理念不变</strong>：去掉家长"打卡"和"薄弱点标记"机制，<strong>系统主动推送"家长能做到的具体行动"</strong>。</p>
 </blockquote>
-<h4>行动建议类型</h4>
+<h4 id="_31">行动建议类型</h4>
 <table>
 <thead>
 <tr>
@@ -1169,18 +1244,18 @@ Phase 4：覆盖全国新高考省份
 </tr>
 </tbody>
 </table>
-<h4>行动建议合规性说明</h4>
+<h4 id="_32">行动建议合规性说明</h4>
 <ul>
 <li>✅ "打印公式表" → 通用学习辅助行为，不涉及学科辅导</li>
 <li>✅ "整理错题本" → 通用学习方法，不涉及具体知识讲解</li>
 <li>✅ "调整作息/饮食" → 生活保障建议，无合规风险</li>
 </ul>
 <hr />
-<h3>6. 成绩记录与管理 ⭐⭐ 重要功能</h3>
+<h3 id="6">6. 成绩记录与管理 ⭐⭐ 重要功能</h3>
 <blockquote>
 <p><strong>v5.1 核心变化</strong>：①高一支持全科（9科）成绩录入；②每科每次考试的<strong>满分可自定义</strong>，不固定为100或150。</p>
 </blockquote>
-<h4>6a. 成绩录入设计</h4>
+<h4 id="6a">6a. 成绩录入设计</h4>
 <pre><code>┌──────────────────────────────────────┐
 │  📊 录入考试成绩                      │
 │                                      │
@@ -1206,7 +1281,7 @@ Phase 4：覆盖全国新高考省份
 │  [保存]                               │
 └──────────────────────────────────────┘
 </code></pre>
-<h4>6b. 满分自定义规则</h4>
+<h4 id="6b">6b. 满分自定义规则</h4>
 <table>
 <thead>
 <tr>
@@ -1231,12 +1306,12 @@ Phase 4：覆盖全国新高考省份
 </tr>
 </tbody>
 </table>
-<p><strong>设计要点</strong>：<br />
-- 每次考试的满分<strong>独立设置</strong>，因为不同考试可能满分不同<br />
-- 系统记录满分值，用于计算<strong>得分率（百分比）</strong>，方便跨考试对比<br />
-- 高一全科录入，高二高三按选科录入<br />
+<p><strong>设计要点</strong>：
+- 每次考试的满分<strong>独立设置</strong>，因为不同考试可能满分不同
+- 系统记录满分值，用于计算<strong>得分率（百分比）</strong>，方便跨考试对比
+- 高一全科录入，高二高三按选科录入
 - 满分值<strong>会被记忆</strong>：同一科目下次录入时默认沿用上次满分值，减少重复输入</p>
-<h4>6c. 成绩趋势展示</h4>
+<h4 id="6c">6c. 成绩趋势展示</h4>
 <pre><code>┌──────────────────────────────────────┐
 │  📊 数学成绩趋势                      │
 │                                      │
@@ -1256,12 +1331,12 @@ Phase 4：覆盖全国新高考省份
 │     每次波动都是成长的一部分。&quot;        │
 └──────────────────────────────────────┘
 </code></pre>
-<p><strong>设计要点</strong>：<br />
-- 纵轴使用<strong>得分率（百分比）</strong>而非绝对分数，因为不同考试满分不同<br />
-- 成绩提升时自动展示正向金句："进步了！你的关注正在起作用 ✅"<br />
-- 成绩波动时展示鼓励金句："波动是正常的，关注长期趋势"<br />
+<p><strong>设计要点</strong>：
+- 纵轴使用<strong>得分率（百分比）</strong>而非绝对分数，因为不同考试满分不同
+- 成绩提升时自动展示正向金句："进步了！你的关注正在起作用 ✅"
+- 成绩波动时展示鼓励金句："波动是正常的，关注长期趋势"
 - 支持按科目单独查看趋势图</p>
-<h4>6d. 年级切换时的成绩数据处理</h4>
+<h4 id="6d">6d. 年级切换时的成绩数据处理</h4>
 <table>
 <thead>
 <tr>
@@ -1285,12 +1360,12 @@ Phase 4：覆盖全国新高考省份
 </tbody>
 </table>
 <hr />
-<h3>7. 错题拍照记录本 ⭐⭐ v5.1新增功能</h3>
+<h3 id="7-v51">7. 错题拍照记录本 ⭐⭐ v5.1新增功能</h3>
 <blockquote>
 <p><strong>设计理念</strong>：家长帮孩子拍照归档错题，按科目和知识点分类存储，考前随时调出复习。<strong>不做解题、不做批改、不给答案</strong>——纯粹的归档管理工具。</p>
 <p>目前市场上已有多款成熟的错题本工具（如巧学错题本、橙果错题本、喵喵错题等），支持拍照整理、科目分类、知识点标签等功能，本产品借鉴其成熟交互模式，但定位为<strong>家长帮孩子归档</strong>（而非学生自用），并与产品其他功能（知识点树、行动建议）打通。</p>
 </blockquote>
-<h4>7a. 错题录入流程</h4>
+<h4 id="7a">7a. 错题录入流程</h4>
 <pre><code>【错题录入 — 极简3步】
 
 Step 1：📸 拍照
@@ -1309,7 +1384,7 @@ Step 3：📝 备注（可选）
 
 完成！保存到错题本
 </code></pre>
-<h4>7b. 错题录入页面设计</h4>
+<h4 id="7b">7b. 错题录入页面设计</h4>
 <pre><code>┌──────────────────────────────────────┐
 │  📸 记录一道错题                      │
 │                                      │
@@ -1340,7 +1415,7 @@ Step 3：📝 备注（可选）
 │  [保存到错题本]                       │
 └──────────────────────────────────────┘
 </code></pre>
-<h4>7c. 错题浏览与调出</h4>
+<h4 id="7c">7c. 错题浏览与调出</h4>
 <pre><code>┌──────────────────────────────────────┐
 │  📓 错题本                            │
 │                                      │
@@ -1374,7 +1449,7 @@ Step 3：📝 备注（可选）
 │     打印三角函数和解析几何的公式表     │
 └──────────────────────────────────────┘
 </code></pre>
-<h4>7d. 错题本设计要点</h4>
+<h4 id="7d">7d. 错题本设计要点</h4>
 <table>
 <thead>
 <tr>
@@ -1417,7 +1492,7 @@ Step 3：📝 备注（可选）
 </tr>
 </tbody>
 </table>
-<h4>7e. 错题本与其他功能的联动</h4>
+<h4 id="7e">7e. 错题本与其他功能的联动</h4>
 <table>
 <thead>
 <tr>
@@ -1440,7 +1515,7 @@ Step 3：📝 备注（可选）
 </tr>
 </tbody>
 </table>
-<h4>7f. 合规性说明</h4>
+<h4 id="7f">7f. 合规性说明</h4>
 <ul>
 <li>✅ <strong>拍照归档</strong> → 家长帮孩子整理资料的行为，不涉及学科辅导</li>
 <li>✅ <strong>知识点标签</strong> → 分类工具，不提供知识讲解</li>
@@ -1448,12 +1523,12 @@ Step 3：📝 备注（可选）
 <li>⚠️ Phase 3可探索"AI识别题目所属知识点章节"（不给答案），需合规确认</li>
 </ul>
 <hr />
-<h3>8. 孩子进步成长记录册 ⭐⭐ v5.1新增功能</h3>
+<h3 id="8-v51">8. 孩子进步成长记录册 ⭐⭐ v5.1新增功能</h3>
 <blockquote>
 <p><strong>设计理念</strong>：帮家长记录孩子高中三年的每一个闪光时刻——奖项、荣誉、进步、特殊表现。从高一到高三，积累成为一份珍贵的<strong>成长档案</strong>。</p>
 <p>目前已有学生成长管理系统（如 xsczgl.com）支持记录学生表现、编辑评语、生成报表等功能，但这些系统面向学校/教师端。本产品面向<strong>家长自主记录</strong>，更个性化、更有温度。</p>
 </blockquote>
-<h4>8a. 成长记录类型</h4>
+<h4 id="8a">8a. 成长记录类型</h4>
 <table>
 <thead>
 <tr>
@@ -1496,7 +1571,7 @@ Step 3：📝 备注（可选）
 </tr>
 </tbody>
 </table>
-<h4>8b. 奖项录入页面设计</h4>
+<h4 id="8b">8b. 奖项录入页面设计</h4>
 <pre><code>┌──────────────────────────────────────┐
 │  🏆 记录一项荣誉/进步                 │
 │                                      │
@@ -1531,7 +1606,7 @@ Step 3：📝 备注（可选）
 │  [保存到成长记录]                     │
 └──────────────────────────────────────┘
 </code></pre>
-<h4>8c. 成绩进步自动检测</h4>
+<h4 id="8c">8c. 成绩进步自动检测</h4>
 <p>系统在成绩录入后自动对比前次同类考试，<strong>达到进步阈值时主动提示家长记录</strong>：</p>
 <pre><code>┌────────────────────────────────────────────┐
 │ 🎉 发现进步！                               │
@@ -1547,7 +1622,7 @@ Step 3：📝 备注（可选）
 │ ✨ &quot;每一次进步都值得被看见。&quot;                 │
 └────────────────────────────────────────────┘
 </code></pre>
-<h4>8d. 成长记录时间线视图</h4>
+<h4 id="8d">8d. 成长记录时间线视图</h4>
 <pre><code>┌──────────────────────────────────────┐
 │  🌟 孩子的成长足迹                    │
 │                                      │
@@ -1582,7 +1657,7 @@ Step 3：📝 备注（可选）
 │     都是孩子最珍贵的财富               │
 └──────────────────────────────────────┘
 </code></pre>
-<h4>8e. 成长记录设计要点</h4>
+<h4 id="8e">8e. 成长记录设计要点</h4>
 <table>
 <thead>
 <tr>
@@ -1629,7 +1704,7 @@ Step 3：📝 备注（可选）
 </tr>
 </tbody>
 </table>
-<h4>8f. 成长记录与其他功能的联动</h4>
+<h4 id="8f">8f. 成长记录与其他功能的联动</h4>
 <table>
 <thead>
 <tr>
@@ -1656,7 +1731,7 @@ Step 3：📝 备注（可选）
 </tr>
 </tbody>
 </table>
-<h4>8g. 合规性说明</h4>
+<h4 id="8g">8g. 合规性说明</h4>
 <ul>
 <li>✅ <strong>家长自主记录</strong> → 个人日记性质，不涉及学科辅导</li>
 <li>✅ <strong>证书拍照</strong> → 留存功能，不涉及评价或排名</li>
@@ -1664,7 +1739,7 @@ Step 3：📝 备注（可选）
 <li>⚠️ 导出的成长档案<strong>仅作为家庭留念和整理参考</strong>，不承诺可直接用于综合评价、自主招生等官方材料提交</li>
 </ul>
 <hr />
-<h3>9. 学校复习进度记录（轻量保留）</h3>
+<h3 id="9">9. 学校复习进度记录（轻量保留）</h3>
 <ul>
 <li><strong>简单记录</strong>: 家长会后一键记录"学校接下来要复习什么"</li>
 <li><strong>与行动建议联动</strong>: 如记录了"下周复习三角函数"，行动建议会提示"可以帮孩子打印三角函数公式速查表"</li>
@@ -1672,8 +1747,8 @@ Step 3：📝 备注（可选）
 <li><strong>不强制使用</strong>: 纯可选功能，不记录也不影响核心体验</li>
 </ul>
 <hr />
-<h2>📋 User Journey</h2>
-<h3>0. 首次使用（Onboarding）⭐</h3>
+<h2 id="user-journey">📋 User Journey</h2>
+<h3 id="0-onboarding">0. 首次使用（Onboarding）⭐</h3>
 <p><strong>家长在家长群看到推荐，扫码进入小程序</strong></p>
 <pre><code>Step 1：欢迎页
        &quot;高考路上，你不是一个人。
@@ -1701,60 +1776,60 @@ Step 5：引导添加桌面小组件
        ↓
 完成！ 总耗时 &lt; 2分钟
 </code></pre>
-<h3>1. 日常场景（最高频）</h3>
-<p><strong>早上起床，看一眼手机桌面</strong><br />
-- 桌面小组件显示倒计时+今日金句<br />
-- 家长看一眼，心里踏实，不需要打开App<br />
+<h3 id="1_1">1. 日常场景（最高频）</h3>
+<p><strong>早上起床，看一眼手机桌面</strong>
+- 桌面小组件显示倒计时+今日金句
+- 家长看一眼，心里踏实，不需要打开App
 - <strong>耗时：2秒</strong></p>
-<h3>2. 收到里程碑提醒场景</h3>
-<p><strong>距离等级考15天，收到推送</strong><br />
-- 点开查看行动卡片 → 看到具体行动清单<br />
-- 周末去文具店买了备用文具<br />
-- 打开知识点树查看孩子选考科目的章节 → 网上搜了核心公式汇总打印出来<br />
-- 翻了一下错题本，数学错题最多 → 重点打印数学相关资料<br />
+<h3 id="2_1">2. 收到里程碑提醒场景</h3>
+<p><strong>距离等级考15天，收到推送</strong>
+- 点开查看行动卡片 → 看到具体行动清单
+- 周末去文具店买了备用文具
+- 打开知识点树查看孩子选考科目的章节 → 网上搜了核心公式汇总打印出来
+- 翻了一下错题本，数学错题最多 → 重点打印数学相关资料
 - <strong>耗时：5分钟</strong></p>
-<h3>3. 错题拍照场景（周末）</h3>
-<p><strong>周末翻看孩子试卷，看到几道红叉</strong><br />
-- 打开小程序 → 错题本 → 拍照 → 选"数学-三角函数" → 错误类型"概念不清" → 保存<br />
-- 再拍一道 → 选"物理-电磁学" → 保存<br />
+<h3 id="3_1">3. 错题拍照场景（周末）</h3>
+<p><strong>周末翻看孩子试卷，看到几道红叉</strong>
+- 打开小程序 → 错题本 → 拍照 → 选"数学-三角函数" → 错误类型"概念不清" → 保存
+- 再拍一道 → 选"物理-电磁学" → 保存
 - <strong>耗时：1分钟。家长不需要看懂题目，只需拍照+选章节。</strong></p>
-<h3>4. 记录孩子进步场景</h3>
-<p><strong>孩子拿回来一张奖状</strong><br />
-- 打开小程序 → 成长记录 → 🏆奖项 → "全市数学竞赛二等奖" → 拍照上传奖状 → 备注"准备了两个月，非常不容易！" → 保存<br />
-- 系统自动配金句：<em>"每一份付出，都在为未来的自己写推荐信。"</em><br />
+<h3 id="4_1">4. 记录孩子进步场景</h3>
+<p><strong>孩子拿回来一张奖状</strong>
+- 打开小程序 → 成长记录 → 🏆奖项 → "全市数学竞赛二等奖" → 拍照上传奖状 → 备注"准备了两个月，非常不容易！" → 保存
+- 系统自动配金句：<em>"每一份付出，都在为未来的自己写推荐信。"</em>
 - <strong>耗时：1分钟</strong></p>
-<h3>5. 成绩录入场景</h3>
-<p><strong>月考成绩出来了</strong><br />
-- 打开小程序 → 成绩记录 → 输入各科分数和满分<br />
-- 系统自动对比上次月考<br />
-- 弹出提示："🎉 数学进步了21个百分点！要记录到成长册吗？"<br />
-- 点击"记录进步" → 自动生成一条成长记录<br />
+<h3 id="5_1">5. 成绩录入场景</h3>
+<p><strong>月考成绩出来了</strong>
+- 打开小程序 → 成绩记录 → 输入各科分数和满分
+- 系统自动对比上次月考
+- 弹出提示："🎉 数学进步了21个百分点！要记录到成长册吗？"
+- 点击"记录进步" → 自动生成一条成长记录
 - <strong>耗时：2分钟</strong></p>
-<h3>6. 家长会后场景</h3>
-<p><strong>参加学校家长会</strong><br />
-- 老师：接下来两周重点复习解析几何<br />
-- 家长打开小程序 → 学校复习进度 → 记录"下两周重点：解析几何"<br />
-- 系统提示：💡"解析几何相关错题有5道，可提醒孩子复习前翻一下错题本"<br />
+<h3 id="6_1">6. 家长会后场景</h3>
+<p><strong>参加学校家长会</strong>
+- 老师：接下来两周重点复习解析几何
+- 家长打开小程序 → 学校复习进度 → 记录"下两周重点：解析几何"
+- 系统提示：💡"解析几何相关错题有5道，可提醒孩子复习前翻一下错题本"
 - <strong>耗时：30秒</strong></p>
-<h3>7. 考前场景</h3>
-<p><strong>距离高考3天，收到推送</strong><br />
-- 点开行动卡片 → 检查证件、确认路线、准备文具、饮食建议<br />
-- 翻一下错题本，把高频错题章节的公式表打印一份<br />
+<h3 id="7">7. 考前场景</h3>
+<p><strong>距离高考3天，收到推送</strong>
+- 点开行动卡片 → 检查证件、确认路线、准备文具、饮食建议
+- 翻一下错题本，把高频错题章节的公式表打印一份
 - 看到底部金句：<em>"你的平静就是孩子最大的力量"</em></p>
-<h3>8. 分享金句场景</h3>
-<p><strong>看到一句特别好的金句</strong><br />
-- 点击"分享" → 生成精美图片卡片<br />
-- 发到朋友圈或家长群<br />
+<h3 id="8">8. 分享金句场景</h3>
+<p><strong>看到一句特别好的金句</strong>
+- 点击"分享" → 生成精美图片卡片
+- 发到朋友圈或家长群
 - 其他家长扫码体验 → 自然获客</p>
-<h3>9. 高考结束后场景</h3>
-<p><strong>高考结束，收到推送</strong><br />
-- 推送：<em>"三年陪伴，12个闪光时刻，47道错题，一段不可复制的成长旅程。导出孩子的成长档案？"</em><br />
-- 导出PDF → 打印一份留念<br />
+<h3 id="9_1">9. 高考结束后场景</h3>
+<p><strong>高考结束，收到推送</strong>
+- 推送：<em>"三年陪伴，12个闪光时刻，47道错题，一段不可复制的成长旅程。导出孩子的成长档案？"</em>
+- 导出PDF → 打印一份留念
 - 分享给即将进入高中的朋友家长 → 口碑获客</p>
 <hr />
-<h2>💰 付费策略</h2>
-<h3>家长付费心理分析</h3>
-<h4>付费动机</h4>
+<h2 id="_33">💰 付费策略</h2>
+<h3 id="_34">家长付费心理分析</h3>
+<h4 id="_35">付费动机</h4>
 <ol>
 <li><strong>安心感</strong>: 感觉"做了该做的事"，每个节点都有准备</li>
 <li><strong>省心价值</strong>: 不用自己记时间节点、想该做什么，系统直接推送</li>
@@ -1762,15 +1837,15 @@ Step 5：引导添加桌面小组件
 <li><strong>实用价值</strong>: 行动建议具体可执行（打印资料、准备文具）</li>
 <li><strong>记录价值</strong>: 错题本和成长册是长期积累的数据资产，越用越有价值</li>
 </ol>
-<h4>付费阻力</h4>
+<h4 id="_36">付费阻力</h4>
 <ol>
 <li><strong>效果不确定</strong>: → 用7天免费试用解决</li>
 <li><strong>使用门槛</strong>: → 极简设计，0操作也有价值（金句+倒计时）</li>
 <li><strong>隐私顾虑</strong>: → 明确隐私承诺，首屏展示</li>
 <li><strong>替代方案</strong>: → 微信群/手机日历能设提醒，但没有行动建议、错题归档和成长记录</li>
 </ol>
-<h3>付费分层设计</h3>
-<h4>免费版（获客 + 验证价值）</h4>
+<h3 id="_37">付费分层设计</h3>
+<h4 id="_38">免费版（获客 + 验证价值）</h4>
 <ul>
 <li>✅ 高考双倒计时</li>
 <li>✅ 完整里程碑时间线浏览</li>
@@ -1789,7 +1864,7 @@ Step 5：引导添加桌面小组件
 <blockquote>
 <p>💡 设计逻辑：免费版让家长体验"倒计时+金句+错题拍照"的核心价值，但容量限制和进阶功能需要付费解锁。<strong>卖的不是存储空间，是"省心"+"安心"+"留住成长"。</strong></p>
 </blockquote>
-<h4>标准版 — 月付19.9元 / 年付199元 / ⭐高中全程包399元</h4>
+<h4 id="199-199-399">标准版 — 月付19.9元 / 年付199元 / ⭐高中全程包399元</h4>
 <ul>
 <li>✅ 免费版全部功能（无容量限制）</li>
 <li>✅ <strong>里程碑行动卡片</strong>（前15天+前3天双提醒）</li>
@@ -1803,7 +1878,7 @@ Step 5：引导添加桌面小组件
 <li>✅ <strong>成长档案导出</strong>（PDF/长图）</li>
 <li>✅ 学校复习进度记录 + 行动/错题联动</li>
 </ul>
-<h4>高级版 — 月付39.9元 / 年付399元</h4>
+<h4 id="399-399">高级版 — 月付39.9元 / 年付399元</h4>
 <ul>
 <li>✅ 标准版全部功能</li>
 <li>✅ <strong>AI家长顾问</strong>（合规范围内：高考政策、学习方法、心理建议）</li>
@@ -1812,14 +1887,14 @@ Step 5：引导添加桌面小组件
 <li>✅ <strong>AI错题分类助手</strong>（拍照后自动建议知识点分类，家长确认，需合规确认）</li>
 <li>✅ <strong>AI月度成长报告</strong>（总结本月成绩变化+错题趋势+成长亮点）</li>
 </ul>
-<h3>付费转化策略</h3>
-<h4>试用期</h4>
+<h3 id="_39">付费转化策略</h3>
+<h4 id="_40">试用期</h4>
 <ul>
 <li>新用户 <strong>7天免费试用标准版</strong></li>
 <li>试用期内完整体验行动卡片、桌面小组件和无限错题/成长记录</li>
 <li>试用期第5天推送："你已记录X道错题、X条成长记录，升级继续无限使用"</li>
 </ul>
-<h4>关键转化节点</h4>
+<h4 id="_41">关键转化节点</h4>
 <table>
 <thead>
 <tr>
@@ -1862,14 +1937,14 @@ Step 5：引导添加桌面小组件
 </tr>
 </tbody>
 </table>
-<h4>续费策略</h4>
+<h4 id="_42">续费策略</h4>
 <ul>
 <li><strong>高中全程包</strong>（¥399一次性）：核心推荐选项，覆盖高一到高三全程</li>
 <li>年付优惠（相当于约10个月价格）</li>
 <li>续费提前30天提醒</li>
 <li>老用户续费9折</li>
 </ul>
-<h3>AI Token成本控制（高级版）</h3>
+<h3 id="ai-token">AI Token成本控制（高级版）</h3>
 <table>
 <thead>
 <tr>
@@ -1901,8 +1976,8 @@ Step 5：引导添加桌面小组件
 </tbody>
 </table>
 <hr />
-<h2>📱 交付形态</h2>
-<h3>Phase 1-2：微信小程序（首选且唯一）</h3>
+<h2 id="_43">📱 交付形态</h2>
+<h3 id="phase-1-2">Phase 1-2：微信小程序（首选且唯一）</h3>
 <table>
 <thead>
 <tr>
@@ -1941,12 +2016,12 @@ Step 5：引导添加桌面小组件
 </tr>
 </tbody>
 </table>
-<h3>Phase 3：小程序 + H5网页版</h3>
+<h3 id="phase-3-h5">Phase 3：小程序 + H5网页版</h3>
 <ul>
 <li>H5版用于大屏查看完整时间轴和成长档案</li>
 <li>支持导出PDF（里程碑+成绩趋势+成长记录打印版）</li>
 </ul>
-<h3>Phase 4+：可选原生App</h3>
+<h3 id="phase-4app">Phase 4+：可选原生App</h3>
 <ul>
 <li>触发条件：用户量&gt;5万 + 付费率稳定</li>
 <li>核心价值：<strong>真正的桌面Widget</strong>（iOS Widget / Android小组件）</li>
@@ -1954,21 +2029,21 @@ Step 5：引导添加桌面小组件
 <li>相册深度集成（错题拍照体验更流畅）</li>
 </ul>
 <hr />
-<h2>📊 MVP功能优先级</h2>
-<h3>Phase 1：核心验证（0-2个月）— 全部免费</h3>
+<h2 id="mvp">📊 MVP功能优先级</h2>
+<h3 id="phase-10-2">Phase 1：核心验证（0-2个月）— 全部免费</h3>
 <blockquote>
 <p><strong>目标</strong>：验证"里程碑+金句+行动建议"的核心价值</p>
 </blockquote>
-<p><strong>功能范围</strong>：<br />
-1. 年级选择 + 选科配置（含高一全科模式）<br />
-2. 高考双倒计时<br />
-3. 完整里程碑时间线<br />
-4. 每日金句（基础库50条）<br />
-5. 知识点树浏览（2级）<br />
+<p><strong>功能范围</strong>：
+1. 年级选择 + 选科配置（含高一全科模式）
+2. 高考双倒计时
+3. 完整里程碑时间线
+4. 每日金句（基础库50条）
+5. 知识点树浏览（2级）
 6. 基础成绩记录（含满分自定义）</p>
-<p><strong>上线前验证</strong>（不写代码）：<br />
-- 找10个上海高中家庭（高一3个+高二3个+高三4个）<br />
-- 用微信群模拟：每天发一句金句，关键节点前15天/3天发行动卡片<br />
+<p><strong>上线前验证</strong>（不写代码）：
+- 找10个上海高中家庭（高一3个+高二3个+高三4个）
+- 用微信群模拟：每天发一句金句，关键节点前15天/3天发行动卡片
 - 观察2周：家长觉得有用吗？金句会不会转发？行动建议有没有执行？</p>
 <p><strong>上线后验证指标</strong>：</p>
 <table>
@@ -2007,12 +2082,12 @@ Step 5：引导添加桌面小组件
 </tr>
 </tbody>
 </table>
-<h3>Phase 1.5：错题本+成长记录（1-3个月）— 全部免费（有容量限制）</h3>
+<h3 id="phase-151-3">Phase 1.5：错题本+成长记录（1-3个月）— 全部免费（有容量限制）</h3>
 <blockquote>
 <p><strong>目标</strong>：验证错题归档和成长记录的使用率</p>
 </blockquote>
-<p><strong>新增功能</strong>：<br />
-7. 错题拍照记录本（免费版限10道）<br />
+<p><strong>新增功能</strong>：
+7. 错题拍照记录本（免费版限10道）
 8. 成长记录册（免费版限5条）</p>
 <p><strong>验证指标</strong>：</p>
 <table>
@@ -2037,19 +2112,19 @@ Step 5：引导添加桌面小组件
 </tr>
 </tbody>
 </table>
-<h3>Phase 2：功能完善 + 变现（3-5个月）— 免费+付费</h3>
+<h3 id="phase-2-3-5">Phase 2：功能完善 + 变现（3-5个月）— 免费+付费</h3>
 <blockquote>
 <p><strong>目标</strong>：完善使用体验，推出标准版付费</p>
 </blockquote>
-<p><strong>新增功能</strong>：<br />
-9. 里程碑行动卡片（前15天+前3天双提醒）（标准版）<br />
-10. 完整金句库300+条（标准版）<br />
-11. 金句收藏 + 分享图片生成（标准版）<br />
-12. 知识点树三级展开（标准版）<br />
-13. 桌面小组件/快捷方式增强（标准版）<br />
-14. 无限错题 + 多维筛选（标准版）<br />
-15. 无限成长记录 + 时间线视图 + 导出（标准版）<br />
-16. 成绩趋势分析（标准版）<br />
+<p><strong>新增功能</strong>：
+9. 里程碑行动卡片（前15天+前3天双提醒）（标准版）
+10. 完整金句库300+条（标准版）
+11. 金句收藏 + 分享图片生成（标准版）
+12. 知识点树三级展开（标准版）
+13. 桌面小组件/快捷方式增强（标准版）
+14. 无限错题 + 多维筛选（标准版）
+15. 无限成长记录 + 时间线视图 + 导出（标准版）
+16. 成绩趋势分析（标准版）
 17. 学校复习进度记录 + 联动（标准版）</p>
 <p><strong>验证指标</strong>：</p>
 <table>
@@ -2082,15 +2157,15 @@ Step 5：引导添加桌面小组件
 </tr>
 </tbody>
 </table>
-<h3>Phase 3：增值扩展（5-7个月）— 高级版</h3>
+<h3 id="phase-35-7">Phase 3：增值扩展（5-7个月）— 高级版</h3>
 <blockquote>
 <p><strong>目标</strong>：提高ARPU，验证AI功能价值</p>
 </blockquote>
-<p><strong>新增功能</strong>：<br />
-18. AI家长顾问（合规范围内）<br />
-19. AI个性化行动建议<br />
-20. AI生成个性化金句<br />
-21. AI错题分类助手（需确认合规性）<br />
+<p><strong>新增功能</strong>：
+18. AI家长顾问（合规范围内）
+19. AI个性化行动建议
+20. AI生成个性化金句
+21. AI错题分类助手（需确认合规性）
 22. AI月度成长报告</p>
 <p><strong>验证指标</strong>：</p>
 <table>
@@ -2115,18 +2190,18 @@ Step 5：引导添加桌面小组件
 </tr>
 </tbody>
 </table>
-<h3>Phase 4：跨地区扩展（7个月+）</h3>
+<h3 id="phase-47">Phase 4：跨地区扩展（7个月+）</h3>
 <blockquote>
 <p><strong>目标</strong>：复制成功模式到其他省份</p>
 </blockquote>
-<ol start="23">
+<ol>
 <li>底层架构可配置化上线</li>
 <li>浙江省知识点树 + 里程碑节点</li>
 <li>北京市知识点树 + 里程碑节点</li>
 </ol>
 <hr />
-<h2>🎨 关键页面设计</h2>
-<h3>1. 首页</h3>
+<h2 id="_44">🎨 关键页面设计</h2>
+<h3 id="1_2">1. 首页</h3>
 <pre><code>┌──────────────────────────────────┐
 │  ✨ 今日金句                      │
 │  &quot;所有的努力，终将不被辜负。&quot;     │
@@ -2155,7 +2230,7 @@ Step 5：引导添加桌面小组件
 │  [添加到桌面 📱]                  │
 └──────────────────────────────────┘
 </code></pre>
-<h3>2. 首页（高一版本）</h3>
+<h3 id="2_2">2. 首页（高一版本）</h3>
 <pre><code>┌──────────────────────────────────┐
 │  ✨ 今日金句                      │
 │  &quot;高一的每一步，                  │
@@ -2178,7 +2253,7 @@ Step 5：引导添加桌面小组件
 │  [添加到桌面 📱]                  │
 └──────────────────────────────────┘
 </code></pre>
-<h3>3. 成绩录入页面（满分可自定义）</h3>
+<h3 id="3_2">3. 成绩录入页面（满分可自定义）</h3>
 <pre><code>┌──────────────────────────────────┐
 │  📊 录入考试成绩                  │
 │                                  │
@@ -2203,7 +2278,7 @@ Step 5：引导添加桌面小组件
 │  [保存]                           │
 └──────────────────────────────────┘
 </code></pre>
-<h3>4. 错题本页面</h3>
+<h3 id="4_2">4. 错题本页面</h3>
 <pre><code>┌──────────────────────────────────┐
 │  📓 错题本                        │
 │                                  │
@@ -2233,7 +2308,7 @@ Step 5：引导添加桌面小组件
 │  [+ 拍照记录新错题]               │
 └──────────────────────────────────┘
 </code></pre>
-<h3>5. 成长记录时间线页面</h3>
+<h3 id="5_2">5. 成长记录时间线页面</h3>
 <pre><code>┌──────────────────────────────────┐
 │  🌟 孩子的成长足迹                │
 │                                  │
@@ -2258,7 +2333,7 @@ Step 5：引导添加桌面小组件
 │  [📄 导出成长档案]                │
 └──────────────────────────────────┘
 </code></pre>
-<h3>6. 里程碑行动卡片页面</h3>
+<h3 id="6_2">6. 里程碑行动卡片页面</h3>
 <pre><code>┌──────────────────────────────────┐
 │  📋 等级考准备清单                │
 │  倒计时 15 天                     │
@@ -2287,8 +2362,8 @@ Step 5：引导添加桌面小组件
 └──────────────────────────────────┘
 </code></pre>
 <hr />
-<h2>📈 成功指标</h2>
-<h3>产品质量指标</h3>
+<h2 id="_45">📈 成功指标</h2>
+<h3 id="_46">产品质量指标</h3>
 <table>
 <thead>
 <tr>
@@ -2335,7 +2410,7 @@ Step 5：引导添加桌面小组件
 </tr>
 </tbody>
 </table>
-<h3>用户获取指标</h3>
+<h3 id="_47">用户获取指标</h3>
 <table>
 <thead>
 <tr>
@@ -2367,7 +2442,7 @@ Step 5：引导添加桌面小组件
 </tr>
 </tbody>
 </table>
-<h3>用户活跃指标</h3>
+<h3 id="_48">用户活跃指标</h3>
 <table>
 <thead>
 <tr>
@@ -2409,7 +2484,7 @@ Step 5：引导添加桌面小组件
 </tr>
 </tbody>
 </table>
-<h3>付费转化指标（Phase 2+）</h3>
+<h3 id="phase-2">付费转化指标（Phase 2+）</h3>
 <table>
 <thead>
 <tr>
@@ -2440,7 +2515,7 @@ Step 5：引导添加桌面小组件
 </tr>
 </tbody>
 </table>
-<h3>用户满意度指标</h3>
+<h3 id="_49">用户满意度指标</h3>
 <table>
 <thead>
 <tr>
@@ -2464,39 +2539,39 @@ Step 5：引导添加桌面小组件
 </tbody>
 </table>
 <hr />
-<h2>🔍 风险与应对</h2>
-<h3>1. 合规风险 🔴</h3>
+<h2 id="_50">🔍 风险与应对</h2>
+<h3 id="1_3">1. 合规风险 🔴</h3>
 <ul>
 <li><strong>风险</strong>: 功能边界模糊，可能被认定为学科培训</li>
 <li><strong>应对</strong>: 严格定位"家长备考陪伴工具"，不涉及任何教学内容。错题本只做拍照归档，不做解题/批改。AI功能边界严格设计，每次更新前进行合规审查。Phase 3的AI错题分类功能需法律确认后才上线</li>
 </ul>
-<h3>2. 核心假设风险 🟡</h3>
+<h3 id="2_3">2. 核心假设风险 🟡</h3>
 <ul>
 <li><strong>风险</strong>: 家长觉得"里程碑+金句"价值不够，不愿付费</li>
 <li><strong>应对</strong>: Phase 1上线前用微信群模拟验证。设定明确的Go/No-Go指标：7天留存&gt;35% + 金句查看率&gt;50% + 里程碑提醒打开率&gt;60%。如未达标，重新评估核心价值主张</li>
 </ul>
-<h3>3. 错题本替代品风险 🟡</h3>
+<h3 id="3_3">3. 错题本替代品风险 🟡</h3>
 <ul>
 <li><strong>风险</strong>: 市场已有巧学/橙果/喵喵等成熟错题本工具，用户可能不愿在本产品中再用错题本</li>
 <li><strong>应对</strong>: 差异化定位——本产品错题本面向"家长帮孩子归档"，而非"学生自用"。与里程碑行动建议联动（"考前翻一下错题本"）是竞品没有的功能。如错题本使用率低于20%，考虑降低优先级</li>
 </ul>
-<h3>4. 用户生命周期风险 🟡</h3>
+<h3 id="4_3">4. 用户生命周期风险 🟡</h3>
 <ul>
 <li><strong>风险</strong>: 高三用户高考结束即流失</li>
 <li><strong>应对</strong>: 推出"高中全程包"（¥399/高一到高三），提前锁定用户。高考结束后推送"导出成长档案"增加产品纪念价值。引导老用户推荐给高一/高二家长</li>
 </ul>
-<h3>5. 数据隐私风险 🔴</h3>
+<h3 id="5_3">5. 数据隐私风险 🔴</h3>
 <ul>
 <li><strong>风险</strong>: 错题照片和成绩数据是高度敏感信息</li>
 <li><strong>应对</strong>: 所有图片和数据加密存储，不用于任何商业用途。首屏展示隐私承诺。支持用户一键导出/删除所有数据。不向任何第三方共享用户数据</li>
 </ul>
-<h3>6. 存储成本风险 🟡</h3>
+<h3 id="6_3">6. 存储成本风险 🟡</h3>
 <ul>
 <li><strong>风险</strong>: 错题拍照+证书拍照会产生大量图片存储成本</li>
 <li><strong>应对</strong>: 免费版限制存储量（10道错题+5条成长记录）。图片自动压缩。标准版存储成本纳入定价考虑。Phase 3考虑冷热数据分层存储</li>
 </ul>
 <hr />
-<h2>📌 v5.1 vs v5 关键变化对照表</h2>
+<h2 id="v51-vs-v5">📌 v5.1 vs v5 关键变化对照表</h2>
 <table>
 <thead>
 <tr>
@@ -2564,6 +2639,11 @@ Step 5：引导添加桌面小组件
 </blockquote>
 <hr />
 <p>⚠️ <strong>重要声明</strong>：本 Product Vision v5.1 为产品规划讨论文档，涉及的教育合规边界、未成年人数据隐私保护、付费产品推广等具体执行问题，必须咨询专业法律顾问，并通过上海市教委、教育部官方渠道核实最新监管要求后方可落地。文档中引用的市场数据来自公开行业研究报告，建议在重要决策前通过权威机构核实最新数据。上海高考具体考试日期、政策规定等以上海市教育考试院官方公告为准。</p>
+        
+        <div class="footer">
+            <p>上海高考复习助手 | Product Vision v5.1</p>
+            <p style="margin-top: 8px;">本文档为产品规划文档，内容仅供参考。</p>
+        </div>
     </div>
 </body>
 </html>
