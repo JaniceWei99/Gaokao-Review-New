@@ -108,3 +108,54 @@
   background: #e53e3e;
   color: #fff;
 }
+
+.ai-classify-card {
+  background: linear-gradient(135deg, #fff, #faf5ff);
+  border: 2rpx solid #d3adf7;
+}
+
+.classify-desc {
+  font-size: 26rpx;
+  line-height: 1.6;
+}
+
+.classify-loading {
+  text-align: center;
+  padding: 24rpx 0;
+}
+
+.classify-loading-icon {
+  font-size: 48rpx;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.classify-loading-text {
+  font-size: 26rpx;
+  color: #722ed1;
+}
+
+.classify-result {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.classify-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8rpx;
+}
+
+.classify-label {
+  font-size: 26rpx;
+  color: #722ed1;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.classify-value {
+  font-size: 26rpx;
+  color: #333;
+  line-height: 1.6;
+}

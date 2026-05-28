@@ -43,6 +43,28 @@ Page({
           '成长档案导出'
         ],
         current: false
+      },
+      {
+        key: 'premium',
+        name: '高级版',
+        price: '¥39.9/月',
+        desc: 'AI智能陪伴',
+        billingOptions: [
+          { key: 'monthly', label: '月付', price: 39.9, display: '¥39.9/月' },
+          { key: 'yearly', label: '年付', price: 399, display: '¥399/年', save: '省¥79.8' },
+          { key: 'lifetime_high_school', label: '全程包', price: 799, display: '¥799/高中全程', save: '最划算' }
+        ],
+        selectedBilling: 'yearly',
+        features: [
+          '标准版全部功能',
+          'AI家长顾问对话',
+          'AI个性化行动建议',
+          'AI个性化金句',
+          'AI错题分类助手',
+          'AI月度成长报告',
+          '高级版专属客服'
+        ],
+        current: false
       }
     ],
     purchasing: false

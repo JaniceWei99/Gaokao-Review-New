@@ -1,0 +1,191 @@
+.report-container {
+  min-height: 100vh;
+  background: #f5f7fa;
+  padding-bottom: 40rpx;
+}
+
+.loading {
+  text-align: center;
+  padding: 120rpx 0;
+}
+
+.loading-icon {
+  font-size: 80rpx;
+  display: block;
+  margin-bottom: 16rpx;
+}
+
+.loading-text {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.month-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24rpx;
+  background: #fff;
+  gap: 32rpx;
+}
+
+.nav-btn {
+  font-size: 32rpx;
+  color: #4a90d9;
+  padding: 8rpx 16rpx;
+}
+
+.month-label {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.report-header {
+  text-align: center;
+  padding: 32rpx 24rpx 16rpx;
+}
+
+.report-title {
+  display: block;
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.report-student {
+  display: block;
+  font-size: 26rpx;
+  color: #999;
+}
+
+.section {
+  background: #fff;
+  margin: 16rpx 24rpx;
+  border-radius: 16rpx;
+  padding: 24rpx;
+}
+
+.section-title {
+  display: block;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 16rpx;
+}
+
+.summary-section {
+  background: linear-gradient(135deg, #4a90d9, #6bb5f0);
+}
+
+.summary-section .section-title {
+  color: #fff;
+}
+
+.summary-text {
+  font-size: 28rpx;
+  color: #fff;
+  line-height: 1.8;
+}
+
+.highlight-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.highlight-item {
+  background: #f5f7fa;
+  border-radius: 12rpx;
+  padding: 16rpx 20rpx;
+}
+
+.highlight-title {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 4rpx;
+}
+
+.highlight-desc {
+  display: block;
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.6;
+}
+
+.analysis-text {
+  font-size: 28rpx;
+  color: #333;
+  line-height: 1.8;
+}
+
+.suggestion-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.suggestion-item {
+  background: #f5f7fa;
+  border-radius: 12rpx;
+  padding: 16rpx 20rpx;
+}
+
+.suggestion-title {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 4rpx;
+}
+
+.suggestion-desc {
+  display: block;
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.6;
+}
+
+.encouragement-section {
+  background: linear-gradient(135deg, #f5a623, #f7c948);
+  margin: 16rpx 24rpx;
+  border-radius: 16rpx;
+  padding: 32rpx 24rpx;
+  text-align: center;
+}
+
+.encouragement-text {
+  font-size: 30rpx;
+  color: #fff;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.share-btn {
+  text-align: center;
+  padding: 28rpx;
+  margin: 24rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  font-size: 28rpx;
+  color: #4a90d9;
+}
+
+.empty {
+  text-align: center;
+  padding: 120rpx 0;
+}
+
+.empty-icon {
+  font-size: 80rpx;
+  display: block;
+  margin-bottom: 16rpx;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #999;
+}

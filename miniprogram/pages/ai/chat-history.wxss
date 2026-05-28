@@ -1,0 +1,102 @@
+.history-container {
+  min-height: 100vh;
+  background: #f5f7fa;
+  padding: 20rpx 24rpx;
+}
+
+.loading, .empty {
+  text-align: center;
+  padding: 120rpx 0;
+  color: #999;
+  font-size: 28rpx;
+}
+
+.empty-icon {
+  font-size: 80rpx;
+  display: block;
+  margin-bottom: 16rpx;
+}
+
+.empty-text {
+  display: block;
+  margin-bottom: 32rpx;
+  color: #666;
+}
+
+.session-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.session-item {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+}
+
+.session-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8rpx;
+}
+
+.session-title {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.session-date {
+  font-size: 24rpx;
+  color: #999;
+  flex-shrink: 0;
+  margin-left: 16rpx;
+}
+
+.session-preview {
+  display: block;
+  font-size: 26rpx;
+  color: #666;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 12rpx;
+}
+
+.session-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.session-count {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.session-delete {
+  font-size: 24rpx;
+  color: #e74c3c;
+  padding: 8rpx 16rpx;
+}
+
+.fab {
+  position: fixed;
+  right: 40rpx;
+  bottom: 120rpx;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background: #4a90d9;
+  color: #fff;
+  font-size: 48rpx;
+  text-align: center;
+  line-height: 100rpx;
+  box-shadow: 0 4rpx 16rpx rgba(74, 144, 217, 0.4);
+}

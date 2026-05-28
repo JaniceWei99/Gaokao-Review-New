@@ -60,6 +60,37 @@
       <text class="note-text">{{note.note}}</text>
     </view>
 
+    <!-- AI Classification -->
+    <view class="card mb-16 ai-classify-card">
+      <view class="card-title mb-8">🤖 AI错题分类</view>
+      <view wx:if="{{!classification && !classifying}}">
+        <text class="classify-desc text-secondary">使用AI自动识别错题所属知识点和学习建议</text>
+        <view class="btn btn-primary btn-sm mt-12" bindtap="onClassifyWithAI">开始分类</view>
+      </view>
+      <view wx:if="{{classifying}}" class="classify-loading">
+        <text class="classify-loading-icon">🤖</text>
+        <text class="classify-loading-text">AI正在分析...</text>
+      </view>
+      <view wx:if="{{classification}}" class="classify-result">
+        <view class="classify-item" wx:if="{{classification.suggested_chapter}}">
+          <text class="classify-label">建议章节：</text>
+          <text class="classify-value">{{classification.suggested_chapter}}</text>
+        </view>
+        <view class="classify-item" wx:if="{{classification.suggested_knowledge_points && classification.suggested_knowledge_points.length > 0}}">
+          <text class="classify-label">知识点：</text>
+          <text class="classify-value">{{classification.suggested_knowledge_points.join('、')}}</text>
+        </view>
+        <view class="classify-item" wx:if="{{classification.difficulty_assessment}}">
+          <text class="classify-label">难度评估：</text>
+          <text class="classify-value">{{classification.difficulty_assessment}}</text>
+        </view>
+        <view class="classify-item" wx:if="{{classification.study_advice}}">
+          <text class="classify-label">学习建议：</text>
+          <text class="classify-value">{{classification.study_advice}}</text>
+        </view>
+      </view>
+    </view>
+
     <!-- 删除按钮 -->
     <view class="btn btn-danger btn-block btn-lg mt-24" bindtap="onDelete">删除此错题</view>
   </block>

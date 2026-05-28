@@ -1,0 +1,27 @@
+<view class="history-container">
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+
+  <view class="empty" wx:if="{{!loading && sessions.length === 0}}">
+    <text class="empty-icon">💬</text>
+    <text class="empty-text">暂无对话记录</text>
+    <text class="btn btn-primary" bindtap="onNewChat">开始对话</text>
+  </view>
+
+  <view class="session-list" wx:if="{{!loading && sessions.length > 0}}">
+    <view class="session-item" wx:for="{{sessions}}" wx:key="id" bindtap="onSessionTap" data-id="{{item.id}}">
+      <view class="session-info">
+        <text class="session-title">{{item.title || '对话'}}</text>
+        <text class="session-date">{{item.created_date}}</text>
+      </view>
+      <text class="session-preview">{{item.last_message || ''}}</text>
+      <view class="session-meta">
+        <text class="session-count">{{item.message_count}}条消息</text>
+        <text class="session-delete" catchtap="onDeleteSession" data-id="{{item.id}}">删除</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="fab" bindtap="onNewChat">+</view>
+</view>

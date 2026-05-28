@@ -249,6 +249,11 @@ async def _build_limits(
             can_export_growth=False,
             can_view_exam_trend=False,
             has_action_cards=False,
+            has_ai_chat=False,
+            has_ai_suggestions=False,
+            has_ai_personalized_quote=False,
+            has_ai_error_classify=False,
+            has_ai_monthly_report=False,
         )
     elif plan == "standard":
         return SubscriptionLimits(
@@ -262,6 +267,11 @@ async def _build_limits(
             can_export_growth=True,
             can_view_exam_trend=True,
             has_action_cards=True,
+            has_ai_chat=False,
+            has_ai_suggestions=False,
+            has_ai_personalized_quote=False,
+            has_ai_error_classify=False,
+            has_ai_monthly_report=False,
         )
     else:
         return SubscriptionLimits(
@@ -275,6 +285,11 @@ async def _build_limits(
             can_export_growth=True,
             can_view_exam_trend=True,
             has_action_cards=True,
+            has_ai_chat=True,
+            has_ai_suggestions=True,
+            has_ai_personalized_quote=True,
+            has_ai_error_classify=True,
+            has_ai_monthly_report=True,
         )
 
 
@@ -287,6 +302,20 @@ def _empty_limits(plan: str) -> SubscriptionLimits:
             can_expand_knowledge_l3=False, can_share_quote_image=False,
             can_use_widget=False, can_export_growth=False,
             can_view_exam_trend=False, has_action_cards=False,
+            has_ai_chat=False, has_ai_suggestions=False,
+            has_ai_personalized_quote=False, has_ai_error_classify=False,
+            has_ai_monthly_report=False,
+        )
+    elif plan == "standard":
+        return SubscriptionLimits(
+            error_notes_max=None, error_notes_used=0,
+            growth_records_max=None, growth_records_used=0,
+            can_expand_knowledge_l3=True, can_share_quote_image=True,
+            can_use_widget=True, can_export_growth=True,
+            can_view_exam_trend=True, has_action_cards=True,
+            has_ai_chat=False, has_ai_suggestions=False,
+            has_ai_personalized_quote=False, has_ai_error_classify=False,
+            has_ai_monthly_report=False,
         )
     return SubscriptionLimits(
         error_notes_max=None, error_notes_used=0,
@@ -294,6 +323,9 @@ def _empty_limits(plan: str) -> SubscriptionLimits:
         can_expand_knowledge_l3=True, can_share_quote_image=True,
         can_use_widget=True, can_export_growth=True,
         can_view_exam_trend=True, has_action_cards=True,
+        has_ai_chat=True, has_ai_suggestions=True,
+        has_ai_personalized_quote=True, has_ai_error_classify=True,
+        has_ai_monthly_report=True,
     )
 
 

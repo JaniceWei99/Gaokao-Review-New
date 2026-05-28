@@ -21,6 +21,11 @@ class SubscriptionLimits(BaseModel):
     can_export_growth: bool
     can_view_exam_trend: bool
     has_action_cards: bool
+    has_ai_chat: bool = False
+    has_ai_suggestions: bool = False
+    has_ai_personalized_quote: bool = False
+    has_ai_error_classify: bool = False
+    has_ai_monthly_report: bool = False
 
 
 class SubscriptionResponse(BaseModel):

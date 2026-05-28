@@ -50,7 +50,7 @@ app.add_middleware(
 setup_error_handlers(app)
 
 # ── Routers ───────────────────────────────────────────────────
-from app.routers import auth, action_cards, dashboard, error_notes, exams, growth_records, knowledge, milestones, quotes, school_progress, students, subscription, upload
+from app.routers import auth, action_cards, ai_chat, ai_features, dashboard, error_notes, exams, growth_records, knowledge, milestones, quotes, school_progress, students, subscription, upload
 
 app.include_router(auth.router, prefix="/api/auth", tags=["auth"])
 app.include_router(students.router, prefix="/api/students", tags=["students"])
@@ -65,6 +65,8 @@ app.include_router(growth_records.router, prefix="/api/students/{student_id}/gro
 app.include_router(subscription.router, prefix="/api/subscription", tags=["subscription"])
 app.include_router(upload.router, prefix="/api/upload", tags=["upload"])
 app.include_router(school_progress.router, prefix="/api/students/{student_id}/school-progress", tags=["school-progress"])
+app.include_router(ai_chat.router, prefix="/api/students/{student_id}/ai-chat", tags=["ai-chat"])
+app.include_router(ai_features.router, prefix="/api/students/{student_id}/ai", tags=["ai-features"])
 
 
 @app.get("/health", tags=["system"])

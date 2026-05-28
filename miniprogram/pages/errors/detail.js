@@ -1,17 +1,30 @@
 var app = getApp();
 var errorNoteService = require('../../services/errorNote');
+var api = require('../../services/api');
+var permission = require('../../utils/permission');
 
 Page({
   data: {
     note: null,
     loading: true,
-    showDeleteConfirm: false
+    showDeleteConfirm: false,
+    subscription: null,
+    classifying: false,
+    classification: null
   },
 
   onLoad: function(options) {
     this.studentId = options.studentId || app.getCurrentStudentId();
     this.noteId = options.id;
     this._loadNote();
+    this._loadSubscription();
+  },
+
+  _loadSubscription: function() {
+    var that = this;
+    api.get('/api/subscription').then(function(res) {
+      that.setData({ subscription: res });
+    }).catch(function() {});
   },
 
   _loadNote: function() {
@@ -63,6 +76,29 @@ Page({
     }).catch(function(err) {
       console.warn('[ErrorDetail] delete error:', err);
       wx.showToast({ title: '删除失败', icon: 'none' });
+    });
+  },
+
+  onClassifyWithAI: function() {
+    var that = this;
+    var sub = that.data.subscription;
+
+    if (!sub || sub.plan !== 'premium') {
+      permission.showUpgradeModal('FEATURE_REQUIRES_PREMIUM');
+      return;
+    }
+
+    that.setData({ classifying: true });
+
+    api.post('/api/students/' + that.studentId + '/ai/error-notes/' + that.noteId + '/classify').then(function(res) {
+      that.setData({
+        classification: res,
+        classifying: false
+      });
+    }).catch(function(err) {
+      console.warn('[ErrorDetail] classify error:', err);
+      that.setData({ classifying: false });
+      wx.showToast({ title: '分类失败', icon: 'none' });
     });
   }
 });

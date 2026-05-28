@@ -20,6 +20,7 @@ PRICING = {
     ("standard", "lifetime_high_school"): 39900,
     ("premium", "monthly"): 3990,
     ("premium", "yearly"): 39900,
+    ("premium", "lifetime_high_school"): 79900,
 }
 
 PRICING_YUAN = {
@@ -28,6 +29,7 @@ PRICING_YUAN = {
     ("standard", "lifetime_high_school"): 399,
     ("premium", "monthly"): 39.9,
     ("premium", "yearly"): 399,
+    ("premium", "lifetime_high_school"): 799,
 }
 
 

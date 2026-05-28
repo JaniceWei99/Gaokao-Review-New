@@ -1,0 +1,33 @@
+<view class="suggestions-container">
+  <view class="loading" wx:if="{{loading}}">
+    <text class="loading-icon">🤖</text>
+    <text class="loading-text">AI正在分析孩子的情况...</text>
+  </view>
+
+  <view class="content" wx:if="{{!loading}}">
+    <view class="summary-card" wx:if="{{summary}}">
+      <text class="summary-icon">💡</text>
+      <text class="summary-text">{{summary}}</text>
+    </view>
+
+    <view class="suggestion-list">
+      <view class="suggestion-card" wx:for="{{suggestions}}" wx:key="index" bindtap="onSuggestionTap" data-index="{{index}}">
+        <view class="suggestion-header">
+          <text class="suggestion-priority priority-{{item.priority}}">{{item.priority === 'high' ? '重要' : item.priority === 'medium' ? '建议' : '参考'}}</text>
+          <text class="suggestion-category">{{item.category === 'study_rhythm' ? '学习节奏' : item.category === 'emotional_support' ? '心理支持' : item.category === 'time_management' ? '时间管理' : item.category === 'exam_prep' ? '考前准备' : '日常关怀'}}</text>
+        </view>
+        <text class="suggestion-title">{{item.title}}</text>
+        <text class="suggestion-desc">{{item.description}}</text>
+      </view>
+    </view>
+
+    <view class="empty" wx:if="{{suggestions.length === 0 && !loading}}">
+      <text class="empty-icon">🤔</text>
+      <text class="empty-text">暂无建议，请先完善孩子的学习数据</text>
+    </view>
+
+    <view class="refresh-btn" bindtap="onRefresh">
+      <text>🔄 重新生成建议</text>
+    </view>
+  </view>
+</view>

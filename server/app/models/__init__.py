@@ -12,6 +12,7 @@ from app.models.error_note import ErrorNote
 from app.models.growth_record import GrowthRecord
 from app.models.school_progress import SchoolProgress
 from app.models.subscription import UserSubscription
+from app.models.ai_chat import AIChatSession, AIChatMessage
 
 __all__ = [
     "User",
@@ -30,4 +31,6 @@ __all__ = [
     "GrowthRecord",
     "SchoolProgress",
     "UserSubscription",
+    "AIChatSession",
+    "AIChatMessage",
 ]

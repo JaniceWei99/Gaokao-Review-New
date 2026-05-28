@@ -16,6 +16,7 @@ Page({
     subscription: null,
     showSubscribeGuide: false,
     showDesktopGuide: false,
+    personalizedQuote: null,
     loading: true
   },
 
@@ -223,5 +224,24 @@ Page({
     if (url) {
       wx.navigateTo({ url: url });
     }
+  },
+
+  onUpgradeToPremium: function() {
+    wx.navigateTo({ url: '/pages/profile/subscription' });
+  },
+
+  onGenerateAIQuote: function() {
+    var that = this;
+    var studentId = app.getCurrentStudentId();
+    if (!studentId) return;
+
+    wx.showLoading({ title: '生成中...' });
+    api.get('/api/students/' + studentId + '/ai/personalized-quote').then(function(res) {
+      wx.hideLoading();
+      that.setData({ personalizedQuote: res });
+    }).catch(function(err) {
+      wx.hideLoading();
+      wx.showToast({ title: '生成失败', icon: 'none' });
+    });
   }
 });

@@ -1,0 +1,82 @@
+<view class="report-container">
+  <view class="loading" wx:if="{{loading}}">
+    <text class="loading-icon">📊</text>
+    <text class="loading-text">AI正在生成月度报告...</text>
+  </view>
+
+  <view class="content" wx:if="{{!loading && report}}">
+    <!-- Month Navigation -->
+    <view class="month-nav">
+      <text class="nav-btn" bindtap="onPrevMonth">◀</text>
+      <text class="month-label">{{year}}年{{month}}月</text>
+      <text class="nav-btn" bindtap="onNextMonth">▶</text>
+    </view>
+
+    <!-- Report Title -->
+    <view class="report-header">
+      <text class="report-title">{{report.title || year + '年' + month + '月成长报告'}}</text>
+      <text class="report-student">{{report.student_name || '孩子'}}</text>
+    </view>
+
+    <!-- Summary -->
+    <view class="section summary-section">
+      <text class="section-title">📝 本月总结</text>
+      <text class="summary-text">{{report.summary}}</text>
+    </view>
+
+    <!-- Highlights -->
+    <view class="section" wx:if="{{report.highlights && report.highlights.length > 0}}">
+      <text class="section-title">✨ 成长亮点</text>
+      <view class="highlight-list">
+        <view class="highlight-item" wx:for="{{report.highlights}}" wx:key="index">
+          <text class="highlight-title">{{item.title}}</text>
+          <text class="highlight-desc">{{item.description}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- Score Analysis -->
+    <view class="section" wx:if="{{report.score_analysis}}">
+      <text class="section-title">📈 成绩分析</text>
+      <text class="analysis-text">{{report.score_analysis}}</text>
+    </view>
+
+    <!-- Error Analysis -->
+    <view class="section" wx:if="{{report.error_analysis}}">
+      <text class="section-title">📋 错题趋势</text>
+      <text class="analysis-text">{{report.error_analysis}}</text>
+    </view>
+
+    <!-- Growth Moments -->
+    <view class="section" wx:if="{{report.growth_moments}}">
+      <text class="section-title">🌟 成长闪光时刻</text>
+      <text class="analysis-text">{{report.growth_moments}}</text>
+    </view>
+
+    <!-- Next Month Suggestions -->
+    <view class="section" wx:if="{{report.next_month_suggestions && report.next_month_suggestions.length > 0}}">
+      <text class="section-title">💡 下月建议</text>
+      <view class="suggestion-list">
+        <view class="suggestion-item" wx:for="{{report.next_month_suggestions}}" wx:key="index">
+          <text class="suggestion-title">{{item.title}}</text>
+          <text class="suggestion-desc">{{item.description}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- Encouragement -->
+    <view class="encouragement-section" wx:if="{{report.encouragement}}">
+      <text class="encouragement-text">{{report.encouragement}}</text>
+    </view>
+
+    <!-- Share -->
+    <view class="share-btn" bindtap="onShareReport">
+      <text>📤 分享报告</text>
+    </view>
+  </view>
+
+  <view class="empty" wx:if="{{!loading && !report}}">
+    <text class="empty-icon">📊</text>
+    <text class="empty-text">报告生成失败，请稍后再试</text>
+  </view>
+</view>

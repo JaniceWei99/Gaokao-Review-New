@@ -259,3 +259,97 @@
   font-size: 24rpx;
   color: #999;
 }
+
+.ai-section {
+  margin-top: 16rpx;
+}
+
+.ai-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16rpx;
+  margin-top: 16rpx;
+}
+
+.ai-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+  padding: 16rpx 8rpx;
+  background: #f5f7fa;
+  border-radius: 12rpx;
+}
+
+.ai-icon {
+  font-size: 40rpx;
+}
+
+.ai-label {
+  font-size: 22rpx;
+  color: #333;
+}
+
+.ai-upgrade-card {
+  background: linear-gradient(135deg, #f9f0ff, #efdbff);
+  border: 2rpx solid #d3adf7;
+  margin-top: 16rpx;
+  padding: 28rpx 32rpx;
+}
+
+.ai-upgrade-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.ai-upgrade-icon {
+  font-size: 48rpx;
+  margin-bottom: 8rpx;
+}
+
+.ai-upgrade-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #722ed1;
+  margin-bottom: 8rpx;
+}
+
+.ai-upgrade-desc {
+  font-size: 24rpx;
+  color: #9254de;
+  margin-bottom: 16rpx;
+}
+
+.ai-quote-btn {
+  margin-top: 12rpx;
+  padding: 8rpx 16rpx;
+  background: linear-gradient(135deg, #722ed1, #9254de);
+  border-radius: 20rpx;
+  display: inline-block;
+}
+
+.ai-quote-btn text {
+  font-size: 22rpx;
+  color: #fff;
+}
+
+.ai-quote-result {
+  margin-top: 16rpx;
+  padding: 16rpx;
+  background: linear-gradient(135deg, #f9f0ff, #efdbff);
+  border-radius: 12rpx;
+}
+
+.ai-quote-text {
+  font-size: 28rpx;
+  color: #531dab;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.ai-quote-author {
+  margin-top: 8rpx;
+  text-align: right;
+}

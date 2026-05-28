@@ -1,0 +1,71 @@
+<view class="chat-container">
+  <!-- Upgrade Modal -->
+  <view class="upgrade-overlay" wx:if="{{showUpgradeModal}}">
+    <view class="upgrade-card">
+      <text class="upgrade-icon">✨</text>
+      <text class="upgrade-title">AI家长顾问</text>
+      <text class="upgrade-desc">升级高级版，解锁AI家长顾问、个性化行动建议、月度成长报告等AI功能</text>
+      <view class="upgrade-actions">
+        <text class="btn btn-primary" bindtap="onUpgradeTap">去升级</text>
+        <text class="btn btn-ghost" bindtap="onCloseUpgrade">返回</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Chat Messages -->
+  <scroll-view class="messages-area" scroll-y scroll-into-view="{{scrollToView}}" scroll-with-animation>
+    <view class="welcome-msg" wx:if="{{messages.length === 0 && !showUpgradeModal}}">
+      <text class="welcome-icon">🤖</text>
+      <text class="welcome-title">AI家长顾问</text>
+      <text class="welcome-desc">我是您的AI家长顾问，可以帮您：</text>
+      <view class="welcome-suggestions">
+        <text class="suggestion-item" bindtap="sendMessage" data-text="孩子最近压力很大，我该怎么帮助他？">💡 孩子最近压力很大，我该怎么帮助他？</text>
+        <text class="suggestion-item" bindtap="sendMessage" data-text="距离高考还有多久，现在应该关注什么？">📅 距离高考还有多久，现在应该关注什么？</text>
+        <text class="suggestion-item" bindtap="sendMessage" data-text="如何帮孩子调整作息？">🌙 如何帮孩子调整作息？</text>
+      </view>
+    </view>
+
+    <view class="message {{item.role}}" wx:for="{{messages}}" wx:key="id">
+      <view class="msg-avatar">
+        <text wx:if="{{item.role === 'assistant'}}">🤖</text>
+        <text wx:else>👤</text>
+      </view>
+      <view class="msg-content">
+        <text class="msg-text">{{item.content}}</text>
+        <text class="msg-time">{{item.time}}</text>
+      </view>
+    </view>
+
+    <view class="message assistant" wx:if="{{loading}}">
+      <view class="msg-avatar">🤖</view>
+      <view class="msg-content">
+        <view class="typing-indicator">
+          <text class="dot"></text>
+          <text class="dot"></text>
+          <text class="dot"></text>
+        </view>
+      </view>
+    </view>
+
+    <view id="msg-bottom"></view>
+  </scroll-view>
+
+  <!-- Remaining count -->
+  <view class="remaining-bar" wx:if="{{remainingChats < 5 && remainingChats > 0}}">
+    <text class="remaining-text">今日剩余对话：{{remainingChats}}次</text>
+  </view>
+
+  <!-- Input Area -->
+  <view class="input-area">
+    <input
+      class="chat-input"
+      placeholder="输入您的问题..."
+      value="{{inputText}}"
+      bindinput="onInputChange"
+      bindconfirm="sendMessage"
+      confirm-type="send"
+      disabled="{{loading || showUpgradeModal}}"
+    />
+    <text class="send-btn {{inputText && !loading ? 'active' : ''}}" bindtap="sendMessage">发送</text>
+  </view>
+</view>

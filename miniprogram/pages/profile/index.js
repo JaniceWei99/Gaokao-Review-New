@@ -9,7 +9,8 @@ Page({
     isLoggedIn: false,
     userInfo: {},
     currentStudent: null,
-    planName: '免费版'
+    planName: '免费版',
+    subscription: null
   },
 
   onLoad() {
@@ -38,7 +39,8 @@ Page({
       isLoggedIn: isLoggedIn,
       userInfo: userInfo,
       currentStudent: currentStudent,
-      planName: planName
+      planName: planName,
+      subscription: userInfo.subscription || null
     });
   },
 
@@ -79,5 +81,16 @@ Page({
         }
       }
     });
+  },
+
+  onNavigateTo(e) {
+    var url = e.currentTarget.dataset.url;
+    if (url) {
+      wx.navigateTo({ url: url });
+    }
+  },
+
+  onUpgradeToPremium() {
+    wx.navigateTo({ url: '/pages/profile/subscription' });
   }
 });

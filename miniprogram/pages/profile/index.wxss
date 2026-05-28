@@ -64,3 +64,8 @@
 .settings-item.last {
   border-bottom: none;
 }
+
+.premium-hint {
+  color: #722ed1;
+  font-weight: 500;
+}

@@ -16,6 +16,13 @@
   <view class="card quote-card">
     <view class="quote-text">{{quote || '每一天的努力，都是在为未来铺路。'}}</view>
     <view class="quote-source text-hint">{{quoteAuthor || ''}}</view>
+    <view wx:if="{{subscription && subscription.plan === 'premium' && !personalizedQuote}}" class="ai-quote-btn" bindtap="onGenerateAIQuote">
+      <text>✨ 生成专属金句</text>
+    </view>
+    <view wx:if="{{personalizedQuote}}" class="ai-quote-result">
+      <view class="ai-quote-text">{{personalizedQuote.content}}</view>
+      <view class="ai-quote-author text-hint">{{personalizedQuote.author || 'AI家长顾问'}}</view>
+    </view>
   </view>
 
   <!-- Gaokao Countdown -->
@@ -93,6 +100,41 @@
         <view class="quick-icon quick-icon-knowledge">📚</view>
         <text class="quick-label">知识浏览</text>
       </navigator>
+    </view>
+  </view>
+
+  <!-- AI Features Section (premium) -->
+  <view class="card ai-section" wx:if="{{subscription && subscription.plan === 'premium'}}">
+    <view class="card-header">
+      <text class="card-title">✨ AI智能助手</text>
+    </view>
+    <view class="ai-grid">
+      <view class="ai-item" bindtap="onNavigateTo" data-url="/pages/ai/chat">
+        <text class="ai-icon">🤖</text>
+        <text class="ai-label">AI家长顾问</text>
+      </view>
+      <view class="ai-item" bindtap="onNavigateTo" data-url="/pages/ai/suggestions">
+        <text class="ai-icon">💡</text>
+        <text class="ai-label">行动建议</text>
+      </view>
+      <view class="ai-item" bindtap="onNavigateTo" data-url="/pages/ai/monthly-report">
+        <text class="ai-icon">📊</text>
+        <text class="ai-label">月度报告</text>
+      </view>
+      <view class="ai-item" bindtap="onNavigateTo" data-url="/pages/ai/chat-history">
+        <text class="ai-icon">💬</text>
+        <text class="ai-label">对话记录</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- AI Upgrade Prompt (non-premium) -->
+  <view class="card ai-upgrade-card" wx:if="{{subscription && subscription.plan !== 'premium'}}">
+    <view class="ai-upgrade-content">
+      <text class="ai-upgrade-icon">✨</text>
+      <text class="ai-upgrade-title">解锁AI智能助手</text>
+      <text class="ai-upgrade-desc">AI家长顾问、个性化行动建议、月度成长报告</text>
+      <text class="btn btn-primary btn-sm" bindtap="onUpgradeToPremium">升级高级版</text>
     </view>
   </view>
 

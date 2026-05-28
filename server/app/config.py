@@ -39,6 +39,16 @@ class Settings(BaseSettings):
     cos_secret_id: str = ""
     cos_secret_key: str = ""
 
+    # LLM / AI (通义千问 / 文心一言)
+    llm_provider: str = "dashscope"
+    llm_api_key: str = ""
+    llm_model: str = "qwen-turbo"
+    llm_base_url: str = "https://dashscope.aliyuncs.com/compatible-mode/v1"
+    llm_max_tokens: int = 1024
+    llm_temperature: float = 0.7
+    ai_daily_chat_limit: int = 10
+    ai_max_context_rounds: int = 10
+
     # App
     app_env: str = "development"
     app_debug: bool = True

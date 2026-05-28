@@ -104,6 +104,18 @@ function request(options) {
                 }
               }
             });
+          } else if (errorCode === 'FEATURE_REQUIRES_PREMIUM') {
+            wx.showModal({
+              title: '高级版功能',
+              content: (res.data && res.data.error && res.data.error.message) || '此功能需要高级版，升级后即可使用',
+              confirmText: '去升级',
+              cancelText: '知道了',
+              success(modalRes) {
+                if (modalRes.confirm) {
+                  wx.navigateTo({ url: '/pages/profile/subscription' });
+                }
+              }
+            });
           } else if (showError) {
             wx.showToast({
               title: res.data.message || '没有权限',

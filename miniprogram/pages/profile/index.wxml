@@ -48,6 +48,22 @@
       <text>订阅管理</text>
       <text class="text-hint">></text>
     </navigator>
+    <view wx:if="{{subscription && subscription.plan === 'premium'}}" class="settings-item flex-between" bindtap="onNavigateTo" data-url="/pages/ai/chat">
+      <text>✨ AI家长顾问</text>
+      <text class="text-hint">></text>
+    </view>
+    <view wx:if="{{subscription && subscription.plan === 'premium'}}" class="settings-item flex-between" bindtap="onNavigateTo" data-url="/pages/ai/suggestions">
+      <text>💡 AI行动建议</text>
+      <text class="text-hint">></text>
+    </view>
+    <view wx:if="{{subscription && subscription.plan === 'premium'}}" class="settings-item flex-between" bindtap="onNavigateTo" data-url="/pages/ai/monthly-report">
+      <text>📊 月度成长报告</text>
+      <text class="text-hint">></text>
+    </view>
+    <view wx:if="{{subscription && subscription.plan !== 'premium'}}" class="settings-item flex-between" bindtap="onUpgradeToPremium">
+      <text>✨ 解锁AI助手</text>
+      <text class="text-hint premium-hint">高级版 ></text>
+    </view>
     <navigator url="/pages/quotes/favorites" class="settings-item flex-between">
       <text>收藏的金句</text>
       <text class="text-hint">></text>

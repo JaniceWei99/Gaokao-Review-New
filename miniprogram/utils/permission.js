@@ -57,6 +57,16 @@ function canUse(feature, subscription) {
       return plan !== 'free';
     case 'unlimited_exams':
       return plan !== 'free';
+    case 'ai_chat':
+      return plan === 'premium';
+    case 'ai_suggestions':
+      return plan === 'premium';
+    case 'ai_personalized_quote':
+      return plan === 'premium';
+    case 'ai_error_classify':
+      return plan === 'premium';
+    case 'ai_monthly_report':
+      return plan === 'premium';
     default:
       return true;
   }
