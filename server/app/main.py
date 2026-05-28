@@ -23,6 +23,8 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
         from app.jobs.scheduler import stop_scheduler
 
         stop_scheduler()
+    from app.services.cache_service import close_redis
+    await close_redis()
     print("Shutting down...")
 
 
@@ -48,18 +50,21 @@ app.add_middleware(
 setup_error_handlers(app)
 
 # ── Routers ───────────────────────────────────────────────────
-from app.routers import auth, dashboard, error_notes, exams, growth_records, knowledge, milestones, quotes, students, upload
+from app.routers import auth, action_cards, dashboard, error_notes, exams, growth_records, knowledge, milestones, quotes, school_progress, students, subscription, upload
 
 app.include_router(auth.router, prefix="/api/auth", tags=["auth"])
 app.include_router(students.router, prefix="/api/students", tags=["students"])
 app.include_router(quotes.router, prefix="/api/quotes", tags=["quotes"])
 app.include_router(milestones.router, prefix="/api/students/{student_id}/milestones", tags=["milestones"])
+app.include_router(action_cards.router, prefix="/api/students/{student_id}/action-cards", tags=["action-cards"])
 app.include_router(dashboard.router, prefix="/api/students/{student_id}/dashboard", tags=["dashboard"])
 app.include_router(knowledge.router, prefix="/api/knowledge", tags=["knowledge"])
 app.include_router(exams.router, prefix="/api/students/{student_id}/exams", tags=["exams"])
 app.include_router(error_notes.router, prefix="/api/students/{student_id}/error-notes", tags=["error-notes"])
 app.include_router(growth_records.router, prefix="/api/students/{student_id}/growth-records", tags=["growth-records"])
+app.include_router(subscription.router, prefix="/api/subscription", tags=["subscription"])
 app.include_router(upload.router, prefix="/api/upload", tags=["upload"])
+app.include_router(school_progress.router, prefix="/api/students/{student_id}/school-progress", tags=["school-progress"])
 
 
 @app.get("/health", tags=["system"])

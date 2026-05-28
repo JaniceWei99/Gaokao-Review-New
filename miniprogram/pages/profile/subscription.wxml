@@ -1,3 +1,76 @@
-<view class="container">
-  <text>订阅管理</text>
+<view class="container subscription-page">
+
+  <view wx:if="{{loading}}" class="loading-container">
+    <text class="text-hint">加载中...</text>
+  </view>
+
+  <view wx:elif="{{!subscription}}" class="empty-state">
+    <text class="empty-state-text">请先登录</text>
+  </view>
+
+  <view wx:else>
+
+    <view class="current-plan card">
+      <view class="plan-header">
+        <text class="plan-label">当前方案</text>
+        <view class="tag {{subscription.plan === 'free' ? 'tag-default' : 'tag-primary'}}">
+          {{subscription.plan === 'free' ? '免费版' : subscription.plan === 'standard' ? '标准版' : '高级版'}}
+        </view>
+      </view>
+      <view wx:if="{{subscription.is_trial}}" class="trial-info">
+        <text class="text-secondary">试用剩余 {{subscription.trial_days_remaining || 7}} 天</text>
+        <text class="text-hint caption">试用期间可体验标准版全部功能</text>
+      </view>
+      <view wx:if="{{subscription.expires_at && !subscription.is_trial}}" class="expire-info">
+        <text class="text-secondary">到期时间：{{subscription.expires_at}}</text>
+      </view>
+    </view>
+
+    <view class="plans-section">
+      <view class="section-title h3">选择方案</view>
+
+      <view wx:for="{{plans}}" wx:key="key" class="plan-card card {{item.current ? 'plan-current' : ''}} {{item.popular ? 'plan-popular' : ''}}">
+        <view wx:if="{{item.popular}}" class="popular-badge">最受欢迎</view>
+
+        <view class="plan-card-header">
+          <text class="plan-name h3">{{item.name}}</text>
+          <text class="plan-price">{{item.price}}</text>
+          <text class="plan-desc text-secondary">{{item.desc}}</text>
+        </view>
+
+        <view wx:if="{{item.billingOptions}}" class="billing-options">
+          <view wx:for="{{item.billingOptions}}" wx:for-item="opt" wx:key="key"
+                class="billing-option {{item.selectedBilling === opt.key ? 'billing-selected' : ''}}"
+                data-plan="{{index}}" data-billing="{{opt.key}}"
+                bindtap="onBillingChange">
+            <text class="billing-label">{{opt.label}}</text>
+            <text class="billing-price">{{opt.display}}</text>
+            <text wx:if="{{opt.save}}" class="billing-save">{{opt.save}}</text>
+          </view>
+        </view>
+
+        <view class="plan-features">
+          <view wx:for="{{item.features}}" wx:for-item="feat" wx:key="*this" class="feature-item">
+            <text class="feature-check">✓</text>
+            <text class="feature-text">{{feat}}</text>
+          </view>
+        </view>
+
+        <view class="plan-action">
+          <button wx:if="{{item.current}}" class="btn btn-outline btn-block" disabled>当前方案</button>
+          <button wx:elif="{{item.key === 'free'}}" class="btn btn-outline btn-block" disabled>基础版</button>
+          <button wx:else class="btn btn-primary btn-block" data-plan="{{item.key}}" bindtap="onUpgrade" loading="{{purchasing}}">
+            立即订阅
+          </button>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{subscription.plan === 'free' && !subscription.is_trial}}" class="trial-cta card">
+      <text class="h4">免费试用标准版 7 天</text>
+      <text class="body-text mt-8">体验全部标准版功能，无需支付</text>
+      <button class="btn btn-primary btn-block mt-16" bindtap="onStartTrial">开始试用</button>
+    </view>
+
+  </view>
 </view>

@@ -82,3 +82,34 @@
   font-size: var(--font-sm);
   color: var(--color-text-secondary);
 }
+
+.permission-hint {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 24rpx;
+  background: rgba(255, 149, 0, 0.06);
+  border: 1rpx solid rgba(255, 149, 0, 0.2);
+  margin-bottom: 16rpx;
+}
+
+.hint-icon {
+  font-size: 28rpx;
+  margin-right: 8rpx;
+}
+
+.hint-text {
+  font-size: 24rpx;
+  color: var(--color-text-secondary);
+}
+
+.hint-link {
+  font-size: 24rpx;
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+.lock-icon {
+  font-size: 22rpx;
+  margin-left: 8rpx;
+  opacity: 0.5;
+}

@@ -1,0 +1,83 @@
+<view class="container progress-page">
+  <view class="filter-bar">
+    <picker range="{{subjectOptions}}" range-key="label" value="{{subjectIndex}}" bindchange="onSubjectFilter">
+      <view class="filter-picker {{subjectIndex < 0 ? 'placeholder' : ''}}">
+        {{subjectIndex >= 0 ? subjectOptions[subjectIndex].label : '全部科目'}}
+      </view>
+    </picker>
+    <view class="filter-spacer"></view>
+    <button class="btn-add" bindtap="onAdd">+ 添加</button>
+  </view>
+
+  <view wx:if="{{loading}}" class="loading-container">
+    <text class="text-hint">加载中...</text>
+  </view>
+
+  <view wx:elif="{{progressList.length === 0}}" class="empty-state">
+    <text class="empty-state-text">暂无复习进度</text>
+    <text class="text-hint mt-16">点击右上角添加学校正在复习的内容</text>
+  </view>
+
+  <view wx:else>
+    <view wx:for="{{progressList}}" wx:key="id" class="progress-card card">
+      <view class="card-header">
+        <text class="card-subject">{{item.subject_id}}</text>
+        <text class="card-date">{{item.start_date || ''}} {{item.end_date ? '~ ' + item.end_date : ''}}</text>
+      </view>
+      <text class="card-content">{{item.content}}</text>
+      <view class="card-footer">
+        <view wx:if="{{item.error_count > 0}}" class="error-badge" bindtap="onViewErrors" data-id="{{item.id}}">
+          <text class="badge-text">{{item.error_count}} 道错题</text>
+          <text class="badge-arrow">→</text>
+        </view>
+        <view class="card-actions">
+          <text class="action-text" data-item="{{item}}" bindtap="onEdit">编辑</text>
+          <text class="action-text action-danger" data-id="{{item.id}}" bindtap="onDelete">删除</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{showForm}}" class="form-overlay">
+    <view class="form-sheet card">
+      <text class="form-title">{{editingId ? '编辑复习进度' : '添加复习进度'}}</text>
+
+      <view class="form-group">
+        <text class="form-label">科目</text>
+        <picker range="{{subjectOptions}}" range-key="label" value="{{formSubjectIndex}}" bindchange="onFormSubjectChange">
+          <view class="form-picker {{formSubjectIndex < 0 ? 'placeholder' : ''}}">
+            {{formSubjectIndex >= 0 ? subjectOptions[formSubjectIndex].label : '请选择科目'}}
+          </view>
+        </picker>
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">复习内容</text>
+        <textarea class="form-textarea" value="{{formContent}}" bindinput="onContentInput" placeholder="如：函数与导数" maxlength="200" />
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">开始日期</text>
+        <picker mode="date" value="{{formStartDate}}" bindchange="onStartDateChange">
+          <view class="form-picker {{!formStartDate ? 'placeholder' : ''}}">
+            {{formStartDate || '选择日期'}}
+          </view>
+        </picker>
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">结束日期</text>
+        <picker mode="date" value="{{formEndDate}}" bindchange="onEndDateChange">
+          <view class="form-picker {{!formEndDate ? 'placeholder' : ''}}">
+            {{formEndDate || '选择日期'}}
+          </view>
+        </picker>
+      </view>
+
+      <view class="form-buttons">
+        <button class="btn-cancel" bindtap="onCancel">取消</button>
+        <button class="btn-primary btn-submit" bindtap="onSubmit">保存</button>
+      </view>
+    </view>
+  </view>
+</view>

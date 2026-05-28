@@ -21,17 +21,26 @@
   </view>
 
   <view wx:else>
-    <view class="trend-bars">
-      <view class="trend-bar-item" wx:for="{{trendData}}" wx:key="exam_date">
-        <view class="bar-container">
-          <view class="bar-fill {{item.rate >= 80 ? 'bar-good' : item.rate >= 60 ? 'bar-ok' : 'bar-bad'}}"
-                style="height: {{item.rate}}%"></view>
-        </view>
-        <text class="bar-rate {{item.rate >= 80 ? 'text-success' : item.rate >= 60 ? 'text-warning' : 'text-error'}}">
-          {{item.rate}}%
+    <view class="stats-row">
+      <view class="stat-item card">
+        <text class="stat-value {{trendDirection === 'up' ? 'text-success' : trendDirection === 'down' ? 'text-error' : ''}}">
+          {{trendDirection === 'up' ? '↑' : trendDirection === 'down' ? '↓' : '→'}} {{trendDelta > 0 ? '+' : ''}}{{trendDelta}}%
         </text>
-        <text class="bar-label">{{item.date_short}}</text>
+        <text class="stat-label">最近趋势</text>
       </view>
+      <view class="stat-item card">
+        <text class="stat-value">{{avgRate}}%</text>
+        <text class="stat-label">平均得分率</text>
+      </view>
+      <view class="stat-item card">
+        <text class="stat-value text-success">{{bestRate}}%</text>
+        <text class="stat-label">最佳得分率</text>
+      </view>
+    </view>
+
+    <view class="chart-card card">
+      <text class="chart-title">成绩趋势</text>
+      <canvas type="2d" id="trendCanvas" class="trend-canvas"></canvas>
     </view>
 
     <view class="trend-table card mt-24">

@@ -27,6 +27,12 @@ class Settings(BaseSettings):
     wx_app_id: str = ""
     wx_app_secret: str = ""
 
+    # WeChat Pay (V3)
+    wx_pay_mch_id: str = ""
+    wx_pay_api_key_path: str = ""
+    wx_pay_cert_path: str = ""
+    wx_pay_notify_url: str = ""
+
     # Tencent Cloud COS
     cos_bucket: str = ""
     cos_region: str = "ap-shanghai"

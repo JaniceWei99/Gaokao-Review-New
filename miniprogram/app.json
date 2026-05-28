@@ -21,6 +21,7 @@
     "pages/growth/add",
     "pages/growth/export",
     "pages/quotes/favorites",
+    "pages/school-progress/list",
     "pages/profile/index",
     "pages/profile/student-manage",
     "pages/profile/subscription",

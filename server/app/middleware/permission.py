@@ -30,7 +30,6 @@ async def get_user_plan(
         select(UserSubscription)
         .where(
             UserSubscription.user_id == user_id,
-            UserSubscription.plan != "free",
         )
         .order_by(UserSubscription.created_at.desc())
         .limit(1)
@@ -40,15 +39,32 @@ async def get_user_plan(
     if sub is None:
         return "free"
 
-    # Check if trial has expired
+    if hasattr(sub, "payment_status") and sub.payment_status == "pending":
+        prev_result = await db.execute(
+            select(UserSubscription)
+            .where(
+                UserSubscription.user_id == user_id,
+                UserSubscription.id != sub.id,
+            )
+            .order_by(UserSubscription.created_at.desc())
+            .limit(1)
+        )
+        prev_sub = prev_result.scalar_one_or_none()
+        if prev_sub:
+            if prev_sub.is_trial and prev_sub.trial_expires_at and prev_sub.trial_expires_at < now:
+                return "free"
+            if not prev_sub.is_trial and prev_sub.expires_at and prev_sub.expires_at < now:
+                return "free"
+            return prev_sub.plan or "free"
+        return "free"
+
     if sub.is_trial and sub.trial_expires_at and sub.trial_expires_at < now:
         return "free"
 
-    # Check if subscription has expired
-    if sub.expires_at and sub.expires_at < now:
+    if not sub.is_trial and sub.expires_at and sub.expires_at < now:
         return "free"
 
-    return sub.plan
+    return sub.plan or "free"
 
 
 def require_standard(plan: str = Depends(get_user_plan)) -> str:

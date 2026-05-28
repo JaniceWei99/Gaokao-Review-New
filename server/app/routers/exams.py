@@ -9,7 +9,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database import get_db
 from app.middleware.auth import get_current_user_id
-from app.middleware.permission import get_user_plan
+from app.middleware.permission import get_user_plan, require_standard
 from app.schemas.exam import (
     ExamCreate,
     ExamCreateResponse,
@@ -17,6 +17,7 @@ from app.schemas.exam import (
     ExamTrendResponse,
     LastMaxScoresResponse,
 )
+from app.services.cache_service import cache_delete
 from app.services.exam_service import (
     create_exam,
     delete_exam,
@@ -47,7 +48,9 @@ async def create_student_exam(
     db: AsyncSession = Depends(get_db),
 ):
     """Record a new exam with scores. Free tier limited to 3 exams."""
-    return await create_exam(student_id, user_id, body, plan, db)
+    result = await create_exam(student_id, user_id, body, plan, db)
+    await cache_delete(f"dashboard:{student_id}")
+    return result
 
 
 @router.delete("/{exam_id}", status_code=204)
@@ -59,16 +62,18 @@ async def delete_student_exam(
 ):
     """Delete an exam record."""
     await delete_exam(exam_id, student_id, user_id, db)
+    await cache_delete(f"dashboard:{student_id}")
 
 
 @router.get("/trend", response_model=ExamTrendResponse)
 async def exam_trend(
     student_id: uuid.UUID,
     subject_id: str = Query(..., description="Subject ID to get trend for"),
+    plan: str = Depends(require_standard),
     user_id: uuid.UUID = Depends(get_current_user_id),
     db: AsyncSession = Depends(get_db),
 ):
-    """Get score trend for a specific subject across all exams."""
+    """Get score trend for a specific subject across all exams. Requires standard plan."""
     return await get_exam_trend(student_id, user_id, subject_id, db)
 
 

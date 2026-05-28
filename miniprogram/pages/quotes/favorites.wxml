@@ -1,3 +1,33 @@
-<view class="container">
-  <text>收藏金句</text>
+<view class="container favorites-page">
+  <view wx:if="{{loading}}" class="loading-container">
+    <text class="text-hint">加载中...</text>
+  </view>
+
+  <view wx:elif="{{quotes.length === 0}}" class="empty-state">
+    <text class="empty-state-text">还没有收藏金句</text>
+    <text class="text-hint mt-16">在首页点击金句即可收藏</text>
+  </view>
+
+  <view wx:else>
+    <view wx:for="{{quotes}}" wx:key="id" class="quote-card card">
+      <view class="quote-content">
+        <text class="quote-text">{{item.content}}</text>
+        <text wx:if="{{item.author}}" class="quote-author">— {{item.author}}</text>
+      </view>
+      <view class="quote-actions">
+        <button class="action-btn share-btn" data-id="{{item.id}}" data-content="{{item.content}}" open-type="share">
+          <text class="action-icon">🔗</text>
+          <text class="action-label">转发</text>
+        </button>
+        <button class="action-btn image-btn" data-id="{{item.id}}" bindtap="onShareQuote" loading="{{generatingShare}}">
+          <text class="action-icon">🖼️</text>
+          <text class="action-label">保存图片</text>
+        </button>
+        <button class="action-btn unfav-btn" data-id="{{item.id}}" bindtap="onUnfavorite">
+          <text class="action-icon">💔</text>
+          <text class="action-label">取消收藏</text>
+        </button>
+      </view>
+    </view>
+  </view>
 </view>

@@ -10,6 +10,7 @@ from app.database import get_db
 from app.middleware.auth import get_current_user_id
 from app.middleware.permission import get_user_plan
 from app.schemas.error_note import ErrorNoteCreate, ErrorNoteListResponse, ErrorNoteResponse
+from app.services.cache_service import cache_delete
 from app.services.error_note_service import (
     create_error_note,
     delete_error_note,
@@ -28,7 +29,9 @@ async def create_note(
     user_id: uuid.UUID = Depends(get_current_user_id),
     db: AsyncSession = Depends(get_db),
 ):
-    return await create_error_note(student_id, user_id, body, db)
+    result = await create_error_note(student_id, user_id, body, db)
+    await cache_delete(f"dashboard:{student_id}")
+    return result
 
 
 @router.get("", response_model=ErrorNoteListResponse)
@@ -84,4 +87,5 @@ async def remove_note(
     db: AsyncSession = Depends(get_db),
 ):
     await delete_error_note(student_id, note_id, user_id, db)
+    await cache_delete(f"dashboard:{student_id}")
     return {"success": True}

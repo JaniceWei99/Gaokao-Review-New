@@ -4,6 +4,13 @@
 
 .action-header {
   padding: 16rpx 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.milestone-info {
+  flex: 1;
 }
 
 .action-meta {
@@ -15,33 +22,122 @@
   margin-left: 16rpx;
 }
 
-.action-content {
-  line-height: 1.8;
+.timing-badge {
+  background: rgba(74, 144, 217, 0.1);
+  padding: 6rpx 16rpx;
+  border-radius: 16rpx;
+  flex-shrink: 0;
+  margin-left: 16rpx;
 }
 
-.action-tips {
-  padding-top: 16rpx;
-  border-top: 1rpx solid var(--color-border);
+.timing-text {
+  font-size: 22rpx;
+  color: var(--color-primary);
 }
 
-.tip-item {
+.progress-section {
+  padding: 24rpx;
+}
+
+.progress-header {
   display: flex;
-  align-items: flex-start;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.progress-text {
+  font-size: 26rpx;
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.progress-bar {
+  height: 12rpx;
+  background: #e8e8e8;
+  border-radius: 6rpx;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--color-primary);
+  border-radius: 6rpx;
+  transition: width 0.3s ease;
+}
+
+.action-items {
+  padding: 24rpx;
+}
+
+.mb-16 {
   margin-bottom: 16rpx;
 }
 
-.tip-dot {
-  width: 10rpx;
-  height: 10rpx;
-  border-radius: 50%;
-  background-color: var(--color-primary);
-  margin-right: 16rpx;
-  margin-top: 14rpx;
-  flex-shrink: 0;
+.action-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid var(--color-border, #eee);
 }
 
-.tip-text {
-  font-size: var(--font-base);
+.action-item:last-child {
+  border-bottom: none;
+}
+
+.item-checked {
+  opacity: 0.7;
+}
+
+.checkbox {
+  width: 40rpx;
+  height: 40rpx;
+  border: 2rpx solid #ccc;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+  margin-top: 4rpx;
+  transition: all 0.2s ease;
+}
+
+.checkbox-checked {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.checkbox-icon {
+  color: #fff;
+  font-size: 24rpx;
+  font-weight: 700;
+}
+
+.item-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.item-title {
+  font-size: 28rpx;
+  color: var(--color-text-primary);
+  line-height: 1.5;
+}
+
+.text-crossed {
+  text-decoration: line-through;
+  color: var(--color-text-hint, #999);
+}
+
+.item-desc {
+  font-size: 24rpx;
   color: var(--color-text-secondary);
-  line-height: 1.6;
+  line-height: 1.4;
+}
+
+.footer-tip {
+  padding: 20rpx 24rpx;
+  background: rgba(255, 149, 0, 0.06);
 }

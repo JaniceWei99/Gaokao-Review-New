@@ -1,4 +1,5 @@
 var api = require('../../services/api');
+var permission = require('../../utils/permission');
 var app = getApp();
 
 Page({
@@ -18,7 +19,22 @@ Page({
     subjectIndex: -1,
     tree: [],
     loading: false,
-    expandedNodes: {}
+    expandedNodes: {},
+    canExpandL3: false
+  },
+
+  onLoad: function() {
+    var sub = app.globalData.subscription;
+    this.setData({
+      canExpandL3: permission.canUse('knowledge_l3', sub)
+    });
+  },
+
+  onShow: function() {
+    var sub = app.globalData.subscription;
+    this.setData({
+      canExpandL3: permission.canUse('knowledge_l3', sub)
+    });
   },
 
   onSubjectChange: function(e) {
@@ -63,6 +79,10 @@ Page({
     if (expanded[id]) {
       delete expanded[id];
     } else {
+      if (level === 2 && !this.data.canExpandL3) {
+        permission.showUpgradeModal('FEATURE_REQUIRES_STANDARD');
+        return;
+      }
       expanded[id] = true;
       if (level === 2) {
         this.loadLevel3(id);
@@ -78,7 +98,11 @@ Page({
       var tree = JSON.parse(JSON.stringify(that.data.tree));
       that.attachLevel3(tree, parentId, res || []);
       that.setData({ tree: tree });
-    }).catch(function() {});
+    }).catch(function(err) {
+      if (err && err.code === 'FEATURE_REQUIRES_STANDARD') {
+        permission.showUpgradeModal('FEATURE_REQUIRES_STANDARD');
+      }
+    });
   },
 
   attachLevel3: function(nodes, parentId, level3Nodes) {
@@ -94,5 +118,9 @@ Page({
       }
     }
     return false;
+  },
+
+  onUpgrade: function() {
+    wx.navigateTo({ url: '/pages/profile/subscription' });
   }
 });

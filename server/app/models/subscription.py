@@ -37,6 +37,16 @@ class UserSubscription(Base):
         DateTime
     )
     auto_renew: Mapped[bool] = mapped_column(Boolean, default=False)
+    out_trade_no: Mapped[str | None] = mapped_column(
+        String(64), nullable=True, comment="WeChat Pay out_trade_no"
+    )
+    payment_status: Mapped[str | None] = mapped_column(
+        String(20), nullable=True,
+        comment="pending | paid | failed | refunded",
+    )
+    transaction_id: Mapped[str | None] = mapped_column(
+        String(64), nullable=True, comment="WeChat Pay transaction_id"
+    )
     created_at: Mapped[datetime.datetime] = mapped_column(
         DateTime, server_default=func.now()
     )

@@ -49,6 +49,12 @@ async def wx_login(code: str, db: AsyncSession) -> WxLoginResponse:
         db.add(user)
         await db.flush()
         logger.info("Created new user: %s", user.id)
+
+        try:
+            from app.services.subscription_service import start_trial
+            await start_trial(user.id, db)
+        except Exception as exc:
+            logger.warning("Failed to start trial for user %s: %s", user.id, exc)
     else:
         if union_id and not user.union_id:
             user.union_id = union_id

@@ -1,3 +1,71 @@
-.container {
-  padding: 20rpx;
+.favorites-page {
+  padding-bottom: 40rpx;
+}
+
+.quote-card {
+  padding: 28rpx 24rpx;
+  margin-bottom: 16rpx;
+}
+
+.quote-content {
+  margin-bottom: 20rpx;
+}
+
+.quote-text {
+  font-size: 30rpx;
+  line-height: 1.8;
+  color: var(--color-text-primary);
+  display: block;
+  margin-bottom: 12rpx;
+}
+
+.quote-author {
+  font-size: 24rpx;
+  color: var(--color-text-secondary);
+  display: block;
+  text-align: right;
+}
+
+.quote-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16rpx;
+  padding-top: 16rpx;
+  border-top: 1rpx solid var(--color-border, #eee);
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 6rpx;
+  padding: 8rpx 16rpx;
+  background: none;
+  border: none;
+  font-size: 24rpx;
+  color: var(--color-text-secondary);
+  line-height: 1;
+}
+
+.action-btn::after {
+  border: none;
+}
+
+.action-icon {
+  font-size: 28rpx;
+}
+
+.action-label {
+  font-size: 22rpx;
+}
+
+.share-btn {
+  color: var(--color-primary);
+}
+
+.image-btn {
+  color: #52c41a;
+}
+
+.unfav-btn {
+  color: #ff4d4f;
 }

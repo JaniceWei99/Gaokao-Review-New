@@ -1,3 +1,30 @@
-<view class="container">
-  <text>导出成长档案</text>
+<view class="container export-page">
+  <view class="section-title">
+    <text class="title-text">导出成长档案</text>
+    <text class="title-desc">生成精美长图，记录成长足迹</text>
+  </view>
+
+  <view wx:if="{{!canExport}}" class="permission-hint card">
+    <text class="hint-icon">🔒</text>
+    <text class="hint-text">导出功能为标准版专属，</text>
+    <text class="hint-link" bindtap="onUpgrade">立即升级 →</text>
+  </view>
+
+  <view class="form-group">
+    <text class="form-label">选择学年</text>
+    <picker range="{{yearOptions}}" range-key="label" value="{{yearIndex}}" bindchange="onYearChange">
+      <view class="form-picker {{yearIndex < 0 ? 'form-picker-placeholder' : ''}}">
+        {{yearIndex >= 0 ? yearOptions[yearIndex].label : '请选择学年'}}
+      </view>
+    </picker>
+  </view>
+
+  <button class="btn-primary export-btn" bindtap="onExport" loading="{{exporting}}" disabled="{{!canExport}}">
+    {{exporting ? '生成中...' : '生成长图'}}
+  </button>
+
+  <view wx:if="{{previewUrl}}" class="preview-section">
+    <text class="preview-label">预览</text>
+    <image class="preview-image" src="{{previewUrl}}" mode="widthFix" bindtap="previewImage"></image>
+  </view>
 </view>

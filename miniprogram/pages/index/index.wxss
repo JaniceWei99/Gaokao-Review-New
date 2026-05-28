@@ -4,6 +4,48 @@
   padding-bottom: 40rpx;
 }
 
+/* Subscribe Guide Banner */
+.subscribe-guide {
+  background: linear-gradient(135deg, #fff7e6, #fff1cc);
+  border: 2rpx solid #ffd666;
+  padding: 24rpx 32rpx;
+  margin-bottom: 16rpx;
+}
+
+.subscribe-guide-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.subscribe-guide-text {
+  font-size: 26rpx;
+  color: #8c6d1f;
+  font-weight: 500;
+  flex: 1;
+}
+
+.subscribe-guide-actions {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  flex-shrink: 0;
+  margin-left: 16rpx;
+}
+
+.subscribe-guide-dismiss {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.subscribe-guide-btn {
+  font-size: 24rpx;
+  color: #fff;
+  background: var(--color-primary);
+  padding: 8rpx 20rpx;
+  border-radius: 20rpx;
+}
+
 /* Quote Card */
 .quote-card {
   background: linear-gradient(135deg, #4A90D9, #6BA3E0);
@@ -178,4 +220,42 @@
   font-size: 20rpx;
   color: var(--color-text-tertiary);
   margin-top: 4rpx;
+}
+
+/* Desktop Guide */
+.desktop-guide {
+  background: linear-gradient(135deg, #e6f7ff, #bae7ff);
+  border: 2rpx solid #69c0ff;
+  padding: 24rpx 32rpx;
+  margin-top: 16rpx;
+}
+
+.desktop-guide-content {
+  display: flex;
+  align-items: center;
+}
+
+.desktop-guide-icon {
+  font-size: 36rpx;
+  margin-right: 16rpx;
+}
+
+.desktop-guide-text {
+  font-size: 26rpx;
+  color: #096dd9;
+  font-weight: 500;
+  flex: 1;
+}
+
+.desktop-guide-actions {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  flex-shrink: 0;
+  margin-left: 16rpx;
+}
+
+.desktop-guide-dismiss {
+  font-size: 24rpx;
+  color: #999;
 }

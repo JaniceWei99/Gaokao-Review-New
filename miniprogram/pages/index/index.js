@@ -14,11 +14,15 @@ Page({
     errorNotesSummary: { total: 0, top_subject: null, top_count: 0 },
     growthRecordsCount: 0,
     subscription: null,
+    showSubscribeGuide: false,
+    showDesktopGuide: false,
     loading: true
   },
 
   onLoad: function() {
     this.loadDashboard();
+    this.checkSubscribeGuide();
+    this.checkDesktopGuide();
   },
 
   onShow: function() {
@@ -83,10 +87,93 @@ Page({
         subscription: data.subscription || null,
         loading: false
       });
+
+      that.checkDesktopGuide();
     }).catch(function(err) {
       console.warn('[Home] loadDashboard error:', err);
       that.setData({ loading: false });
     });
+  },
+
+  checkSubscribeGuide: function() {
+    var that = this;
+    var shown = wx.getStorageSync('subscribe_guide_shown');
+    if (shown) return;
+
+    if (!app.isLoggedIn()) return;
+
+    var studentId = app.getCurrentStudentId();
+    if (!studentId) return;
+
+    api.get('/api/students/' + studentId + '/milestones?current=true&limit=3').then(function(res) {
+      var milestones = res.milestones || [];
+      var hasUpcoming = milestones.some(function(m) {
+        return m.days_remaining <= 15;
+      });
+
+      if (hasUpcoming) {
+        that.setData({ showSubscribeGuide: true });
+      }
+    }).catch(function() {});
+  },
+
+  onRequestSubscribe: function() {
+    var that = this;
+    wx.requestSubscribeMessage({
+      tmplIds: [app.globalData.subscribeMilestoneTemplateId || ''],
+      success: function(res) {
+        wx.setStorageSync('subscribe_guide_shown', true);
+        that.setData({ showSubscribeGuide: false });
+        wx.showToast({ title: '订阅成功', icon: 'success' });
+      },
+      fail: function() {
+        that.setData({ showSubscribeGuide: false });
+      },
+      complete: function() {
+        wx.setStorageSync('subscribe_guide_shown', true);
+      }
+    });
+  },
+
+  onDismissSubscribe: function() {
+    wx.setStorageSync('subscribe_guide_shown', true);
+    this.setData({ showSubscribeGuide: false });
+  },
+
+  checkDesktopGuide: function() {
+    var shown = wx.getStorageSync('desktop_guide_shown');
+    if (shown) return;
+
+    var sub = this.data.subscription;
+    if (!sub) return;
+
+    var plan = sub.plan || 'free';
+    if (plan === 'free') return;
+
+    if (typeof wx.addDesktopIcon !== 'function') return;
+
+    this.setData({ showDesktopGuide: true });
+  },
+
+  onAddDesktop: function() {
+    var that = this;
+    wx.addDesktopIcon({
+      success: function() {
+        wx.showToast({ title: '已添加到桌面', icon: 'success' });
+        wx.setStorageSync('desktop_guide_shown', true);
+        that.setData({ showDesktopGuide: false });
+      },
+      fail: function() {
+        wx.showToast({ title: '添加失败，可点击右上角手动添加', icon: 'none' });
+        wx.setStorageSync('desktop_guide_shown', true);
+        that.setData({ showDesktopGuide: false });
+      }
+    });
+  },
+
+  onDismissDesktop: function() {
+    wx.setStorageSync('desktop_guide_shown', true);
+    this.setData({ showDesktopGuide: false });
   },
 
   onToggleFavorite: function() {
@@ -123,8 +210,12 @@ Page({
 
   onViewActionCard: function() {
     var card = this.data.activeActionCard;
-    if (!card || !card.id) return;
-    wx.navigateTo({ url: '/pages/milestones/action-card?id=' + card.id });
+    if (!card) return;
+
+    var milestoneId = card.milestone_id;
+    if (milestoneId) {
+      wx.navigateTo({ url: '/pages/milestones/action-card?id=' + milestoneId });
+    }
   },
 
   onNavigateTo: function(e) {

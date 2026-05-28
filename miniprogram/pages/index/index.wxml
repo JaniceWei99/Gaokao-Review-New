@@ -1,6 +1,17 @@
 <!-- pages/index/index.wxml — Homepage -->
 <view class="container home-page">
 
+  <!-- Subscribe Message Guide Banner -->
+  <view wx:if="{{showSubscribeGuide}}" class="subscribe-guide card">
+    <view class="subscribe-guide-content">
+      <text class="subscribe-guide-text">开启里程碑提醒，不错过每个重要节点</text>
+      <view class="subscribe-guide-actions">
+        <text class="subscribe-guide-dismiss" bindtap="onDismissSubscribe">稍后</text>
+        <text class="subscribe-guide-btn" bindtap="onRequestSubscribe">开启提醒</text>
+      </view>
+    </view>
+  </view>
+
   <!-- Daily Quote Card -->
   <view class="card quote-card">
     <view class="quote-text">{{quote || '每一天的努力，都是在为未来铺路。'}}</view>
@@ -39,9 +50,7 @@
     <view class="card-body">
       <text class="body-text">{{activeActionCard.subtitle || ''}}</text>
       <view class="mt-16">
-        <navigator url="/pages/milestones/action-card?id={{activeActionCard.milestone_id}}" class="btn btn-primary btn-sm">
-          查看准备清单
-        </navigator>
+        <text class="btn btn-primary btn-sm" bindtap="onViewActionCard">查看准备清单</text>
       </view>
     </view>
   </view>
@@ -84,6 +93,18 @@
         <view class="quick-icon quick-icon-knowledge">📚</view>
         <text class="quick-label">知识浏览</text>
       </navigator>
+    </view>
+  </view>
+
+  <!-- Add to Desktop Guide (standard+ only, not yet added) -->
+  <view class="card desktop-guide" wx:if="{{showDesktopGuide}}">
+    <view class="desktop-guide-content">
+      <text class="desktop-guide-icon">📱</text>
+      <text class="desktop-guide-text">把倒计时和金句放在手机桌面</text>
+      <view class="desktop-guide-actions">
+        <text class="btn btn-primary btn-sm" bindtap="onAddDesktop">添加到桌面</text>
+        <text class="desktop-guide-dismiss" bindtap="onDismissDesktop">稍后再说</text>
+      </view>
     </view>
   </view>
 
