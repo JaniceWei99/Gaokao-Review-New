@@ -1,3 +1,23 @@
-<view class="container">
-  <text>选科</text>
+<view class="container onboarding-page">
+  <view class="onboarding-step">2 / 4</view>
+  <view class="h2 mb-8">选考科目</view>
+  <view class="caption mb-24">请选择孩子的3门等级考科目（已选 {{selected.length}}/3）</view>
+
+  <view class="subject-grid">
+    <view class="subject-chip {{selected.indexOf(item.key) >= 0 ? 'tag-selected' : 'tag-outline'}}"
+          wx:for="{{subjects}}" wx:key="key"
+          data-key="{{item.key}}" bindtap="onToggleSubject">
+      {{item.label}}
+    </view>
+  </view>
+
+  <view class="safe-bottom" style="position:fixed;bottom:0;left:0;right:0;padding:32rpx;">
+    <button class="btn btn-primary btn-block btn-lg" bindtap="onNext"
+            disabled="{{grade === 'gao3' && selected.length !== 3}}">
+      下一步
+    </button>
+    <view wx:if="{{canSkip}}" class="text-center mt-16">
+      <text class="btn-text" bindtap="onSkip">暂不选择</text>
+    </view>
+  </view>
 </view>

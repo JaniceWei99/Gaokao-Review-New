@@ -1,3 +1,17 @@
-.container {
-  padding: 20rpx;
+.subject-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+  margin-top: 32rpx;
+}
+
+.subject-chip {
+  min-width: 160rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  font-size: var(--font-md);
+  padding: 0 32rpx;
 }

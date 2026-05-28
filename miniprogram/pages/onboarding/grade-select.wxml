@@ -1,3 +1,19 @@
-<view class="container">
-  <text>年级选择</text>
+<view class="container onboarding-page">
+  <view class="onboarding-step">1 / 4</view>
+  <view class="h2 mb-24">孩子目前读几年级？</view>
+
+  <view class="grade-list">
+    <view class="grade-card {{selected === item.key ? 'grade-card-selected' : ''}}"
+          wx:for="{{grades}}" wx:key="key"
+          data-grade="{{item.key}}" bindtap="onSelectGrade">
+      <view class="grade-label">{{item.label}}</view>
+      <view class="grade-desc text-hint">{{item.desc}}</view>
+    </view>
+  </view>
+
+  <view class="safe-bottom" style="position:fixed;bottom:0;left:0;right:0;padding:32rpx;">
+    <button class="btn btn-primary btn-block btn-lg" bindtap="onNext" disabled="{{!selected}}">
+      下一步
+    </button>
+  </view>
 </view>

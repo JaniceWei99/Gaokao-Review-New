@@ -30,6 +30,18 @@
   padding: 40rpx 32rpx;
 }
 
+.countdown-sections {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32rpx;
+}
+
+.countdown-item {
+  flex: 1;
+  text-align: center;
+}
+
 .countdown-label {
   font-size: 26rpx;
   margin-bottom: 12rpx;
@@ -54,9 +66,15 @@
   margin-left: 8rpx;
 }
 
-.countdown-date {
-  font-size: 24rpx;
-  margin-top: 8rpx;
+.countdown-divider {
+  width: 2rpx;
+  height: 80rpx;
+  background: var(--color-border);
+}
+
+.countdown-hint {
+  font-size: 28rpx;
+  padding: 20rpx 0;
 }
 
 /* Section Card */
@@ -154,4 +172,10 @@
 .quick-label {
   font-size: 24rpx;
   color: var(--color-text-secondary);
+}
+
+.quick-count {
+  font-size: 20rpx;
+  color: var(--color-text-tertiary);
+  margin-top: 4rpx;
 }

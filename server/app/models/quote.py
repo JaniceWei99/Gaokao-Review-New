@@ -28,7 +28,7 @@ class DailyQuote(Base):
     id: Mapped[uuid.UUID] = mapped_column(
         primary_key=True, default=uuid.uuid4
     )
-    content: Mapped[str] = mapped_column(String(200), nullable=False)
+    content: Mapped[str] = mapped_column(String(100), nullable=False)
     author: Mapped[str | None] = mapped_column(String(50))
     category: Mapped[str | None] = mapped_column(
         String(30),

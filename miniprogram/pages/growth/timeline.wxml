@@ -1,26 +1,59 @@
-<!-- pages/growth/timeline.wxml — Growth Records Timeline -->
+<!-- pages/growth/timeline.wxml — 成长记录时间线 -->
 <view class="container growth-page">
 
   <!-- Header -->
   <view class="growth-header flex-between mb-16">
     <text class="h2">成长记录</text>
-    <navigator url="/pages/growth/export" class="btn btn-outline btn-sm">导出档案</navigator>
   </view>
 
-  <!-- Category Filter -->
-  <scroll-view scroll-x class="category-scroll mb-16">
+  <!-- School Year Tabs -->
+  <scroll-view scroll-x class="year-scroll mb-16" wx:if="{{schoolYears.length > 0}}">
     <view
-      class="tag {{currentCategory === '' ? 'tag-selected' : 'tag-outline'}}"
-      bindtap="onFilterCategory"
-      data-category=""
+      class="year-tab {{currentSchoolYear === '' ? 'year-active' : ''}}"
+      bindtap="onSwitchSchoolYear"
+      data-year=""
     >全部</view>
     <view
-      class="tag {{currentCategory === item.key ? 'tag-selected' : 'tag-outline'}}"
-      wx:for="{{categories}}"
-      wx:key="key"
-      bindtap="onFilterCategory"
-      data-category="{{item.key}}"
-    >{{item.name}}</view>
+      class="year-tab {{currentSchoolYear === item ? 'year-active' : ''}}"
+      wx:for="{{schoolYears}}"
+      wx:key="*this"
+      bindtap="onSwitchSchoolYear"
+      data-year="{{item}}"
+    >{{item}}</view>
+  </scroll-view>
+
+  <!-- Type Filter -->
+  <scroll-view scroll-x class="type-scroll mb-16">
+    <view
+      class="tag {{currentType === '' ? 'tag-selected' : 'tag-outline'}}"
+      bindtap="onFilterType"
+      data-type=""
+    >全部</view>
+    <view
+      class="tag {{currentType === 'award' ? 'tag-selected' : 'tag-outline'}}"
+      bindtap="onFilterType"
+      data-type="award"
+    >🏆 获奖</view>
+    <view
+      class="tag {{currentType === 'progress' ? 'tag-selected' : 'tag-outline'}}"
+      bindtap="onFilterType"
+      data-type="progress"
+    >📈 进步</view>
+    <view
+      class="tag {{currentType === 'performance' ? 'tag-selected' : 'tag-outline'}}"
+      bindtap="onFilterType"
+      data-type="performance"
+    >🎭 演出</view>
+    <view
+      class="tag {{currentType === 'breakthrough' ? 'tag-selected' : 'tag-outline'}}"
+      bindtap="onFilterType"
+      data-type="breakthrough"
+    >💡 突破</view>
+    <view
+      class="tag {{currentType === 'memo' ? 'tag-selected' : 'tag-outline'}}"
+      bindtap="onFilterType"
+      data-type="memo"
+    >📝 备忘</view>
   </scroll-view>
 
   <!-- Timeline -->
@@ -31,30 +64,41 @@
         <view class="timeline-dot"></view>
         <view class="card timeline-card">
           <view class="flex-between">
-            <text class="tag tag-primary">{{item.category_name}}</text>
+            <text class="type-badge">{{item.type_label}}</text>
             <text class="caption">{{item.date_display}}</text>
           </view>
           <view class="timeline-title mt-8">{{item.title}}</view>
           <view wx:if="{{item.description}}" class="timeline-desc mt-8 text-secondary">
             {{item.description}}
           </view>
+          <view wx:if="{{item.awarding_body}}" class="awarding-body mt-8">
+            颁奖机构：{{item.awarding_body}}
+          </view>
           <view wx:if="{{item.image_url}}" class="timeline-image mt-8">
-            <image src="{{item.image_url}}" mode="aspectFill" class="record-image"></image>
+            <image src="{{item.image_url}}" mode="widthFix" class="record-image"></image>
+          </view>
+          <view class="timeline-actions mt-8">
+            <view class="delete-link" bindtap="onDeleteRecord" data-id="{{item.id}}">删除</view>
           </view>
         </view>
       </view>
     </block>
 
     <!-- Empty State -->
-    <view wx:else class="empty-state">
+    <view wx:elif="{{!loading}}" class="empty-state">
       <text class="empty-state-text">还没有成长记录</text>
-      <navigator url="/pages/growth/add" class="btn btn-primary btn-sm mt-16">记录第一个成长瞬间</navigator>
+      <view class="btn btn-primary btn-sm mt-16" bindtap="onGoToAdd">记录第一个成长瞬间</view>
+    </view>
+
+    <!-- Loading -->
+    <view wx:if="{{loading}}" class="loading-state">
+      <text>加载中...</text>
     </view>
   </view>
 
-  <!-- Add Button (FAB) -->
-  <navigator url="/pages/growth/add" class="fab">
+  <!-- FAB -->
+  <view class="fab" bindtap="onGoToAdd">
     <text class="fab-icon">+</text>
-  </navigator>
+  </view>
 
 </view>

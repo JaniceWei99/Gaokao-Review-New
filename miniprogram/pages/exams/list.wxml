@@ -1,3 +1,45 @@
-<view class="container">
-  <text>考试成绩</text>
+<view class="container exam-list-page">
+  <view class="list-header flex-between">
+    <text class="h3">考试成绩</text>
+    <text class="btn-text" bindtap="onAddExam">+ 录入</text>
+  </view>
+
+  <view wx:if="{{loading}}" class="loading-container">
+    <text class="text-hint">加载中...</text>
+  </view>
+
+  <view wx:elif="{{exams.length === 0}}" class="empty-state">
+    <text class="empty-state-text">暂无考试记录</text>
+    <button class="btn btn-primary btn-sm mt-16" bindtap="onAddExam">录入成绩</button>
+  </view>
+
+  <view wx:else class="exam-list">
+    <view class="card exam-card" wx:for="{{exams}}" wx:key="id">
+      <view class="exam-card-header flex-between">
+        <view>
+          <text class="exam-name">{{item.name}}</text>
+          <view class="exam-meta mt-8">
+            <view class="tag tag-outline">{{item.type_label}}</view>
+            <text class="text-hint ml-16">{{item.date_display}}</text>
+          </view>
+        </view>
+        <view class="exam-rate">
+          <text class="rate-number {{item.rate >= 80 ? 'text-success' : item.rate >= 60 ? 'text-warning' : 'text-error'}}">{{item.rate}}</text>
+          <text class="rate-unit">%</text>
+        </view>
+      </view>
+
+      <view class="exam-scores mt-16">
+        <view class="score-tag" wx:for="{{item.scores}}" wx:for-item="s" wx:key="subject_id">
+          <text class="score-tag-label">{{s.subject_id}}</text>
+          <text class="score-tag-value">{{s.score}}/{{s.max_score}}</text>
+        </view>
+      </view>
+
+      <view class="exam-card-footer flex-between mt-16">
+        <text class="text-hint">总分 {{item.total_score}}/{{item.max_total}}</text>
+        <text class="btn-text text-error" data-id="{{item.id}}" bindtap="onDeleteExam">删除</text>
+      </view>
+    </view>
+  </view>
 </view>

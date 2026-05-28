@@ -1,3 +1,30 @@
-<view class="container">
-  <text>欢迎页</text>
+<view class="container welcome-page">
+  <view class="welcome-hero">
+    <view class="welcome-icon">🎓</view>
+    <view class="h1">高考复习助手</view>
+    <view class="welcome-subtitle">陪伴孩子备考，不焦虑、不缺席、不越界</view>
+  </view>
+
+  <view class="welcome-features">
+    <view class="feature-item">
+      <view class="feature-dot"></view>
+      <text class="feature-text">里程碑时间提醒，重要节点不错过</text>
+    </view>
+    <view class="feature-item">
+      <view class="feature-dot"></view>
+      <text class="feature-text">每日金句，给孩子温暖鼓励</text>
+    </view>
+    <view class="feature-item">
+      <view class="feature-dot"></view>
+      <text class="feature-text">错题拍照归档，轻松管理</text>
+    </view>
+    <view class="feature-item">
+      <view class="feature-dot"></view>
+      <text class="feature-text">成长记录，见证每一步进步</text>
+    </view>
+  </view>
+
+  <button class="btn btn-primary btn-block btn-lg" bindtap="onStartTap" disabled="{{loading}}">
+    {{loading ? '登录中...' : '开始使用'}}
+  </button>
 </view>

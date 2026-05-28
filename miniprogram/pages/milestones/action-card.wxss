@@ -1,3 +1,47 @@
-.container {
-  padding: 20rpx;
+.action-page {
+  padding-bottom: 40rpx;
+}
+
+.action-header {
+  padding: 16rpx 0;
+}
+
+.action-meta {
+  display: flex;
+  align-items: center;
+}
+
+.ml-16 {
+  margin-left: 16rpx;
+}
+
+.action-content {
+  line-height: 1.8;
+}
+
+.action-tips {
+  padding-top: 16rpx;
+  border-top: 1rpx solid var(--color-border);
+}
+
+.tip-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 16rpx;
+}
+
+.tip-dot {
+  width: 10rpx;
+  height: 10rpx;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  margin-right: 16rpx;
+  margin-top: 14rpx;
+  flex-shrink: 0;
+}
+
+.tip-text {
+  font-size: var(--font-base);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
 }

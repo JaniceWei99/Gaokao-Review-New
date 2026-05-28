@@ -1,3 +1,70 @@
-.container {
-  padding: 20rpx;
+.exam-list-page {
+  padding-bottom: 40rpx;
+}
+
+.list-header {
+  margin-bottom: 24rpx;
+}
+
+.exam-name {
+  font-size: var(--font-md);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.exam-meta {
+  display: flex;
+  align-items: center;
+}
+
+.ml-16 {
+  margin-left: 16rpx;
+}
+
+.exam-rate {
+  display: flex;
+  align-items: baseline;
+}
+
+.rate-number {
+  font-size: var(--font-xl);
+  font-weight: 700;
+}
+
+.rate-unit {
+  font-size: var(--font-sm);
+  color: var(--color-text-hint);
+  margin-left: 4rpx;
+}
+
+.exam-scores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+}
+
+.score-tag {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--color-bg);
+  border-radius: var(--radius-sm);
+  padding: 8rpx 16rpx;
+  min-width: 100rpx;
+}
+
+.score-tag-label {
+  font-size: var(--font-xs);
+  color: var(--color-text-hint);
+}
+
+.score-tag-value {
+  font-size: var(--font-sm);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.exam-card-footer {
+  padding-top: 16rpx;
+  border-top: 1rpx solid var(--color-border);
 }

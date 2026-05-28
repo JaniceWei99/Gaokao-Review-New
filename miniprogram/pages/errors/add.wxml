@@ -1,3 +1,122 @@
-<view class="container">
-  <text>添加错题</text>
+<!-- pages/errors/add.wxml — 错题录入3步流程 -->
+<view class="container add-error-page">
+
+  <!-- Step Indicator -->
+  <view class="step-bar flex-row mb-24">
+    <view class="step-item {{step >= 1 ? 'step-active' : ''}}">1 拍照</view>
+    <view class="step-line {{step >= 2 ? 'step-line-active' : ''}}"></view>
+    <view class="step-item {{step >= 2 ? 'step-active' : ''}}">2 选科目</view>
+    <view class="step-line {{step >= 3 ? 'step-line-active' : ''}}"></view>
+    <view class="step-item {{step >= 3 ? 'step-active' : ''}}">3 标注</view>
+  </view>
+
+  <!-- Step 1: 拍照 -->
+  <block wx:if="{{step === 1}}">
+    <view class="card mb-16">
+      <view class="card-title mb-8">题目照片 *</view>
+      <view wx:if="{{questionImagePath}}" class="image-preview">
+        <image src="{{questionImagePath}}" mode="aspectFit" class="preview-img" bindtap="onChooseQuestionImage"></image>
+      </view>
+      <view wx:else class="image-placeholder" bindtap="onChooseQuestionImage">
+        <text class="placeholder-icon">📸</text>
+        <text class="placeholder-text">点击拍摄/选择题目照片</text>
+      </view>
+    </view>
+
+    <view class="card mb-16">
+      <view class="card-title mb-8">订正照片（可选）</view>
+      <view wx:if="{{correctionImagePath}}" class="image-preview">
+        <image src="{{correctionImagePath}}" mode="aspectFit" class="preview-img" bindtap="onChooseCorrectionImage"></image>
+        <view class="remove-btn" bindtap="onRemoveCorrection">✕</view>
+      </view>
+      <view wx:else class="image-placeholder image-placeholder-sm" bindtap="onChooseCorrectionImage">
+        <text class="placeholder-icon">📝</text>
+        <text class="placeholder-text">点击添加订正照片</text>
+      </view>
+    </view>
+
+    <view class="btn btn-primary btn-block btn-lg" bindtap="onNextToStep2">下一步</view>
+  </block>
+
+  <!-- Step 2: 选科目/知识点 -->
+  <block wx:if="{{step === 2}}">
+    <view class="card mb-16">
+      <view class="card-title mb-8">选择科目 *</view>
+      <view class="subject-grid">
+        <view
+          class="tag {{selectedSubject === item.id ? 'tag-selected' : 'tag-outline'}}"
+          wx:for="{{subjectList}}"
+          wx:key="id"
+          bindtap="onSelectSubject"
+          data-id="{{item.id}}"
+        >{{item.name}}</view>
+      </view>
+    </view>
+
+    <view class="card mb-16" wx:if="{{knowledgeNodes.length > 0}}">
+      <view class="card-title mb-8">选择知识点（可选）</view>
+      <view class="knowledge-list">
+        <view
+          class="knowledge-item {{selectedKnowledgeNode === item.id ? 'knowledge-active' : ''}}"
+          wx:for="{{knowledgeNodes}}"
+          wx:key="id"
+          bindtap="onSelectKnowledgeNode"
+          data-id="{{item.id}}"
+        >{{item.name}}</view>
+      </view>
+    </view>
+
+    <view class="flex-row" style="gap: 24rpx;">
+      <view class="btn btn-outline flex-1" bindtap="onGoBack">上一步</view>
+      <view class="btn btn-primary flex-1" bindtap="onNextToStep3">下一步</view>
+    </view>
+  </block>
+
+  <!-- Step 3: 标注 -->
+  <block wx:if="{{step === 3}}">
+    <view class="card mb-16">
+      <view class="card-title mb-8">错误类型（可选）</view>
+      <view class="tag-row">
+        <view
+          class="tag {{selectedErrorType === item.key ? 'tag-selected' : 'tag-outline'}}"
+          wx:for="{{errorTypes}}"
+          wx:key="key"
+          bindtap="onSelectErrorType"
+          data-key="{{item.key}}"
+        >{{item.label}}</view>
+      </view>
+    </view>
+
+    <view class="card mb-16">
+      <view class="card-title mb-8">来源（可选）</view>
+      <view class="tag-row">
+        <view
+          class="tag {{selectedSource === item.key ? 'tag-selected' : 'tag-outline'}}"
+          wx:for="{{sources}}"
+          wx:key="key"
+          bindtap="onSelectSource"
+          data-key="{{item.key}}"
+        >{{item.label}}</view>
+      </view>
+    </view>
+
+    <view class="card mb-16">
+      <view class="card-title mb-8">备注（可选）</view>
+      <textarea
+        class="note-input"
+        placeholder="记录这道错题的心得..."
+        maxlength="200"
+        value="{{note}}"
+        bindinput="onInputNote"
+      ></textarea>
+    </view>
+
+    <view class="flex-row" style="gap: 24rpx;">
+      <view class="btn btn-outline flex-1" bindtap="onGoBack">上一步</view>
+      <view class="btn btn-primary flex-1 {{submitting ? 'btn-disabled' : ''}}" bindtap="onSubmit">
+        {{submitting ? '保存中...' : '保存'}}
+      </view>
+    </view>
+  </block>
+
 </view>

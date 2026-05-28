@@ -1,3 +1,79 @@
-.container {
-  padding: 20rpx;
+.timeline-page {
+  padding-bottom: 120rpx;
+}
+
+.timeline-header {
+  margin-bottom: 32rpx;
+}
+
+.timeline-list {
+  padding-left: 8rpx;
+}
+
+.timeline-item {
+  display: flex;
+  flex-direction: row;
+  min-height: 120rpx;
+}
+
+.timeline-line-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40rpx;
+  flex-shrink: 0;
+}
+
+.timeline-dot {
+  width: 24rpx;
+  height: 24rpx;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 28rpx;
+}
+
+.dot-future {
+  background-color: var(--color-primary);
+  box-shadow: 0 0 0 6rpx var(--color-primary-light);
+}
+
+.dot-today {
+  background-color: var(--color-success);
+  box-shadow: 0 0 0 8rpx #E6F7E6;
+}
+
+.dot-past {
+  background-color: var(--color-border);
+}
+
+.timeline-line {
+  width: 4rpx;
+  flex: 1;
+  background-color: var(--color-border);
+  margin: 4rpx 0;
+}
+
+.timeline-content {
+  flex: 1;
+  margin-left: 16rpx;
+  margin-bottom: 16rpx;
+}
+
+.timeline-past .timeline-content {
+  opacity: 0.6;
+}
+
+.timeline-name {
+  font-size: var(--font-md);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.timeline-meta {
+  font-size: var(--font-sm);
+}
+
+.toggle-past {
+  text-align: center;
+  padding: 24rpx 0;
 }

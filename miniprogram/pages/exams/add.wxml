@@ -1,3 +1,59 @@
-<view class="container">
-  <text>录入成绩</text>
+<view class="container form-page">
+  <view class="form-group">
+    <text class="form-label">考试名称</text>
+    <input class="form-input" placeholder="如：高三一模" value="{{name}}" bindinput="onNameInput" maxlength="30" />
+  </view>
+
+  <view class="form-group">
+    <text class="form-label">考试类型</text>
+    <picker range="{{typeOptions}}" range-key="label" value="{{typeIndex}}" bindchange="onTypeChange">
+      <view class="form-picker">{{typeOptions[typeIndex].label}}</view>
+    </picker>
+  </view>
+
+  <view class="form-group">
+    <text class="form-label">考试日期</text>
+    <picker mode="date" value="{{exam_date}}" bindchange="onDateChange">
+      <view class="form-picker">{{exam_date || '请选择日期'}}</view>
+    </picker>
+  </view>
+
+  <view class="form-group">
+    <text class="form-label">选择科目</text>
+    <view class="subject-grid">
+      <view class="subject-chip {{activeSubjects.indexOf(item.key) >= 0 ? 'tag-selected' : 'tag-outline'}}"
+            wx:for="{{subjects}}" wx:key="key"
+            data-key="{{item.key}}" bindtap="onToggleSubject">
+        {{item.label}}
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{activeSubjects.length > 0}}" class="score-section">
+    <text class="form-label">录入成绩</text>
+    <view class="score-item" wx:for="{{activeSubjects}}" wx:key="*this">
+      <view class="score-header">
+        <text class="score-subject">{{subjects[sIdx].label}}</text>
+      </view>
+      <view class="score-row">
+        <view class="score-field">
+          <text class="score-label">得分</text>
+          <input class="score-input" type="digit" placeholder="0"
+                 value="{{scores[item].score}}" data-key="{{item}}" bindinput="onScoreInput" />
+        </view>
+        <text class="score-divider">/</text>
+        <view class="score-field">
+          <text class="score-label">满分</text>
+          <input class="score-input" type="digit" placeholder="150"
+                 value="{{scores[item].max_score}}" data-key="{{item}}" bindinput="onMaxScoreInput" />
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="safe-bottom" style="position:fixed;bottom:0;left:0;right:0;padding:32rpx;background:#F5F7FA;">
+    <button class="btn btn-primary btn-block btn-lg" bindtap="onSubmit" disabled="{{submitting}}">
+      {{submitting ? '提交中...' : '录入成绩'}}
+    </button>
+  </view>
 </view>

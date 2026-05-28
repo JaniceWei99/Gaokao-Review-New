@@ -1,5 +1,17 @@
-<!-- pages/errors/list.wxml — Error Notes List -->
+<!-- pages/errors/list.wxml — 错题列表 -->
 <view class="container errors-page">
+
+  <!-- Stats Summary -->
+  <view class="stats-bar" wx:if="{{stats}}">
+    <view class="stat-item">
+      <text class="stat-number">{{stats.total_count || 0}}</text>
+      <text class="stat-label">总错题</text>
+    </view>
+    <view class="stat-item" wx:for="{{stats.by_subject}}" wx:key="subject_id">
+      <text class="stat-number">{{item.count}}</text>
+      <text class="stat-label">{{item.subject_name}}</text>
+    </view>
+  </view>
 
   <!-- Filter Bar -->
   <view class="filter-bar">
@@ -19,19 +31,6 @@
     </scroll-view>
   </view>
 
-  <!-- Status Filter -->
-  <view class="status-bar flex-row">
-    <view class="status-item {{currentStatus === '' ? 'active' : ''}}" bindtap="onFilterStatus" data-status="">
-      全部
-    </view>
-    <view class="status-item {{currentStatus === 'unresolved' ? 'active' : ''}}" bindtap="onFilterStatus" data-status="unresolved">
-      未解决
-    </view>
-    <view class="status-item {{currentStatus === 'resolved' ? 'active' : ''}}" bindtap="onFilterStatus" data-status="resolved">
-      已解决
-    </view>
-  </view>
-
   <!-- Error Notes List -->
   <view class="error-list">
     <block wx:if="{{errorNotes.length > 0}}">
@@ -42,31 +41,36 @@
         url="/pages/errors/detail?id={{item.id}}"
       >
         <view class="error-header flex-between">
-          <view class="tag {{item.status === 'resolved' ? 'tag-success' : 'tag-error'}}">
-            {{item.status === 'resolved' ? '已解决' : '未解决'}}
-          </view>
-          <text class="tag tag-outline">{{item.subject_name}}</text>
+          <view class="error-type-tag" wx:if="{{item.error_type_label}}">{{item.error_type_label}}</view>
+          <view class="error-source-tag" wx:if="{{item.source_label}}">{{item.source_label}}</view>
         </view>
-        <view class="error-content mt-8">
-          <text class="body-text">{{item.title || '错题记录'}}</text>
+        <view class="error-content mt-8" wx:if="{{item.question_image_url}}">
+          <image src="{{item.question_image_url}}" mode="aspectFill" class="error-thumb"></image>
+        </view>
+        <view class="error-content mt-8" wx:if="{{item.note}}">
+          <text class="body-text">{{item.note}}</text>
         </view>
         <view class="error-footer mt-8 flex-between">
           <text class="caption">{{item.created_at_display}}</text>
-          <text class="caption">{{item.source || ''}}</text>
         </view>
       </navigator>
     </block>
 
     <!-- Empty State -->
-    <view wx:else class="empty-state">
+    <view wx:elif="{{!loading}}" class="empty-state">
       <text class="empty-state-text">还没有错题记录</text>
-      <navigator url="/pages/errors/add" class="btn btn-primary btn-sm mt-16">记录第一道错题</navigator>
+      <view class="btn btn-primary btn-sm mt-16" bindtap="onGoToAdd">记录第一道错题</view>
+    </view>
+
+    <!-- Loading -->
+    <view wx:if="{{loading}}" class="loading-state">
+      <text>加载中...</text>
     </view>
   </view>
 
-  <!-- Add Button (FAB) -->
-  <navigator url="/pages/errors/add" class="fab">
+  <!-- FAB -->
+  <view class="fab" bindtap="onGoToAdd">
     <text class="fab-icon">+</text>
-  </navigator>
+  </view>
 
 </view>

@@ -1,3 +1,44 @@
-<view class="container">
-  <text>里程碑时间线</text>
+<view class="container timeline-page">
+  <view class="timeline-header flex-between">
+    <text class="h3">里程碑时间线</text>
+    <text class="btn-text" bindtap="onAddCustom">+ 自定义</text>
+  </view>
+
+  <view wx:if="{{loading}}" class="loading-container">
+    <text class="text-hint">加载中...</text>
+  </view>
+
+  <view wx:elif="{{milestones.length === 0}}" class="empty-state">
+    <text class="empty-state-text">暂无里程碑数据</text>
+  </view>
+
+  <view wx:else class="timeline-list">
+    <block wx:for="{{milestones}}" wx:key="id">
+      <view wx:if="{{showPast || !item.is_past}}" class="timeline-item {{item.is_past ? 'timeline-past' : ''}} {{item.is_today ? 'timeline-today' : ''}}"
+            data-id="{{item.id}}" bindtap="onMilestoneTap">
+        <view class="timeline-line-group">
+          <view class="timeline-dot {{item.is_today ? 'dot-today' : item.is_past ? 'dot-past' : 'dot-future'}}"></view>
+          <view wx:if="{{index < milestones.length - 1}}" class="timeline-line"></view>
+        </view>
+        <view class="timeline-content card">
+          <view class="flex-between">
+            <text class="timeline-name">{{item.name}}</text>
+            <view class="tag {{item.type === 'custom' ? 'tag-primary' : 'tag-outline'}}">
+              {{item.type === 'custom' ? '自定义' : '系统'}}
+            </view>
+          </view>
+          <view class="timeline-meta flex-between mt-8">
+            <text class="text-hint">{{item.date_display}}</text>
+            <text class="{{item.is_today ? 'text-primary text-bold' : item.is_past ? 'text-hint' : 'text-primary'}}">
+              {{item.is_today ? '今天' : item.relative}}
+            </text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view class="toggle-past" bindtap="onTogglePast">
+    <text class="btn-text">{{showPast ? '隐藏已过去' : '显示已过去'}}</text>
+  </view>
 </view>

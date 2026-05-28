@@ -1,3 +1,52 @@
-<view class="container">
-  <text>成绩趋势</text>
+<view class="container trend-page">
+  <view class="form-group">
+    <text class="form-label">选择科目</text>
+    <picker range="{{subjectOptions}}" range-key="label" value="{{subjectIndex}}" bindchange="onSubjectChange">
+      <view class="form-picker {{subjectIndex < 0 ? 'form-picker-placeholder' : ''}}">
+        {{subjectIndex >= 0 ? subjectOptions[subjectIndex].label : '请选择科目'}}
+      </view>
+    </picker>
+  </view>
+
+  <view wx:if="{{loading}}" class="loading-container">
+    <text class="text-hint">加载中...</text>
+  </view>
+
+  <view wx:elif="{{trendData.length === 0 && subjectId}}" class="empty-state">
+    <text class="empty-state-text">该科目暂无成绩数据</text>
+  </view>
+
+  <view wx:elif="{{trendData.length === 0}}" class="empty-state">
+    <text class="empty-state-text">请先选择科目</text>
+  </view>
+
+  <view wx:else>
+    <view class="trend-bars">
+      <view class="trend-bar-item" wx:for="{{trendData}}" wx:key="exam_date">
+        <view class="bar-container">
+          <view class="bar-fill {{item.rate >= 80 ? 'bar-good' : item.rate >= 60 ? 'bar-ok' : 'bar-bad'}}"
+                style="height: {{item.rate}}%"></view>
+        </view>
+        <text class="bar-rate {{item.rate >= 80 ? 'text-success' : item.rate >= 60 ? 'text-warning' : 'text-error'}}">
+          {{item.rate}}%
+        </text>
+        <text class="bar-label">{{item.date_short}}</text>
+      </view>
+    </view>
+
+    <view class="trend-table card mt-24">
+      <view class="table-header">
+        <text class="th-name">考试</text>
+        <text class="th-score">得分</text>
+        <text class="th-rate">得分率</text>
+      </view>
+      <view class="table-row" wx:for="{{trendData}}" wx:key="exam_date">
+        <text class="td-name">{{item.exam_name}}</text>
+        <text class="td-score">{{item.score}}/{{item.max_score}}</text>
+        <text class="td-rate {{item.rate >= 80 ? 'text-success' : item.rate >= 60 ? 'text-warning' : 'text-error'}}">
+          {{item.rate}}%
+        </text>
+      </view>
+    </view>
+  </view>
 </view>

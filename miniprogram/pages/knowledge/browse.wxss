@@ -1,3 +1,84 @@
-.container {
-  padding: 20rpx;
+.knowledge-page {
+  padding-bottom: 40rpx;
+}
+
+.form-group {
+  margin-bottom: 32rpx;
+}
+
+.form-label {
+  display: block;
+  font-size: var(--font-base);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 12rpx;
+}
+
+.form-picker {
+  background-color: var(--color-card-bg);
+  border: 2rpx solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 20rpx 24rpx;
+  font-size: var(--font-base);
+}
+
+.form-picker-placeholder {
+  color: var(--color-text-hint);
+}
+
+.tree-list {
+  margin-top: 16rpx;
+}
+
+.tree-node {
+  margin-bottom: 4rpx;
+}
+
+.node-row {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 12rpx;
+  border-radius: var(--radius-sm);
+}
+
+.node-row:active {
+  background-color: var(--color-primary-light);
+}
+
+.node-arrow {
+  font-size: var(--font-sm);
+  color: var(--color-text-hint);
+  margin-right: 12rpx;
+  transition: transform 0.2s;
+}
+
+.arrow-expanded {
+  transform: rotate(90deg);
+}
+
+.node-name {
+  font-size: var(--font-base);
+  color: var(--color-text-primary);
+}
+
+.level-1 > .node-row .node-name {
+  font-weight: 600;
+}
+
+.node-children {
+  padding-left: 32rpx;
+}
+
+.node-leaf-dot {
+  width: 8rpx;
+  height: 8rpx;
+  border-radius: 50%;
+  background-color: var(--color-border);
+  margin-right: 12rpx;
+  flex-shrink: 0;
+}
+
+.node-leaf {
+  font-size: var(--font-sm);
+  color: var(--color-text-secondary);
 }

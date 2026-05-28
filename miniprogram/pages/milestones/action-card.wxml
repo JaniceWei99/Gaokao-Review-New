@@ -1,3 +1,38 @@
-<view class="container">
-  <text>行动卡片</text>
+<view class="container action-page">
+  <view wx:if="{{loading}}" class="loading-container">
+    <text class="text-hint">加载中...</text>
+  </view>
+
+  <view wx:elif="{{!milestone}}" class="empty-state">
+    <text class="empty-state-text">未找到里程碑信息</text>
+  </view>
+
+  <view wx:else>
+    <view class="action-header">
+      <view class="action-title h2">{{milestone.name}}</view>
+      <view class="action-meta mt-8">
+        <text class="text-hint">{{milestone.date_display}}</text>
+        <text class="text-primary ml-16">{{milestone.relative}}</text>
+      </view>
+    </view>
+
+    <view wx:if="{{milestone.action_card}}" class="card mt-24">
+      <view class="card-title">行动建议</view>
+      <view class="action-content mt-16">
+        <text class="body-text">{{milestone.action_card.content || '暂无行动建议'}}</text>
+      </view>
+
+      <view wx:if="{{milestone.action_card.tips && milestone.action_card.tips.length > 0}}" class="action-tips mt-24">
+        <text class="h3">小贴士</text>
+        <view class="tip-item" wx:for="{{milestone.action_card.tips}}" wx:key="index">
+          <view class="tip-dot"></view>
+          <text class="tip-text">{{item}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view wx:else class="card mt-24">
+      <text class="text-secondary">暂无行动建议，请关注后续更新。</text>
+    </view>
+  </view>
 </view>

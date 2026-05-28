@@ -1,3 +1,55 @@
-<view class="container">
-  <text>知识点浏览</text>
+<view class="container knowledge-page">
+  <view class="form-group">
+    <text class="form-label">选择科目</text>
+    <picker range="{{subjectOptions}}" range-key="label" value="{{subjectIndex}}" bindchange="onSubjectChange">
+      <view class="form-picker {{subjectIndex < 0 ? 'form-picker-placeholder' : ''}}">
+        {{subjectIndex >= 0 ? subjectOptions[subjectIndex].label : '请选择科目'}}
+      </view>
+    </picker>
+  </view>
+
+  <view wx:if="{{loading}}" class="loading-container">
+    <text class="text-hint">加载中...</text>
+  </view>
+
+  <view wx:elif="{{tree.length === 0 && subjectId}}" class="empty-state">
+    <text class="empty-state-text">暂无知识点数据</text>
+  </view>
+
+  <view wx:elif="{{tree.length === 0}}" class="empty-state">
+    <text class="empty-state-text">请先选择科目</text>
+  </view>
+
+  <view wx:else class="tree-list">
+    <block wx:for="{{tree}}" wx:key="id">
+      <view class="tree-node level-1">
+        <view class="node-row" data-id="{{item.id}}" data-level="{{item.level}}" bindtap="onToggleNode">
+          <text class="node-arrow {{expandedNodes[item.id] ? 'arrow-expanded' : ''}}">▸</text>
+          <text class="node-name h3">{{item.name}}</text>
+        </view>
+
+        <view wx:if="{{expandedNodes[item.id] && item.children && item.children.length > 0}}" class="node-children">
+          <block wx:for="{{item.children}}" wx:for-item="child" wx:key="id">
+            <view class="tree-node level-2">
+              <view class="node-row" data-id="{{child.id}}" data-level="{{child.level}}" bindtap="onToggleNode">
+                <text class="node-arrow {{expandedNodes[child.id] ? 'arrow-expanded' : ''}}">▸</text>
+                <text class="node-name">{{child.name}}</text>
+              </view>
+
+              <view wx:if="{{expandedNodes[child.id] && child.children && child.children.length > 0}}" class="node-children">
+                <block wx:for="{{child.children}}" wx:for-item="leaf" wx:key="id">
+                  <view class="tree-node level-3">
+                    <view class="node-row">
+                      <text class="node-leaf-dot"></text>
+                      <text class="node-name node-leaf">{{leaf.name}}</text>
+                    </view>
+                  </view>
+                </block>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </block>
+  </view>
 </view>

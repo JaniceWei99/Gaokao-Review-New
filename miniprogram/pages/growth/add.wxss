@@ -1,3 +1,160 @@
-.container {
-  padding: 20rpx;
+/* pages/growth/add.wxss */
+.growth-add-page {
+  padding: 24rpx;
+  padding-bottom: 120rpx;
+}
+
+.type-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.type-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20rpx 24rpx;
+  border: 2rpx solid var(--color-border);
+  border-radius: 16rpx;
+  min-width: 120rpx;
+  background: #fff;
+}
+
+.type-item.type-active {
+  border-color: var(--color-primary);
+  background: var(--color-primary-light);
+}
+
+.type-icon {
+  font-size: 48rpx;
+  margin-bottom: 8rpx;
+}
+
+.type-label {
+  font-size: 24rpx;
+  color: var(--color-text-secondary);
+}
+
+.type-active .type-label {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.input-field {
+  width: 100%;
+  padding: 16rpx;
+  border: 2rpx solid var(--color-border);
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  box-sizing: border-box;
+}
+
+.textarea-field {
+  width: 100%;
+  height: 200rpx;
+  padding: 16rpx;
+  border: 2rpx solid var(--color-border);
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  box-sizing: border-box;
+}
+
+.date-picker {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16rpx;
+  border: 2rpx solid var(--color-border);
+  border-radius: 12rpx;
+  font-size: 28rpx;
+}
+
+.picker-arrow {
+  color: var(--color-text-tertiary);
+}
+
+.image-preview {
+  position: relative;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+
+.preview-img {
+  width: 100%;
+  height: 320rpx;
+}
+
+.image-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 240rpx;
+  border: 4rpx dashed var(--color-border);
+  border-radius: 16rpx;
+  background: var(--color-bg-secondary);
+}
+
+.placeholder-icon {
+  font-size: 56rpx;
+  margin-bottom: 12rpx;
+}
+
+.placeholder-text {
+  font-size: 28rpx;
+  color: var(--color-text-tertiary);
+}
+
+.remove-btn {
+  position: absolute;
+  top: 16rpx;
+  right: 16rpx;
+  width: 48rpx;
+  height: 48rpx;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+}
+
+.quote-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 16rpx;
+  padding: 24rpx;
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  border-radius: 16rpx;
+  margin-bottom: 24rpx;
+}
+
+.quote-icon {
+  font-size: 40rpx;
+}
+
+.quote-content {
+  flex: 1;
+}
+
+.quote-text {
+  font-size: 28rpx;
+  color: #92400e;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.quote-author {
+  display: block;
+  font-size: 24rpx;
+  color: #a16207;
+  margin-top: 8rpx;
+  text-align: right;
+}
+
+.btn-disabled {
+  opacity: 0.6;
+  pointer-events: none;
 }

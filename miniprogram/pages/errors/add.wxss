@@ -1,3 +1,149 @@
-.container {
-  padding: 20rpx;
+/* pages/errors/add.wxss */
+.add-error-page {
+  padding: 24rpx;
+  padding-bottom: 120rpx;
+}
+
+.step-bar {
+  justify-content: center;
+  align-items: center;
+  padding: 24rpx 0;
+}
+
+.step-item {
+  font-size: 26rpx;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.step-item.step-active {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.step-line {
+  width: 80rpx;
+  height: 4rpx;
+  background: var(--color-border);
+  margin: 0 16rpx;
+}
+
+.step-line.step-line-active {
+  background: var(--color-primary);
+}
+
+.image-preview {
+  position: relative;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+
+.preview-img {
+  width: 100%;
+  height: 400rpx;
+}
+
+.image-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400rpx;
+  border: 4rpx dashed var(--color-border);
+  border-radius: 16rpx;
+  background: var(--color-bg-secondary);
+}
+
+.image-placeholder-sm {
+  height: 240rpx;
+}
+
+.placeholder-icon {
+  font-size: 64rpx;
+  margin-bottom: 16rpx;
+}
+
+.placeholder-text {
+  font-size: 28rpx;
+  color: var(--color-text-tertiary);
+}
+
+.remove-btn {
+  position: absolute;
+  top: 16rpx;
+  right: 16rpx;
+  width: 48rpx;
+  height: 48rpx;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+}
+
+.subject-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.tag {
+  padding: 12rpx 28rpx;
+  border-radius: 32rpx;
+  font-size: 26rpx;
+}
+
+.tag-outline {
+  border: 2rpx solid var(--color-border);
+  color: var(--color-text-secondary);
+  background: #fff;
+}
+
+.tag-selected {
+  background: var(--color-primary);
+  color: #fff;
+  border: 2rpx solid var(--color-primary);
+}
+
+.knowledge-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.knowledge-item {
+  padding: 16rpx 24rpx;
+  border-radius: 12rpx;
+  background: var(--color-bg-secondary);
+  font-size: 28rpx;
+  color: var(--color-text-primary);
+}
+
+.knowledge-item.knowledge-active {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.note-input {
+  width: 100%;
+  height: 160rpx;
+  padding: 16rpx;
+  border: 2rpx solid var(--color-border);
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  box-sizing: border-box;
+}
+
+.btn-disabled {
+  opacity: 0.6;
+  pointer-events: none;
 }

@@ -1,3 +1,107 @@
-<view class="container">
-  <text>添加成长记录</text>
+<!-- pages/growth/add.wxml — 成长记录添加页 -->
+<view class="container growth-add-page">
+
+  <!-- 记录类型选择 -->
+  <view class="card mb-16">
+    <view class="card-title mb-8">记录类型 *</view>
+    <view class="type-grid">
+      <view
+        class="type-item {{selectedType === item.key ? 'type-active' : ''}}"
+        wx:for="{{recordTypes}}"
+        wx:key="key"
+        bindtap="onSelectType"
+        data-key="{{item.key}}"
+      >
+        <text class="type-icon">{{item.icon}}</text>
+        <text class="type-label">{{item.label}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 标题 -->
+  <view class="card mb-16">
+    <view class="card-title mb-8">标题 *</view>
+    <input
+      class="input-field"
+      placeholder="给这条记录起个名字"
+      maxlength="50"
+      value="{{title}}"
+      bindinput="onInputTitle"
+    />
+  </view>
+
+  <!-- 日期 -->
+  <view class="card mb-16">
+    <view class="card-title mb-8">日期</view>
+    <picker mode="date" value="{{recordDate}}" bindchange="onDateChange">
+      <view class="date-picker">
+        <text>{{recordDate || '选择日期'}}</text>
+        <text class="picker-arrow">></text>
+      </view>
+    </picker>
+  </view>
+
+  <!-- 描述 -->
+  <view class="card mb-16">
+    <view class="card-title mb-8">描述（可选）</view>
+    <textarea
+      class="textarea-field"
+      placeholder="记录这个成长时刻..."
+      maxlength="500"
+      value="{{description}}"
+      bindinput="onInputDescription"
+    ></textarea>
+  </view>
+
+  <!-- 获奖信息（仅 award 类型显示） -->
+  <view class="card mb-16" wx:if="{{selectedType === 'award'}}">
+    <view class="card-title mb-8">颁奖机构（可选）</view>
+    <input
+      class="input-field"
+      placeholder="如：市教育局"
+      maxlength="50"
+      value="{{awardingBody}}"
+      bindinput="onInputAwardingBody"
+    />
+  </view>
+
+  <!-- 分类标签 -->
+  <view class="card mb-16">
+    <view class="card-title mb-8">分类标签（可选）</view>
+    <input
+      class="input-field"
+      placeholder="如：学科竞赛、体育、艺术"
+      maxlength="20"
+      value="{{category}}"
+      bindinput="onInputCategory"
+    />
+  </view>
+
+  <!-- 图片 -->
+  <view class="card mb-16">
+    <view class="card-title mb-8">照片（可选）</view>
+    <view wx:if="{{imagePath}}" class="image-preview">
+      <image src="{{imagePath}}" mode="aspectFit" class="preview-img" bindtap="onChooseImage"></image>
+      <view class="remove-btn" bindtap="onRemoveImage">✕</view>
+    </view>
+    <view wx:else class="image-placeholder" bindtap="onChooseImage">
+      <text class="placeholder-icon">📷</text>
+      <text class="placeholder-text">点击添加照片</text>
+    </view>
+  </view>
+
+  <!-- 匹配金句提示 -->
+  <view class="quote-banner" wx:if="{{matchedQuote}}">
+    <text class="quote-icon">✨</text>
+    <view class="quote-content">
+      <text class="quote-text">"{{matchedQuote.content}}"</text>
+      <text class="quote-author" wx:if="{{matchedQuote.author}}">—— {{matchedQuote.author}}</text>
+    </view>
+  </view>
+
+  <!-- 提交按钮 -->
+  <view class="btn btn-primary btn-block btn-lg mt-24 {{submitting ? 'btn-disabled' : ''}}" bindtap="onSubmit">
+    {{submitting ? '保存中...' : '保存'}}
+  </view>
+
 </view>

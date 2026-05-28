@@ -1,3 +1,45 @@
-.container {
-  padding: 20rpx;
+.form-page {
+  padding-bottom: 160rpx;
+}
+
+.form-group {
+  margin-bottom: 32rpx;
+}
+
+.form-label {
+  display: block;
+  font-size: var(--font-base);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 12rpx;
+}
+
+.form-input {
+  background-color: var(--color-card-bg);
+  border: 2rpx solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 20rpx 24rpx;
+  font-size: var(--font-base);
+}
+
+.form-picker {
+  background-color: var(--color-card-bg);
+  border: 2rpx solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 20rpx 24rpx;
+  font-size: var(--font-base);
+}
+
+.form-picker-placeholder {
+  color: var(--color-text-hint);
+}
+
+.form-textarea {
+  background-color: var(--color-card-bg);
+  border: 2rpx solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 20rpx 24rpx;
+  font-size: var(--font-base);
+  width: 100%;
+  min-height: 160rpx;
 }

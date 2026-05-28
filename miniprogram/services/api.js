@@ -90,12 +90,12 @@ function request(options) {
 
         // 403 — Forbidden: check for free-limit errors
         if (statusCode === 403) {
-          const errorCode = res.data && res.data.error_code;
+          var errorCode = (res.data && res.data.error && res.data.error.code) || '';
           if (errorCode && errorCode.startsWith && errorCode.startsWith('FREE_LIMIT_')) {
             // Show upgrade modal
             wx.showModal({
               title: '功能受限',
-              content: res.data.message || '免费版已达使用上限，升级标准版解锁更多功能',
+              content: (res.data && res.data.error && res.data.error.message) || '免费版已达使用上限，升级标准版解锁更多功能',
               confirmText: '去升级',
               cancelText: '知道了',
               success(modalRes) {
@@ -112,14 +112,14 @@ function request(options) {
             });
           }
 
-          reject({ code: 403, message: res.data.message || '没有权限', data: res.data });
+          reject({ code: 403, message: (res.data && res.data.error && res.data.error.message) || '没有权限', data: res.data });
           return;
         }
 
         // Other errors
         if (showError) {
           wx.showToast({
-            title: res.data.message || '请求失败',
+            title: (res.data && res.data.error && res.data.error.message) || '请求失败',
             icon: 'none',
             duration: 2000
           });
@@ -127,7 +127,7 @@ function request(options) {
 
         reject({
           code: statusCode,
-          message: res.data.message || '请求失败',
+          message: (res.data && res.data.error && res.data.error.message) || '请求失败',
           data: res.data
         });
       },

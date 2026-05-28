@@ -79,6 +79,12 @@ class StudentUpdate(BaseModel):
     has_jan_english_exam: bool | None = None
 
 
+class StudentListResponse(BaseModel):
+    """Wrapper for a list of students."""
+
+    students: list[StudentResponse]
+
+
 class StudentResponse(BaseModel):
     """Student profile as returned by the API."""
 

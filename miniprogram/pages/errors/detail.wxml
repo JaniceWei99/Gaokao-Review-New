@@ -1,3 +1,79 @@
-<view class="container">
-  <text>错题详情</text>
+<!-- pages/errors/detail.wxml -->
+<view class="container error-detail-page">
+
+  <view wx:if="{{loading}}" class="loading-state">
+    <text>加载中...</text>
+  </view>
+
+  <block wx:if="{{!loading && note}}">
+    <!-- 题目图片 -->
+    <view class="card mb-16" wx:if="{{note.question_image_url}}">
+      <view class="card-title mb-8">题目</view>
+      <image
+        src="{{note.question_image_url}}"
+        mode="widthFix"
+        class="detail-image"
+        bindtap="onPreviewImage"
+        data-url="{{note.question_image_url}}"
+      ></image>
+    </view>
+
+    <!-- 订正图片 -->
+    <view class="card mb-16" wx:if="{{note.correction_image_url}}">
+      <view class="card-title mb-8">订正</view>
+      <image
+        src="{{note.correction_image_url}}"
+        mode="widthFix"
+        class="detail-image"
+        bindtap="onPreviewImage"
+        data-url="{{note.correction_image_url}}"
+      ></image>
+    </view>
+
+    <!-- 信息区 -->
+    <view class="card mb-16">
+      <view class="info-row" wx:if="{{note.subject_id}}">
+        <text class="info-label">科目</text>
+        <text class="info-value">{{note.subject_name || note.subject_id}}</text>
+      </view>
+      <view class="info-row" wx:if="{{note.error_type}}">
+        <text class="info-label">错误类型</text>
+        <text class="info-value">{{note.error_type}}</text>
+      </view>
+      <view class="info-row" wx:if="{{note.source}}">
+        <text class="info-label">来源</text>
+        <text class="info-value">{{note.source}}</text>
+      </view>
+      <view class="info-row" wx:if="{{note.knowledge_node_id}}">
+        <text class="info-label">知识点</text>
+        <text class="info-value">{{note.knowledge_node_name || note.knowledge_node_id}}</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">记录时间</text>
+        <text class="info-value">{{note.created_at}}</text>
+      </view>
+    </view>
+
+    <!-- 备注 -->
+    <view class="card mb-16" wx:if="{{note.note}}">
+      <view class="card-title mb-8">备注</view>
+      <text class="note-text">{{note.note}}</text>
+    </view>
+
+    <!-- 删除按钮 -->
+    <view class="btn btn-danger btn-block btn-lg mt-24" bindtap="onDelete">删除此错题</view>
+  </block>
+
+  <!-- 删除确认弹窗 -->
+  <view class="modal-mask" wx:if="{{showDeleteConfirm}}" bindtap="onCancelDelete">
+    <view class="modal-content" catchtap="">
+      <view class="modal-title">确认删除</view>
+      <view class="modal-body">删除后无法恢复，确定要删除这道错题吗？</view>
+      <view class="modal-actions">
+        <view class="modal-btn modal-btn-cancel" bindtap="onCancelDelete">取消</view>
+        <view class="modal-btn modal-btn-danger" bindtap="onConfirmDelete">删除</view>
+      </view>
+    </view>
+  </view>
+
 </view>

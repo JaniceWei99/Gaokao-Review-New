@@ -1,3 +1,26 @@
-<view class="container">
-  <text>添加自定义里程碑</text>
+<view class="container form-page">
+  <view class="form-group">
+    <text class="form-label">里程碑名称</text>
+    <input class="form-input" placeholder="如：一模考试" value="{{name}}" bindinput="onNameInput" maxlength="50" />
+  </view>
+
+  <view class="form-group">
+    <text class="form-label">日期</text>
+    <picker mode="date" value="{{event_date}}" bindchange="onDateChange">
+      <view class="form-picker {{event_date ? '' : 'form-picker-placeholder'}}">
+        {{event_date || '请选择日期'}}
+      </view>
+    </picker>
+  </view>
+
+  <view class="form-group">
+    <text class="form-label">备注（选填）</text>
+    <textarea class="form-textarea" placeholder="补充说明..." value="{{description}}" bindinput="onDescInput" maxlength="200" />
+  </view>
+
+  <view class="safe-bottom" style="position:fixed;bottom:0;left:0;right:0;padding:32rpx;">
+    <button class="btn btn-primary btn-block btn-lg" bindtap="onSubmit" disabled="{{submitting}}">
+      {{submitting ? '提交中...' : '添加里程碑'}}
+    </button>
+  </view>
 </view>

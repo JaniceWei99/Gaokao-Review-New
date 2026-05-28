@@ -13,11 +13,16 @@ from app.middleware.error_handler import setup_error_handlers
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     """Application startup and shutdown events."""
-    # Startup
     print(f"Starting app in {settings.app_env} mode...")
-    # TODO: Initialize APScheduler here (Phase 1 Sprint 2)
+    if settings.app_env in ("development", "dev", "production"):
+        from app.jobs.scheduler import start_scheduler, stop_scheduler
+
+        start_scheduler()
     yield
-    # Shutdown
+    if settings.app_env in ("development", "dev", "production"):
+        from app.jobs.scheduler import stop_scheduler
+
+        stop_scheduler()
     print("Shutting down...")
 
 
@@ -42,9 +47,19 @@ app.add_middleware(
 # ── Error handlers ────────────────────────────────────────────
 setup_error_handlers(app)
 
-# ── Routers (will be registered in Phase 1) ───────────────────
-# from app.routers import auth, students, milestones, exams, ...
-# app.include_router(auth.router, prefix="/api/auth", tags=["auth"])
+# ── Routers ───────────────────────────────────────────────────
+from app.routers import auth, dashboard, error_notes, exams, growth_records, knowledge, milestones, quotes, students, upload
+
+app.include_router(auth.router, prefix="/api/auth", tags=["auth"])
+app.include_router(students.router, prefix="/api/students", tags=["students"])
+app.include_router(quotes.router, prefix="/api/quotes", tags=["quotes"])
+app.include_router(milestones.router, prefix="/api/students/{student_id}/milestones", tags=["milestones"])
+app.include_router(dashboard.router, prefix="/api/students/{student_id}/dashboard", tags=["dashboard"])
+app.include_router(knowledge.router, prefix="/api/knowledge", tags=["knowledge"])
+app.include_router(exams.router, prefix="/api/students/{student_id}/exams", tags=["exams"])
+app.include_router(error_notes.router, prefix="/api/students/{student_id}/error-notes", tags=["error-notes"])
+app.include_router(growth_records.router, prefix="/api/students/{student_id}/growth-records", tags=["growth-records"])
+app.include_router(upload.router, prefix="/api/upload", tags=["upload"])
 
 
 @app.get("/health", tags=["system"])

@@ -1,3 +1,110 @@
-.container {
-  padding: 20rpx;
+/* pages/errors/detail.wxss */
+.error-detail-page {
+  padding: 24rpx;
+  padding-bottom: 120rpx;
+}
+
+.loading-state {
+  text-align: center;
+  padding: 120rpx 0;
+  color: var(--color-text-tertiary);
+  font-size: 28rpx;
+}
+
+.detail-image {
+  width: 100%;
+  border-radius: 12rpx;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid var(--color-border);
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  font-size: 28rpx;
+  color: var(--color-text-secondary);
+}
+
+.info-value {
+  font-size: 28rpx;
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+.note-text {
+  font-size: 28rpx;
+  color: var(--color-text-primary);
+  line-height: 1.6;
+}
+
+.btn-danger {
+  background: #e53e3e;
+  color: #fff;
+  border: none;
+}
+
+.modal-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-content {
+  width: 560rpx;
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 40rpx;
+}
+
+.modal-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 16rpx;
+}
+
+.modal-body {
+  font-size: 28rpx;
+  color: var(--color-text-secondary);
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 24rpx;
+}
+
+.modal-btn {
+  flex: 1;
+  text-align: center;
+  padding: 20rpx 0;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.modal-btn-cancel {
+  background: var(--color-bg-secondary);
+  color: var(--color-text-secondary);
+}
+
+.modal-btn-danger {
+  background: #e53e3e;
+  color: #fff;
 }
