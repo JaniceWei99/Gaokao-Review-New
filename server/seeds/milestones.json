@@ -498,10 +498,7 @@
     "applicable_grades": [
       "gao3"
     ],
-    "applicable_subjects": [
-      "chinese",
-      "math"
-    ],
+    "applicable_subjects": null,
     "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
@@ -519,9 +516,7 @@
     "applicable_grades": [
       "gao3"
     ],
-    "applicable_subjects": [
-      "english"
-    ],
+    "applicable_subjects": null,
     "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
@@ -539,9 +534,7 @@
     "applicable_grades": [
       "gao3"
     ],
-    "applicable_subjects": [
-      "english"
-    ],
+    "applicable_subjects": null,
     "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,

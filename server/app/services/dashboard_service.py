@@ -101,13 +101,15 @@ async def _build_countdowns(
     from app.models.milestone import Milestone
     from sqlalchemy import or_
 
-    query = select(Milestone).where(
+    subjects = _get_student_subjects(student)
+
+    system_query = select(Milestone).where(
+        Milestone.type == "system",
         Milestone.applicable_grades.op("@>")(f'["{student.grade}"]'),
     )
 
-    subjects = _get_student_subjects(student)
     if subjects:
-        query = query.where(
+        system_query = system_query.where(
             or_(
                 Milestone.applicable_subjects.is_(None),
                 Milestone.applicable_subjects.op("?|")(subjects),
@@ -115,7 +117,7 @@ async def _build_countdowns(
         )
 
     if student.region_code:
-        query = query.where(
+        system_query = system_query.where(
             or_(
                 Milestone.applicable_regions.is_(None),
                 Milestone.applicable_regions.op("@>")(f'["{student.region_code}"]'),
@@ -123,7 +125,7 @@ async def _build_countdowns(
         )
 
     if student.province:
-        query = query.where(
+        system_query = system_query.where(
             or_(
                 Milestone.applicable_provinces.is_(None),
                 Milestone.applicable_provinces.op("@>")(f'["{student.province}"]'),
@@ -131,16 +133,26 @@ async def _build_countdowns(
         )
 
     if student.grade == "gao3" and not student.has_jan_english_exam:
-        query = query.where(Milestone.requires_jan_english == False)
+        system_query = system_query.where(Milestone.requires_jan_english == False)
 
-    result = await db.execute(query)
-    milestones = list(result.scalars().all())
+    custom_query = select(Milestone).where(
+        Milestone.type == "custom",
+        Milestone.student_id == student_id,
+    )
 
-    for m in milestones:
+    system_result = await db.execute(system_query)
+    custom_result = await db.execute(custom_query)
+
+    system_milestones = list(system_result.scalars().all())
+    custom_milestones = list(custom_result.scalars().all())
+
+    for m in system_milestones + custom_milestones:
         m._adjusted_event_date = _adjust_dynamic_date(m, today)
 
-    future_milestones = [m for m in milestones if getattr(m, '_adjusted_event_date', m.event_date) >= today]
-    future_milestones.sort(key=lambda m: getattr(m, '_adjusted_event_date', m.event_date))
+    all_milestones = system_milestones + custom_milestones
+    all_milestones.sort(key=lambda m: getattr(m, '_adjusted_event_date', m.event_date))
+
+    future_milestones = [m for m in all_milestones if getattr(m, '_adjusted_event_date', m.event_date) >= today]
 
     if future_milestones:
         nearest = future_milestones[0]
@@ -164,30 +176,58 @@ async def _get_active_action_card(
 
     today = date.today()
 
-    query = select(Milestone).where(
+    subjects = _get_student_subjects(student)
+
+    system_query = select(Milestone).where(
+        Milestone.type == "system",
         Milestone.applicable_grades.op("@>")(f'["{student.grade}"]'),
     )
 
-    subjects = _get_student_subjects(student)
     if subjects:
-        query = query.where(
+        system_query = system_query.where(
             or_(
                 Milestone.applicable_subjects.is_(None),
                 Milestone.applicable_subjects.op("?|")(subjects),
             )
         )
 
+    if student.region_code:
+        system_query = system_query.where(
+            or_(
+                Milestone.applicable_regions.is_(None),
+                Milestone.applicable_regions.op("@>")(f'["{student.region_code}"]'),
+            )
+        )
+
+    if student.province:
+        system_query = system_query.where(
+            or_(
+                Milestone.applicable_provinces.is_(None),
+                Milestone.applicable_provinces.op("@>")(f'["{student.province}"]'),
+            )
+        )
+
     if student.grade == "gao3" and not student.has_jan_english_exam:
-        query = query.where(Milestone.requires_jan_english == False)
+        system_query = system_query.where(Milestone.requires_jan_english == False)
 
-    result = await db.execute(query)
-    milestones = list(result.scalars().all())
+    custom_query = select(Milestone).where(
+        Milestone.type == "custom",
+        Milestone.student_id == student_id,
+    )
 
-    for m in milestones:
+    system_result = await db.execute(system_query)
+    custom_result = await db.execute(custom_query)
+
+    system_milestones = list(system_result.scalars().all())
+    custom_milestones = list(custom_result.scalars().all())
+
+    for m in system_milestones + custom_milestones:
         m._adjusted_event_date = _adjust_dynamic_date(m, today)
 
-    future_milestones = [m for m in milestones if getattr(m, '_adjusted_event_date', m.event_date) >= today]
-    future_milestones.sort(key=lambda m: getattr(m, '_adjusted_event_date', m.event_date))
+    all_milestones = system_milestones + custom_milestones
+    all_milestones.sort(key=lambda m: getattr(m, '_adjusted_event_date', m.event_date))
+
+    future_milestones = [m for m in all_milestones if getattr(m, '_adjusted_event_date', m.event_date) >= today]
 
     if not future_milestones:
         return None
