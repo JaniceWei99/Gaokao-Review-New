@@ -1,14 +1,15 @@
 <!-- pages/profile/index.wxml — Profile Page -->
 <view class="container profile-page">
 
-  <!-- User Info / Login Section -->
+  <!-- Guest Visitor Card (not logged in) -->
   <view class="card user-card" wx:if="{{!isLoggedIn}}">
     <view class="user-card-content">
       <view class="user-avatar-placeholder flex-center">
-        <text class="avatar-text">访客</text>
+        <text class="avatar-text">{{currentAccountName ? currentAccountName[0] : '访'}}</text>
       </view>
       <view class="user-info">
-        <text class="h3">当前身份：访客</text>
+        <text class="h3">{{currentAccountName || '访客模式'}}</text>
+        <text class="caption mt-8">当前账号</text>
       </view>
     </view>
     <view class="user-login-tip">
@@ -19,20 +20,23 @@
     </view>
   </view>
 
+  <!-- Logged-in User Card -->
   <view class="card user-card" wx:else>
-    <view class="user-avatar">
-      <image wx:if="{{userInfo.avatar_url}}" src="{{userInfo.avatar_url}}" class="avatar-image" mode="aspectFill"></image>
-      <view wx:else class="user-avatar-placeholder flex-center">
-        <text class="avatar-text">{{userInfo.nickname ? userInfo.nickname[0] : 'U'}}</text>
+    <view class="user-card-content">
+      <view class="user-avatar">
+        <image wx:if="{{userInfo.avatar_url}}" src="{{userInfo.avatar_url}}" class="avatar-image" mode="aspectFill"></image>
+        <view wx:else class="user-avatar-placeholder flex-center">
+          <text class="avatar-text">{{userInfo.nickname ? userInfo.nickname[0] : 'U'}}</text>
+        </view>
       </view>
-    </view>
-    <view class="user-info">
-      <text class="h3">{{userInfo.nickname || '用户'}}</text>
-      <view class="tag tag-primary mt-8">{{planName}}</view>
+      <view class="user-info">
+        <text class="h3">{{userInfo.nickname || '用户'}}</text>
+        <view class="tag tag-primary mt-8">{{planName}}</view>
+      </view>
     </view>
   </view>
 
-  <!-- Sync Banner (shown when has local data but not logged in) -->
+  <!-- Sync Banner (shown when not logged in but has local data) -->
   <view wx:if="{{!isLoggedIn && hasLocalData}}" class="card sync-banner">
     <view class="sync-banner-content">
       <text class="sync-banner-icon">☁️</text>
@@ -60,10 +64,6 @@
         <text class="data-stat-num">{{localSummary.growthRecordsCount || 0}}</text>
         <text class="data-stat-label">成长记录</text>
       </view>
-      <view class="data-stat-item">
-        <text class="data-stat-num">{{localSummary.quoteFavoritesCount || 0}}</text>
-        <text class="data-stat-label">收藏金句</text>
-      </view>
     </view>
   </view>
 
@@ -80,7 +80,7 @@
     </view>
   </view>
 
-  <!-- No student — add student prompt (for both logged-in and local) -->
+  <!-- No student prompt -->
   <view class="card add-student-card" wx:if="{{!currentStudent}}">
     <view class="add-student-content">
       <text class="add-student-icon">👶</text>
@@ -96,6 +96,10 @@
   <view class="card settings-card">
     <navigator url="/pages/profile/student-manage" class="settings-item flex-between">
       <text>学生管理</text>
+      <text class="text-hint">></text>
+    </navigator>
+    <navigator url="/pages/profile/account-switch" class="settings-item flex-between">
+      <text>账号切换</text>
       <text class="text-hint">></text>
     </navigator>
     <navigator url="/pages/profile/subscription" class="settings-item flex-between">

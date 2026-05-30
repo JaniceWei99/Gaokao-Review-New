@@ -1,15 +1,16 @@
-// pages/profile/index.js — Profile Page
-const auth = require('../../services/auth');
-const storage = require('../../services/storage');
-const sync = require('../../services/sync');
-const { PLANS } = require('../../constants/plans');
+var auth = require('../../services/auth');
+var storage = require('../../services/storage');
+var sync = require('../../services/sync');
+var { PLANS } = require('../../constants/plans');
+var account = require('../../services/account');
 
-const app = getApp();
+var app = getApp();
 
 Page({
   data: {
     isLoggedIn: false,
     userInfo: {},
+    currentAccountName: '',
     currentStudent: null,
     planName: '免费版',
     subscription: null,
@@ -18,33 +19,35 @@ Page({
     localDataCount: 0
   },
 
-  onLoad() {
+  onLoad: function() {
     this.refreshData();
   },
 
-  onShow() {
+  onShow: function() {
     this.refreshData();
   },
 
-  refreshData() {
-    const isLoggedIn = app.isLoggedIn();
-    const userInfo = app.globalData.userInfo || {};
-    const currentStudent = app.globalData.currentStudent || storage.getStudent();
+  refreshData: function() {
+    var isLoggedIn = app.isLoggedIn();
+    var userInfo = app.globalData.userInfo || {};
+    var currentStudent = app.globalData.currentStudent || storage.getStudent();
+    var currentAccount = account.getCurrentAccount();
 
-    let planName = '免费版';
+    var planName = '免费版';
     if (userInfo.plan && PLANS[userInfo.plan]) {
       planName = PLANS[userInfo.plan].name;
     }
 
-    const localSummary = storage.getLocalDataSummary();
-    const localDataCount = (localSummary.examsCount || 0) +
+    var localSummary = storage.getLocalDataSummary();
+    var localDataCount = (localSummary.examsCount || 0) +
       (localSummary.errorNotesCount || 0) +
       (localSummary.growthRecordsCount || 0);
-    const hasLocalData = localDataCount > 0;
+    var hasLocalData = localDataCount > 0;
 
     this.setData({
       isLoggedIn: isLoggedIn,
       userInfo: userInfo,
+      currentAccountName: currentAccount ? currentAccount.name : '',
       currentStudent: currentStudent,
       planName: planName,
       subscription: userInfo.subscription || null,
@@ -54,25 +57,26 @@ Page({
     });
   },
 
-  async onLogin() {
+  onLogin: function() {
     if (this.data.isLoggedIn) return;
 
-    try {
-      wx.showLoading({ title: '登录中...' });
-      const result = await auth.wxLogin();
+    var that = this;
+    wx.showLoading({ title: '登录中...' });
+    auth.wxLogin().then(function(result) {
       wx.hideLoading();
 
       if (result.is_new_user) {
-        const localSummary = storage.getLocalDataSummary();
-        if (localSummary.examsCount > 0 || localSummary.errorNotesCount > 0 || localSummary.growthRecordsCount > 0) {
+        var localSummary = storage.getLocalDataSummary();
+        var totalLocal = (localSummary.examsCount || 0) + (localSummary.errorNotesCount || 0) + (localSummary.growthRecordsCount || 0);
+        if (totalLocal > 0) {
           wx.showModal({
             title: '检测到本地数据',
-            content: `您有 ${localSummary.examsCount + localSummary.errorNotesCount + localSummary.growthRecordsCount} 条本地数据，是否同步到云端？`,
+            content: '您有 ' + totalLocal + ' 条本地数据，是否同步到云端？',
             confirmText: '同步',
             cancelText: '暂不',
-            success: (res) => {
+            success: function(res) {
               if (res.confirm) {
-                this.doSync();
+                that.doSync();
               }
               wx.navigateTo({ url: '/pages/onboarding/grade-select' });
             }
@@ -81,40 +85,43 @@ Page({
           wx.navigateTo({ url: '/pages/onboarding/grade-select' });
         }
       } else {
-        this.refreshData();
-        const syncResult = await sync.syncAll();
-        if (syncResult.success) {
-          wx.showToast({ title: '数据已同步', icon: 'success' });
-        }
+        that.refreshData();
+        sync.syncAll().then(function(syncResult) {
+          if (syncResult.success) {
+            wx.showToast({ title: '数据已同步', icon: 'success' });
+          }
+        });
       }
-    } catch (err) {
+    }).catch(function(err) {
       wx.hideLoading();
       console.warn('[Profile] login error:', err);
       wx.showToast({ title: '登录失败，请重试', icon: 'none' });
-    }
+    });
   },
 
-  async doSync() {
+  doSync: function() {
+    var that = this;
     wx.showLoading({ title: '同步中...' });
-    const result = await sync.syncAll();
-    wx.hideLoading();
-    if (result.success) {
-      wx.showToast({ title: `已同步 ${result.stats.exams + result.stats.errorNotes + result.stats.growthRecords} 条数据`, icon: 'success' });
-      this.refreshData();
-    } else {
-      wx.showToast({ title: '同步失败，请检查网络', icon: 'none' });
-    }
+    sync.syncAll().then(function(result) {
+      wx.hideLoading();
+      if (result.success) {
+        var total = (result.stats.exams || 0) + (result.stats.errorNotes || 0) + (result.stats.growthRecords || 0);
+        wx.showToast({ title: '已同步 ' + total + ' 条数据', icon: 'success' });
+        that.refreshData();
+      } else {
+        wx.showToast({ title: '同步失败，请检查网络', icon: 'none' });
+      }
+    });
   },
 
-  onLogout() {
+  onLogout: function() {
     wx.showModal({
       title: '确认退出',
       content: '退出后本地数据仍保留，可随时重新登录同步',
       confirmText: '确认退出',
       cancelText: '取消',
-      success(res) {
+      success: function(res) {
         if (res.confirm) {
-          const userInfo = app.globalData.userInfo;
           app.globalData.token = null;
           app.globalData.userInfo = null;
           app.globalData.currentStudent = null;
@@ -127,14 +134,14 @@ Page({
     });
   },
 
-  onNavigateTo(e) {
+  onNavigateTo: function(e) {
     var url = e.currentTarget.dataset.url;
     if (url) {
       wx.navigateTo({ url: url });
     }
   },
 
-  onUpgradeToPremium() {
+  onUpgradeToPremium: function() {
     wx.navigateTo({ url: '/pages/profile/subscription' });
   }
 });
