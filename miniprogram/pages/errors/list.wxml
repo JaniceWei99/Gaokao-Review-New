@@ -1,6 +1,11 @@
 <!-- pages/errors/list.wxml — 错题列表 -->
 <view class="container errors-page">
 
+  <!-- 未登录提示 -->
+  <view wx:if="{{!isLoggedIn && errorNotes.length > 0}}" class="local-tip card">
+    <text class="text-hint">当前为本地数据，登录后可同步到云端</text>
+  </view>
+
   <!-- Stats Summary -->
   <view class="stats-bar" wx:if="{{stats}}">
     <view class="stat-item">
@@ -41,8 +46,11 @@
         url="/pages/errors/detail?id={{item.id}}"
       >
         <view class="error-header flex-between">
-          <view class="error-type-tag" wx:if="{{item.error_type_label}}">{{item.error_type_label}}</view>
-          <view class="error-source-tag" wx:if="{{item.source_label}}">{{item.source_label}}</view>
+          <view class="flex-start">
+            <view class="error-type-tag" wx:if="{{item.error_type_label}}">{{item.error_type_label}}</view>
+            <view class="error-source-tag ml-8" wx:if="{{item.source_label}}">{{item.source_label}}</view>
+          </view>
+          <text class="subject-tag text-hint">{{item.subject_name}}</text>
         </view>
         <view class="error-content mt-8" wx:if="{{item.question_image_url}}">
           <image src="{{item.question_image_url}}" mode="aspectFill" class="error-thumb"></image>
@@ -59,6 +67,7 @@
     <!-- Empty State -->
     <view wx:elif="{{!loading}}" class="empty-state">
       <text class="empty-state-text">还没有错题记录</text>
+      <text class="text-hint mt-8" wx:if="{{!isLoggedIn}}">未登录状态下记录的错题会保存在本地</text>
       <view class="btn btn-primary btn-sm mt-16" bindtap="onGoToAdd">记录第一道错题</view>
     </view>
 

@@ -1,7 +1,15 @@
 <view class="container timeline-page">
   <view class="timeline-header flex-between">
-    <text class="h3">里程碑时间线</text>
+    <view>
+      <text class="h3">里程碑时间线</text>
+      <text class="text-hint ml-8 source-tag" wx:if="{{source === 'local' && !isLoggedIn}}">本地</text>
+    </view>
     <text class="btn-text" bindtap="onAddCustom">+ 自定义</text>
+  </view>
+
+  <!-- 未登录提示 -->
+  <view wx:if="{{!isLoggedIn && milestones.length > 0}}" class="local-tip card">
+    <text class="text-hint">当前为本地数据，登录后可同步到云端</text>
   </view>
 
   <view wx:if="{{loading}}" class="loading-container">
@@ -10,6 +18,7 @@
 
   <view wx:elif="{{milestones.length === 0}}" class="empty-state">
     <text class="empty-state-text">暂无里程碑数据</text>
+    <text class="text-hint mt-8" wx:if="{{!isLoggedIn}}">添加自定义里程碑，数据保存在本地</text>
   </view>
 
   <view wx:else class="timeline-list">
@@ -32,6 +41,9 @@
             <text class="{{item.is_today ? 'text-primary text-bold' : item.is_past ? 'text-hint' : 'text-primary'}}">
               {{item.is_today ? '今天' : item.relative}}
             </text>
+          </view>
+          <view wx:if="{{item.type === 'custom'}}" class="timeline-actions mt-8">
+            <view class="delete-link" catchtap="onDeleteMilestone" data-id="{{item.id}}">删除</view>
           </view>
         </view>
       </view>

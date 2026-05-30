@@ -1,4 +1,5 @@
 var api = require('../../services/api');
+var storage = require('../../services/storage');
 var dateUtil = require('../../utils/date');
 var app = getApp();
 
@@ -6,11 +7,22 @@ Page({
   data: {
     milestones: [],
     loading: true,
-    showPast: false
+    showPast: false,
+    isLoggedIn: false,
+    source: 'local'
   },
 
   onLoad: function() {
+    this.setData({ isLoggedIn: app.isLoggedIn() });
     this.loadMilestones();
+  },
+
+  onShow: function() {
+    var loggedIn = app.isLoggedIn();
+    if (this.data.isLoggedIn !== loggedIn) {
+      this.setData({ isLoggedIn: loggedIn });
+      this.loadMilestones();
+    }
   },
 
   onPullDownRefresh: function() {
@@ -23,8 +35,29 @@ Page({
   loadMilestones: function() {
     var that = this;
     var studentId = app.getCurrentStudentId();
-    if (!studentId) {
-      that.setData({ loading: false });
+
+    if (!app.isLoggedIn() || !studentId) {
+      var customMilestones = wx.getStorageSync('local_custom_milestones') || [];
+
+      this.setData({
+        milestones: customMilestones.map(function(m) {
+          var days = dateUtil.daysUntil(m.event_date);
+          return {
+            id: m.id,
+            name: m.name,
+            event_date: m.event_date,
+            date_display: dateUtil.formatDate(m.event_date),
+            relative: dateUtil.formatRelative(m.event_date),
+            days_away: days,
+            is_past: days < 0,
+            is_today: days === 0,
+            type: 'custom',
+            action_card: null
+          };
+        }),
+        loading: false,
+        source: 'local'
+      });
       return Promise.resolve();
     }
 
@@ -45,9 +78,31 @@ Page({
         };
       });
 
+      var custom = wx.getStorageSync('local_custom_milestones') || [];
+      custom.forEach(function(m) {
+        var days = dateUtil.daysUntil(m.event_date);
+        list.push({
+          id: m.id,
+          name: m.name,
+          event_date: m.event_date,
+          date_display: dateUtil.formatDate(m.event_date),
+          relative: dateUtil.formatRelative(m.event_date),
+          days_away: days,
+          is_past: days < 0,
+          is_today: days === 0,
+          type: 'custom',
+          action_card: null
+        });
+      });
+
+      list.sort(function(a, b) {
+        return Math.abs(a.days_away) - Math.abs(b.days_away);
+      });
+
       that.setData({
         milestones: list,
-        loading: false
+        loading: false,
+        source: 'cloud'
       });
     }).catch(function(err) {
       console.warn('[Milestones] load error:', err);
@@ -67,6 +122,25 @@ Page({
         url: '/pages/milestones/action-card?id=' + id
       });
     }
+  },
+
+  onDeleteMilestone: function(e) {
+    var that = this;
+    var milestoneId = e.currentTarget.dataset.id;
+
+    wx.showModal({
+      title: '确认删除',
+      content: '确定要删除这个里程碑吗？',
+      success: function(res) {
+        if (res.confirm) {
+          var custom = wx.getStorageSync('local_custom_milestones') || [];
+          custom = custom.filter(function(m) { return m.id !== milestoneId; });
+          wx.setStorageSync('local_custom_milestones', custom);
+          wx.showToast({ title: '已删除', icon: 'success' });
+          that.loadMilestones();
+        }
+      }
+    });
   },
 
   onAddCustom: function() {

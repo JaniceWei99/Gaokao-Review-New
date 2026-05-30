@@ -1,7 +1,15 @@
 <view class="container exam-list-page">
   <view class="list-header flex-between">
-    <text class="h3">考试成绩</text>
+    <view>
+      <text class="h3">考试成绩</text>
+      <text class="text-hint ml-8 source-tag" wx:if="{{source === 'local' && !isLoggedIn}}">本地</text>
+    </view>
     <text class="btn-text" bindtap="onAddExam">+ 录入</text>
+  </view>
+
+  <!-- 未登录提示 -->
+  <view wx:if="{{!isLoggedIn && exams.length > 0}}" class="local-tip card">
+    <text class="text-hint">当前为本地数据，登录后可同步到云端</text>
   </view>
 
   <view wx:if="{{loading}}" class="loading-container">
@@ -10,6 +18,7 @@
 
   <view wx:elif="{{exams.length === 0}}" class="empty-state">
     <text class="empty-state-text">暂无考试记录</text>
+    <text class="text-hint mt-8" wx:if="{{!isLoggedIn}}">未登录状态下录入的成绩会保存在本地</text>
     <button class="btn btn-primary btn-sm mt-16" bindtap="onAddExam">录入成绩</button>
   </view>
 
@@ -31,7 +40,7 @@
 
       <view class="exam-scores mt-16">
         <view class="score-tag" wx:for="{{item.scores}}" wx:for-item="s" wx:key="subject_id">
-          <text class="score-tag-label">{{s.subject_id}}</text>
+          <text class="score-tag-label">{{s.subject_name}}</text>
           <text class="score-tag-value">{{s.score}}/{{s.max_score}}</text>
         </view>
       </view>

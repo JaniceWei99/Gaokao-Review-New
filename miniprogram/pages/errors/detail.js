@@ -1,4 +1,5 @@
 var app = getApp();
+var storage = require('../../services/storage');
 var errorNoteService = require('../../services/errorNote');
 var api = require('../../services/api');
 var permission = require('../../utils/permission');
@@ -17,19 +18,27 @@ Page({
     this.studentId = options.studentId || app.getCurrentStudentId();
     this.noteId = options.id;
     this._loadNote();
-    this._loadSubscription();
-  },
-
-  _loadSubscription: function() {
-    var that = this;
-    api.get('/api/subscription').then(function(res) {
-      that.setData({ subscription: res });
-    }).catch(function() {});
   },
 
   _loadNote: function() {
     var that = this;
     that.setData({ loading: true });
+
+    if (this.noteId && this.noteId.startsWith('local_')) {
+      var notes = storage.getErrorNotes();
+      var note = notes.find(function(n) { return n.id === that.noteId; });
+      if (note) {
+        that.setData({ note: note, loading: false });
+      } else {
+        that.setData({ loading: false });
+      }
+      return;
+    }
+
+    if (!app.isLoggedIn() || !this.studentId) {
+      that.setData({ loading: false });
+      return;
+    }
 
     errorNoteService.getErrorNote(that.studentId, that.noteId).then(function(res) {
       that.setData({ note: res, loading: false });
@@ -43,13 +52,10 @@ Page({
   onPreviewImage: function(e) {
     var that = this;
     var url = e.currentTarget.dataset.url;
+    var note = that.data.note;
     var urls = [];
-    if (that.data.note.question_image_url) {
-      urls.push(that.data.note.question_image_url);
-    }
-    if (that.data.note.correction_image_url) {
-      urls.push(that.data.note.correction_image_url);
-    }
+    if (note && note.question_image_url) urls.push(note.question_image_url);
+    if (note && note.correction_image_url) urls.push(note.correction_image_url);
     wx.previewImage({
       current: url,
       urls: urls
@@ -68,11 +74,16 @@ Page({
     var that = this;
     that.setData({ showDeleteConfirm: false });
 
+    if (this.noteId && this.noteId.startsWith('local_')) {
+      storage.deleteErrorNote(this.noteId);
+      wx.showToast({ title: '已删除', icon: 'success' });
+      setTimeout(function() { wx.navigateBack(); }, 1000);
+      return;
+    }
+
     errorNoteService.deleteErrorNote(that.studentId, that.noteId).then(function() {
       wx.showToast({ title: '已删除', icon: 'success' });
-      setTimeout(function() {
-        wx.navigateBack();
-      }, 1000);
+      setTimeout(function() { wx.navigateBack(); }, 1000);
     }).catch(function(err) {
       console.warn('[ErrorDetail] delete error:', err);
       wx.showToast({ title: '删除失败', icon: 'none' });
@@ -81,8 +92,13 @@ Page({
 
   onClassifyWithAI: function() {
     var that = this;
-    var sub = that.data.subscription;
 
+    if (!app.isLoggedIn()) {
+      wx.showToast({ title: '请先登录再使用AI功能', icon: 'none' });
+      return;
+    }
+
+    var sub = that.data.subscription;
     if (!sub || sub.plan !== 'premium') {
       permission.showUpgradeModal('FEATURE_REQUIRES_PREMIUM');
       return;

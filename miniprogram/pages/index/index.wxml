@@ -12,6 +12,15 @@
     </view>
   </view>
 
+  <!-- Vision Banner (first visit) -->
+  <view wx:if="{{showVisionBanner}}" class="card vision-banner">
+    <view class="vision-content">
+      <text class="vision-title">🎓 高考家长帮</text>
+      <text class="vision-text">做高考路上，家长最安静的陪伴者。帮您记住每一个重要节点，记录每一次成长，让陪伴有据可依、有迹可循。</text>
+    </view>
+    <text class="vision-close" bindtap="onDismissVision">✕</text>
+  </view>
+
   <!-- Daily Quote Card -->
   <view class="card quote-card">
     <view class="quote-text">{{quote || '每一天的努力，都是在为未来铺路。'}}</view>
@@ -44,9 +53,38 @@
         </view>
       </view>
     </view>
-    <view class="countdown-hint text-hint" wx:if="{{!nearestCountdown && !gaokaoCountdown}}">
-      暂无近期考试安排
+    <view class="countdown-empty" wx:if="{{!nearestCountdown && !gaokaoCountdown}}">
+      <view class="countdown-empty-text text-hint">暂无近期考试安排</view>
+      <navigator url="/pages/milestones/add-custom" class="countdown-empty-action">添加里程碑</navigator>
     </view>
+    <view class="countdown-guide" wx:if="{{!nearestCountdown && gaokaoCountdown}}">
+      <navigator url="/pages/exams/add" class="countdown-guide-link">录入考试成绩</navigator>
+      <text class="countdown-guide-divider">·</text>
+      <navigator url="/pages/milestones/add-custom" class="countdown-guide-link">添加自定义里程碑</navigator>
+    </view>
+  </view>
+
+  <!-- Local Data Summary (未登录时显示) -->
+  <view wx:if="{{hasLocalData}}" class="card local-data-summary">
+    <view class="local-data-header flex-between">
+      <text class="local-data-title">📦 本地数据</text>
+      <navigator url="/pages/profile/index" class="local-data-sync-link">登录同步 →</navigator>
+    </view>
+    <view class="local-data-grid">
+      <view class="local-data-item">
+        <text class="local-data-value">{{localExamsCount}}</text>
+        <text class="local-data-label">考试成绩</text>
+      </view>
+      <view class="local-data-item">
+        <text class="local-data-value">{{localErrorsCount}}</text>
+        <text class="local-data-label">错题记录</text>
+      </view>
+      <view class="local-data-item">
+        <text class="local-data-value">{{localGrowthCount}}</text>
+        <text class="local-data-label">成长记录</text>
+      </view>
+    </view>
+    <view class="local-data-desc text-hint">共 {{localDataCount}} 条记录，登录后可同步到云端永不丢失</view>
   </view>
 
   <!-- Active Action Card or Upcoming Milestones -->
@@ -85,7 +123,7 @@
       <navigator url="/pages/errors/list" class="quick-item">
         <view class="quick-icon quick-icon-errors">📸</view>
         <text class="quick-label">错题本</text>
-        <text class="quick-count" wx:if="{{errorNotesSummary.total > 0}}">{{errorNotesSummary.total}}道</text>
+        <text class="quick-count" wx:if="{{localErrorsCount > 0 || errorNotesSummary.total > 0}}">{{localErrorsCount || errorNotesSummary.total}}道</text>
       </navigator>
       <navigator url="/pages/exams/add" class="quick-item">
         <view class="quick-icon quick-icon-exams">📊</view>
@@ -94,7 +132,7 @@
       <navigator url="/pages/growth/timeline" class="quick-item">
         <view class="quick-icon quick-icon-growth">🏆</view>
         <text class="quick-label">成长记录</text>
-        <text class="quick-count" wx:if="{{growthRecordsCount > 0}}">{{growthRecordsCount}}个闪光时刻</text>
+        <text class="quick-count" wx:if="{{localGrowthCount > 0 || growthRecordsCount > 0}}">{{localGrowthCount || growthRecordsCount}}个闪光时刻</text>
       </navigator>
       <navigator url="/pages/knowledge/browse" class="quick-item">
         <view class="quick-icon quick-icon-knowledge">📚</view>
