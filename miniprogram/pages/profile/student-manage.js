@@ -2,7 +2,7 @@ var app = getApp();
 var storage = require('../../services/storage');
 var api = require('../../services/api');
 var subjects = require('../../constants/subjects');
-var districts = require('../../constants/districts');
+var regions = require('../../constants/regions');
 
 var GRADES = [
   { key: 'gao1', label: '高一', desc: '高中第一年' },
@@ -13,13 +13,12 @@ var GRADES = [
 Page({
   data: {
     isLoggedIn: false,
-    students: [],
     currentStudent: null,
     editingStudent: null,
     showEditor: false,
     grades: GRADES,
     electiveSubjects: [],
-    districts: districts.DISTRICTS,
+    districts: regions.getRegions('shanghai'),
     subjectList: [
       { id: 'physics', name: '物理', selected: false },
       { id: 'chemistry', name: '化学', selected: false },
@@ -46,16 +45,13 @@ Page({
 
   loadStudents: function() {
     var isLoggedIn = app.isLoggedIn();
-    var currentStudent = app.globalData.currentStudent || storage.getStudent();
+    var currentStudent = storage.getStudent();
 
     if (isLoggedIn && app.getCurrentStudentId()) {
       this.loadFromServer();
     } else {
-      var localStudent = storage.getStudent();
-      var students = localStudent ? [localStudent] : [];
       this.setData({
         isLoggedIn: isLoggedIn,
-        students: students,
         currentStudent: currentStudent
       });
     }
@@ -66,18 +62,18 @@ Page({
     api.get('/api/students').then(function(res) {
       var students = res.students || res.data || res || [];
       if (!Array.isArray(students)) students = [];
-      var currentStudent = app.globalData.currentStudent || storage.getStudent();
+      var currentStudent = students.length > 0 ? students[0] : null;
+      if (currentStudent) {
+        storage.saveStudent(currentStudent);
+      }
       that.setData({
         isLoggedIn: true,
-        students: students,
         currentStudent: currentStudent
       });
     }).catch(function(err) {
       console.warn('[StudentManage] load error:', err);
       var localStudent = storage.getStudent();
-      var students = localStudent ? [localStudent] : [];
       that.setData({
-        students: students,
         currentStudent: localStudent
       });
     });
@@ -117,7 +113,7 @@ Page({
       selectedGrade: student.grade || '',
       selectedSubjects: electiveList,
       subjectList: subjectList,
-      selectedDistrict: student.district || '',
+      selectedDistrict: student.district || student.region_code || '',
       hasJanEnglish: student.has_jan_english_exam || false
     });
   },
@@ -159,7 +155,7 @@ Page({
 
   onDistrictPick: function(e) {
     var idx = parseInt(e.detail.value);
-    var dist = districts.DISTRICTS[idx];
+    var dist = regions.getRegions('shanghai')[idx];
     if (dist) {
       this.setData({
         selectedDistrict: dist.id,
@@ -192,7 +188,7 @@ Page({
     });
     var districtName = '';
     if (d.selectedDistrict) {
-      var dist = districts.DISTRICTS.find(function(x) { return x.id === d.selectedDistrict; });
+      var dist = regions.ALL_REGIONS.find(function(x) { return x.id === d.selectedDistrict; });
       districtName = dist ? dist.name : d.selectedDistrict;
     }
 
@@ -200,7 +196,7 @@ Page({
       name: d.studentName.trim(),
       grade: d.selectedGrade,
       grade_display: gradeLabel ? gradeLabel.label : d.selectedGrade,
-      district: d.selectedDistrict || null,
+      region_code: d.selectedDistrict || null,
       district_name: districtName || null,
       selected_subject_1: d.selectedSubjects[0] || null,
       selected_subject_2: d.selectedSubjects[1] || null,
@@ -227,7 +223,6 @@ Page({
 
     this.setData({
       showEditor: false,
-      students: [merged],
       currentStudent: merged
     });
 
@@ -240,7 +235,7 @@ Page({
     var payload = {
       name: studentData.name,
       grade: studentData.grade,
-      district: studentData.district,
+      region_code: studentData.region_code,
       selected_subject_1: studentData.selected_subject_1,
       selected_subject_2: studentData.selected_subject_2,
       selected_subject_3: studentData.selected_subject_3,
@@ -278,53 +273,5 @@ Page({
         that.saveLocal(studentData);
       });
     }
-  },
-
-  onSwitchStudent: function(e) {
-    var student = e.currentTarget.dataset.student;
-    storage.saveStudent(student);
-    app.globalData.currentStudent = student;
-    this.setData({ currentStudent: student });
-    wx.showToast({ title: '已切换', icon: 'success' });
-  },
-
-  onDeleteStudent: function(e) {
-    var that = this;
-    var student = e.currentTarget.dataset.student;
-    wx.showModal({
-      title: '确认删除',
-      content: '删除后数据无法恢复，确认删除？',
-      confirmText: '删除',
-      confirmColor: '#FF4D4F',
-      success: function(res) {
-        if (res.confirm) {
-          if (that.data.isLoggedIn && student.id && !String(student.id).startsWith('local_')) {
-            api.delete('/api/students/' + student.id).then(function() {
-              that.afterDelete(student);
-            }).catch(function(err) {
-              console.warn('[StudentManage] delete error:', err);
-            });
-          } else {
-            that.afterDelete(student);
-          }
-        }
-      }
-    });
-  },
-
-  afterDelete: function(student) {
-    var students = this.data.students.filter(function(s) { return s.id !== student.id; });
-    var currentStudent = this.data.currentStudent;
-    if (currentStudent && currentStudent.id === student.id) {
-      currentStudent = students.length > 0 ? students[0] : null;
-      if (currentStudent) {
-        storage.saveStudent(currentStudent);
-      } else {
-        wx.removeStorageSync('local_student');
-      }
-      app.globalData.currentStudent = currentStudent;
-    }
-    this.setData({ students: students, currentStudent: currentStudent });
-    wx.showToast({ title: '已删除', icon: 'success' });
   }
 });

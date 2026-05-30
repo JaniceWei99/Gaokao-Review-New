@@ -14,7 +14,7 @@ from app.services.llm_client import llm_client
 
 logger = logging.getLogger(__name__)
 
-QUOTE_GENERATION_SYSTEM_PROMPT = """你是"高考家长帮"的金句生成器，为上海高考生家长生成个性化每日金句。
+QUOTE_GENERATION_SYSTEM_PROMPT = """你是"高考家长帮"的金句生成器，为高考生家长生成个性化每日金句。
 
 你的任务：
 - 根据学生的名字、选科、年级、当前阶段，生成一条温暖有力量的金句

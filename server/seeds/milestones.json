@@ -5,14 +5,19 @@
     "event_date": "2025-10-14",
     "event_end_date": null,
     "category": "registration",
-    "applicable_grades": ["gao3"],
+    "applicable_grades": [
+      "gao3"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": false,
-    "display_order": 1
+    "display_order": 1,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "高二选科确认",
@@ -20,14 +25,19 @@
     "event_date": "2025-10-01",
     "event_end_date": null,
     "category": "custom",
-    "applicable_grades": ["gao2"],
+    "applicable_grades": [
+      "gao2"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": false,
-    "display_order": 2
+    "display_order": 2,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "高三期中考试",
@@ -35,14 +45,19 @@
     "event_date": "2025-11-10",
     "event_end_date": "2025-11-12",
     "category": "school_exam",
-    "applicable_grades": ["gao3"],
+    "applicable_grades": [
+      "gao3"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 3
+    "display_order": 3,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "高一高二期中考试（上学期）",
@@ -50,14 +65,20 @@
     "event_date": "2025-11-10",
     "event_end_date": "2025-11-12",
     "category": "school_exam",
-    "applicable_grades": ["gao1", "gao2"],
+    "applicable_grades": [
+      "gao1",
+      "gao2"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 4
+    "display_order": 4,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "外语听说测试",
@@ -65,14 +86,21 @@
     "event_date": "2025-11-25",
     "event_end_date": "2025-11-26",
     "category": "autumn_exam",
-    "applicable_grades": ["gao3"],
-    "applicable_subjects": ["english"],
-    "applicable_districts": null,
+    "applicable_grades": [
+      "gao3"
+    ],
+    "applicable_subjects": [
+      "english"
+    ],
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 5
+    "display_order": 5,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "一模（黄浦）",
@@ -80,14 +108,21 @@
     "event_date": "2025-12-04",
     "event_end_date": "2025-12-05",
     "category": "mock_exam",
-    "applicable_grades": ["gao3"],
+    "applicable_grades": [
+      "gao3"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": ["huangpu"],
+    "applicable_regions": [
+      "huangpu"
+    ],
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": false,
-    "display_order": 6
+    "display_order": 6,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "一模（徐汇）",
@@ -95,14 +130,21 @@
     "event_date": "2025-12-08",
     "event_end_date": "2025-12-09",
     "category": "mock_exam",
-    "applicable_grades": ["gao3"],
+    "applicable_grades": [
+      "gao3"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": ["xuhui"],
+    "applicable_regions": [
+      "xuhui"
+    ],
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 7
+    "display_order": 7,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "一模（浦东）",
@@ -110,14 +152,21 @@
     "event_date": "2025-12-10",
     "event_end_date": "2025-12-11",
     "category": "mock_exam",
-    "applicable_grades": ["gao3"],
+    "applicable_grades": [
+      "gao3"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": ["pudong"],
+    "applicable_regions": [
+      "pudong"
+    ],
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 8
+    "display_order": 8,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "一模（静安）",
@@ -125,14 +174,21 @@
     "event_date": "2025-12-11",
     "event_end_date": "2025-12-12",
     "category": "mock_exam",
-    "applicable_grades": ["gao3"],
+    "applicable_grades": [
+      "gao3"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": ["jingan"],
+    "applicable_regions": [
+      "jingan"
+    ],
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 9
+    "display_order": 9,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "一模（杨浦）",
@@ -140,14 +196,21 @@
     "event_date": "2025-12-15",
     "event_end_date": "2025-12-16",
     "category": "mock_exam",
-    "applicable_grades": ["gao3"],
+    "applicable_grades": [
+      "gao3"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": ["yangpu"],
+    "applicable_regions": [
+      "yangpu"
+    ],
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 10
+    "display_order": 10,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "一模（闵行）",
@@ -155,14 +218,21 @@
     "event_date": "2025-12-16",
     "event_end_date": "2025-12-17",
     "category": "mock_exam",
-    "applicable_grades": ["gao3"],
+    "applicable_grades": [
+      "gao3"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": ["minhang"],
+    "applicable_regions": [
+      "minhang"
+    ],
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 11
+    "display_order": 11,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "合格考（第一批）",
@@ -170,14 +240,21 @@
     "event_date": "2026-01-03",
     "event_end_date": "2026-01-05",
     "category": "qualification_exam",
-    "applicable_grades": ["gao1", "gao2", "gao3"],
+    "applicable_grades": [
+      "gao1",
+      "gao2",
+      "gao3"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": false,
-    "display_order": 12
+    "display_order": 12,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "春季高考（含外语一考）",
@@ -185,14 +262,19 @@
     "event_date": "2026-01-03",
     "event_end_date": "2026-01-05",
     "category": "spring_exam",
-    "applicable_grades": ["gao3"],
+    "applicable_grades": [
+      "gao3"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": false,
-    "display_order": 13
+    "display_order": 13,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "高一高二期末考试（上学期）",
@@ -200,14 +282,20 @@
     "event_date": "2026-01-15",
     "event_end_date": "2026-01-17",
     "category": "school_exam",
-    "applicable_grades": ["gao1", "gao2"],
+    "applicable_grades": [
+      "gao1",
+      "gao2"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 14
+    "display_order": 14,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "春考成绩公布",
@@ -215,14 +303,19 @@
     "event_date": "2026-01-25",
     "event_end_date": null,
     "category": "result_release",
-    "applicable_grades": ["gao3"],
+    "applicable_grades": [
+      "gao3"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": false,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 15
+    "display_order": 15,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "春考志愿填报",
@@ -230,14 +323,19 @@
     "event_date": "2026-01-30",
     "event_end_date": "2026-02-01",
     "category": "volunteer_fill",
-    "applicable_grades": ["gao3"],
+    "applicable_grades": [
+      "gao3"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 16
+    "display_order": 16,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "春招院校自主测试",
@@ -245,14 +343,19 @@
     "event_date": "2026-02-28",
     "event_end_date": "2026-03-01",
     "category": "spring_exam",
-    "applicable_grades": ["gao3"],
+    "applicable_grades": [
+      "gao3"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 17
+    "display_order": 17,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "二模",
@@ -260,14 +363,19 @@
     "event_date": "2026-03-15",
     "event_end_date": "2026-03-20",
     "category": "mock_exam",
-    "applicable_grades": ["gao3"],
+    "applicable_grades": [
+      "gao3"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 18
+    "display_order": 18,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "综合评价报名",
@@ -275,14 +383,19 @@
     "event_date": "2026-04-01",
     "event_end_date": "2026-04-20",
     "category": "comprehensive_eval",
-    "applicable_grades": ["gao3"],
+    "applicable_grades": [
+      "gao3"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 19
+    "display_order": 19,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "高一高二期中考试（下学期）",
@@ -290,14 +403,20 @@
     "event_date": "2026-04-10",
     "event_end_date": "2026-04-12",
     "category": "school_exam",
-    "applicable_grades": ["gao1", "gao2"],
+    "applicable_grades": [
+      "gao1",
+      "gao2"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 20
+    "display_order": 20,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "三模",
@@ -305,14 +424,19 @@
     "event_date": "2026-04-15",
     "event_end_date": "2026-04-18",
     "category": "mock_exam",
-    "applicable_grades": ["gao3"],
+    "applicable_grades": [
+      "gao3"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 21
+    "display_order": 21,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "等级考（小三门）",
@@ -320,14 +444,26 @@
     "event_date": "2026-05-04",
     "event_end_date": "2026-05-05",
     "category": "level_exam",
-    "applicable_grades": ["gao3"],
-    "applicable_subjects": ["physics", "chemistry", "biology", "politics", "history", "geography"],
-    "applicable_districts": null,
+    "applicable_grades": [
+      "gao3"
+    ],
+    "applicable_subjects": [
+      "physics",
+      "chemistry",
+      "biology",
+      "politics",
+      "history",
+      "geography"
+    ],
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 22
+    "display_order": 22,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "等级考技能操作测试",
@@ -335,14 +471,23 @@
     "event_date": "2026-05-19",
     "event_end_date": "2026-05-20",
     "category": "level_exam",
-    "applicable_grades": ["gao3"],
-    "applicable_subjects": ["physics", "chemistry", "biology"],
-    "applicable_districts": null,
+    "applicable_grades": [
+      "gao3"
+    ],
+    "applicable_subjects": [
+      "physics",
+      "chemistry",
+      "biology"
+    ],
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 23
+    "display_order": 23,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "高考语文+数学",
@@ -350,14 +495,20 @@
     "event_date": "2026-06-07",
     "event_end_date": null,
     "category": "autumn_exam",
-    "applicable_grades": ["gao3"],
-    "applicable_subjects": ["chinese", "math"],
-    "applicable_districts": null,
+    "applicable_grades": [
+      "gao3"
+    ],
+    "applicable_subjects": [
+      "chinese",
+      "math"
+    ],
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": false,
-    "display_order": 24
+    "display_order": 24,
+    "applicable_provinces": null
   },
   {
     "title": "高考外语笔试",
@@ -365,14 +516,19 @@
     "event_date": "2026-06-08",
     "event_end_date": null,
     "category": "autumn_exam",
-    "applicable_grades": ["gao3"],
-    "applicable_subjects": ["english"],
-    "applicable_districts": null,
+    "applicable_grades": [
+      "gao3"
+    ],
+    "applicable_subjects": [
+      "english"
+    ],
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": false,
-    "display_order": 25
+    "display_order": 25,
+    "applicable_provinces": null
   },
   {
     "title": "高考外语听说",
@@ -380,14 +536,19 @@
     "event_date": "2026-06-09",
     "event_end_date": null,
     "category": "autumn_exam",
-    "applicable_grades": ["gao3"],
-    "applicable_subjects": ["english"],
-    "applicable_districts": null,
+    "applicable_grades": [
+      "gao3"
+    ],
+    "applicable_subjects": [
+      "english"
+    ],
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": false,
-    "display_order": 26
+    "display_order": 26,
+    "applicable_provinces": null
   },
   {
     "title": "合格考（6月批）",
@@ -395,14 +556,20 @@
     "event_date": "2026-06-20",
     "event_end_date": "2026-06-22",
     "category": "qualification_exam",
-    "applicable_grades": ["gao1", "gao2"],
+    "applicable_grades": [
+      "gao1",
+      "gao2"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 27
+    "display_order": 27,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "成绩公布",
@@ -410,14 +577,19 @@
     "event_date": "2026-06-23",
     "event_end_date": null,
     "category": "result_release",
-    "applicable_grades": ["gao3"],
+    "applicable_grades": [
+      "gao3"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": false,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 28
+    "display_order": 28,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "高一高二期末考试（下学期）",
@@ -425,14 +597,20 @@
     "event_date": "2026-06-25",
     "event_end_date": "2026-06-27",
     "category": "school_exam",
-    "applicable_grades": ["gao1", "gao2"],
+    "applicable_grades": [
+      "gao1",
+      "gao2"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 29
+    "display_order": 29,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "综合评价校测",
@@ -440,14 +618,19 @@
     "event_date": "2026-06-27",
     "event_end_date": "2026-06-30",
     "category": "comprehensive_eval",
-    "applicable_grades": ["gao3"],
+    "applicable_grades": [
+      "gao3"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 30
+    "display_order": 30,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "志愿填报",
@@ -455,14 +638,19 @@
     "event_date": "2026-07-01",
     "event_end_date": "2026-07-04",
     "category": "volunteer_fill",
-    "applicable_grades": ["gao3"],
+    "applicable_grades": [
+      "gao3"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 31
+    "display_order": 31,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "录取结果（综评批）",
@@ -470,14 +658,19 @@
     "event_date": "2026-07-08",
     "event_end_date": null,
     "category": "result_release",
-    "applicable_grades": ["gao3"],
+    "applicable_grades": [
+      "gao3"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": false,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 32
+    "display_order": 32,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "录取结果（本科普通批）",
@@ -485,14 +678,19 @@
     "event_date": "2026-07-15",
     "event_end_date": null,
     "category": "result_release",
-    "applicable_grades": ["gao3"],
+    "applicable_grades": [
+      "gao3"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": false,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 33
+    "display_order": 33,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "专科批次志愿填报",
@@ -500,14 +698,19 @@
     "event_date": "2026-07-28",
     "event_end_date": "2026-07-30",
     "category": "volunteer_fill",
-    "applicable_grades": ["gao3"],
+    "applicable_grades": [
+      "gao3"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 34
+    "display_order": 34,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "录取结果（专科批）",
@@ -515,14 +718,19 @@
     "event_date": "2026-08-10",
     "event_end_date": null,
     "category": "result_release",
-    "applicable_grades": ["gao3"],
+    "applicable_grades": [
+      "gao3"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": false,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 35
+    "display_order": 35,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "高一高二开学（上学期）",
@@ -530,14 +738,20 @@
     "event_date": "2026-09-01",
     "event_end_date": null,
     "category": "semester",
-    "applicable_grades": ["gao1", "gao2"],
+    "applicable_grades": [
+      "gao1",
+      "gao2"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 36
+    "display_order": 36,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "高一高二月考（9月）",
@@ -545,14 +759,20 @@
     "event_date": "2026-09-25",
     "event_end_date": null,
     "category": "school_exam",
-    "applicable_grades": ["gao1", "gao2"],
+    "applicable_grades": [
+      "gao1",
+      "gao2"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 37
+    "display_order": 37,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "家长会（高一高二）",
@@ -560,14 +780,20 @@
     "event_date": "2026-10-15",
     "event_end_date": null,
     "category": "parent_meeting",
-    "applicable_grades": ["gao1", "gao2"],
+    "applicable_grades": [
+      "gao1",
+      "gao2"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 38
+    "display_order": 38,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "高一高二月考（10月）",
@@ -575,14 +801,20 @@
     "event_date": "2026-10-25",
     "event_end_date": null,
     "category": "school_exam",
-    "applicable_grades": ["gao1", "gao2"],
+    "applicable_grades": [
+      "gao1",
+      "gao2"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 39
+    "display_order": 39,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "合格考（高一）",
@@ -590,14 +822,19 @@
     "event_date": "2026-11-20",
     "event_end_date": "2026-11-22",
     "category": "qualification_exam",
-    "applicable_grades": ["gao1"],
+    "applicable_grades": [
+      "gao1"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 40
+    "display_order": 40,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "高一高二期末考试（上学期）",
@@ -605,14 +842,20 @@
     "event_date": "2027-01-15",
     "event_end_date": "2027-01-20",
     "category": "school_exam",
-    "applicable_grades": ["gao1", "gao2"],
+    "applicable_grades": [
+      "gao1",
+      "gao2"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 41
+    "display_order": 41,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "寒假开始",
@@ -620,14 +863,20 @@
     "event_date": "2027-01-25",
     "event_end_date": null,
     "category": "vacation",
-    "applicable_grades": ["gao1", "gao2"],
+    "applicable_grades": [
+      "gao1",
+      "gao2"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": false,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 42
+    "display_order": 42,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "寒假结束",
@@ -635,14 +884,20 @@
     "event_date": "2027-02-10",
     "event_end_date": null,
     "category": "vacation",
-    "applicable_grades": ["gao1", "gao2"],
+    "applicable_grades": [
+      "gao1",
+      "gao2"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": false,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 43
+    "display_order": 43,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "高一高二开学（下学期）",
@@ -650,14 +905,20 @@
     "event_date": "2027-02-15",
     "event_end_date": null,
     "category": "semester",
-    "applicable_grades": ["gao1", "gao2"],
+    "applicable_grades": [
+      "gao1",
+      "gao2"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 44
+    "display_order": 44,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "高一高二月考（3月）",
@@ -665,14 +926,20 @@
     "event_date": "2027-03-20",
     "event_end_date": null,
     "category": "school_exam",
-    "applicable_grades": ["gao1", "gao2"],
+    "applicable_grades": [
+      "gao1",
+      "gao2"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 45
+    "display_order": 45,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "家长会（高一高二）",
@@ -680,14 +947,20 @@
     "event_date": "2027-04-10",
     "event_end_date": null,
     "category": "parent_meeting",
-    "applicable_grades": ["gao1", "gao2"],
+    "applicable_grades": [
+      "gao1",
+      "gao2"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 46
+    "display_order": 46,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "高一高二月考（4月）",
@@ -695,14 +968,20 @@
     "event_date": "2027-04-20",
     "event_end_date": null,
     "category": "school_exam",
-    "applicable_grades": ["gao1", "gao2"],
+    "applicable_grades": [
+      "gao1",
+      "gao2"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 47
+    "display_order": 47,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "合格考（高一高二）",
@@ -710,14 +989,20 @@
     "event_date": "2027-05-10",
     "event_end_date": "2027-05-12",
     "category": "qualification_exam",
-    "applicable_grades": ["gao1", "gao2"],
+    "applicable_grades": [
+      "gao1",
+      "gao2"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 48
+    "display_order": 48,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "高一高二期末考试（下学期）",
@@ -725,14 +1010,20 @@
     "event_date": "2027-06-25",
     "event_end_date": "2027-06-30",
     "category": "school_exam",
-    "applicable_grades": ["gao1", "gao2"],
+    "applicable_grades": [
+      "gao1",
+      "gao2"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": true,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 49
+    "display_order": 49,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   },
   {
     "title": "暑假开始",
@@ -740,13 +1031,19 @@
     "event_date": "2027-07-01",
     "event_end_date": null,
     "category": "vacation",
-    "applicable_grades": ["gao1", "gao2"],
+    "applicable_grades": [
+      "gao1",
+      "gao2"
+    ],
     "applicable_subjects": null,
-    "applicable_districts": null,
+    "applicable_regions": null,
     "requires_jan_english": false,
     "remind_15d": false,
     "remind_3d": true,
     "is_dynamic_date": true,
-    "display_order": 50
+    "display_order": 50,
+    "applicable_provinces": [
+      "shanghai"
+    ]
   }
 ]

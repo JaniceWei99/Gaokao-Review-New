@@ -1,0 +1,25 @@
+[
+  {
+    "id": "shanghai",
+    "name": "上海",
+    "school_system": "3+3",
+    "elective_count": 3,
+    "gaokao_max_scores": {
+      "chinese": 150,
+      "math": 150,
+      "english": 150,
+      "physics": 70,
+      "chemistry": 70,
+      "biology": 70,
+      "politics": 70,
+      "history": 70,
+      "geography": 70
+    },
+    "has_spring_exam": true,
+    "has_level_exam": true,
+    "has_qualification_exam": true,
+    "has_comprehensive_eval": true,
+    "english_exam_twice": true,
+    "grades": ["gao1", "gao2", "gao3"]
+  }
+]

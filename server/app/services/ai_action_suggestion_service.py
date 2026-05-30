@@ -17,7 +17,7 @@ from app.services.llm_client import llm_client
 
 logger = logging.getLogger(__name__)
 
-ACTION_SUGGESTION_SYSTEM_PROMPT = """你是"高考家长帮"的AI建议生成器，专门为上海高考生家长生成个性化的行动建议。
+ACTION_SUGGESTION_SYSTEM_PROMPT = """你是"高考家长帮"的AI建议生成器，专门为高考生家长生成个性化的行动建议。
 
 你的任务：
 - 根据学生的选科、年级、当前阶段、错题分布、成绩趋势，生成具体的家长行动建议

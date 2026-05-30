@@ -56,8 +56,13 @@ class Milestone(Base):
     applicable_grades: Mapped[dict | None] = mapped_column(
         JSONB, comment='e.g. ["gao3"]'
     )
+    applicable_provinces: Mapped[dict | None] = mapped_column(
+        JSONB, comment="适用的省份列表 e.g. ['shanghai']"
+    )
     applicable_subjects: Mapped[dict | None] = mapped_column(JSONB)
-    applicable_districts: Mapped[dict | None] = mapped_column(JSONB)
+    applicable_regions: Mapped[dict | None] = mapped_column(
+        JSONB, comment="适用的地区编码列表 e.g. ['huangpu', 'xuhui']"
+    )
     requires_jan_english: Mapped[bool] = mapped_column(
         Boolean, default=False
     )

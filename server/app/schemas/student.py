@@ -23,7 +23,8 @@ class StudentCreate(BaseModel):
 
     name: str = Field(..., max_length=20)
     grade: Literal["gao1", "gao2", "gao3"]
-    district: str | None = Field(None, max_length=20)
+    province: str | None = Field("shanghai", max_length=30)
+    region_code: str | None = Field(None, max_length=20)
     has_selected_subjects: bool = False
     selected_subjects: list[str] | None = Field(
         None, description="List of exactly 3 elective subject IDs"
@@ -73,7 +74,8 @@ class StudentUpdate(BaseModel):
 
     name: str | None = Field(None, max_length=20)
     grade: Literal["gao1", "gao2", "gao3"] | None = None
-    district: str | None = None
+    province: str | None = None
+    region_code: str | None = None
     has_selected_subjects: bool | None = None
     selected_subjects: list[str] | None = None
     has_jan_english_exam: bool | None = None
@@ -94,7 +96,8 @@ class StudentResponse(BaseModel):
     user_id: uuid.UUID
     name: str
     grade: str
-    district: str | None
+    province: str | None
+    region_code: str | None
     has_selected_subjects: bool
     selected_subject_1: str | None
     selected_subject_2: str | None

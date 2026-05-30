@@ -1,17 +1,17 @@
 var app = getApp();
 var storage = require('../../services/storage');
-var districts = require('../../constants/districts');
+var regions = require('../../constants/regions');
 
 Page({
   data: {
-    districts: districts.DISTRICTS,
+    districts: regions.getRegions('shanghai'),
     selected: ''
   },
 
   onLoad: function() {
     var local = storage.getStudent() || {};
-    if (local.district) {
-      this.setData({ selected: local.district });
+    if (local.region_code || local.district) {
+      this.setData({ selected: local.region_code || local.district });
     }
   },
 
@@ -20,14 +20,14 @@ Page({
     this.setData({ selected: key });
 
     var local = storage.getStudent() || {};
-    local.district = key;
-    local.district_name = districts.DISTRICTS.find(function(d) { return d.id === key; })?.name || '';
+    local.region_code = key;
+    local.district_name = regions.ALL_REGIONS.find(function(d) { return d.id === key; })?.name || '';
     storage.saveStudent(local);
   },
 
   onNext: function() {
     var onboarding = app.globalData.onboardingData || {};
-    onboarding.district = this.data.selected || null;
+    onboarding.region_code = this.data.selected || null;
     app.globalData.onboardingData = onboarding;
 
     this._submitOnboarding();
@@ -35,7 +35,7 @@ Page({
 
   onSkip: function() {
     var onboarding = app.globalData.onboardingData || {};
-    onboarding.district = null;
+    onboarding.region_code = null;
     app.globalData.onboardingData = onboarding;
 
     this._submitOnboarding();
@@ -65,7 +65,7 @@ Page({
       has_selected_subjects: onboarding.has_selected_subjects || false,
       selected_subjects: onboarding.selected_subjects || null,
       has_jan_english_exam: onboarding.has_jan_english_exam || false,
-      district: onboarding.district || null
+      region_code: onboarding.region_code || null
     };
 
     api.post('/api/students', payload).then(function(res) {

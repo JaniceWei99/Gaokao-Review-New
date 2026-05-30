@@ -26,6 +26,24 @@ from app.models.quote import DailyQuote
 SEEDS_DIR = Path(__file__).parent / "seeds"
 
 
+async def seed_reference_data() -> None:
+    """Load province and region reference data (in-memory config, not DB)."""
+    provinces_path = SEEDS_DIR / "provinces.json"
+    regions_path = SEEDS_DIR / "regions.json"
+
+    if provinces_path.exists():
+        provinces = json.loads(provinces_path.read_text(encoding="utf-8"))
+        print(f"  Loaded {len(provinces)} provinces: {[p['name'] for p in provinces]}")
+    else:
+        print("  WARNING: provinces.json not found")
+
+    if regions_path.exists():
+        regions = json.loads(regions_path.read_text(encoding="utf-8"))
+        print(f"  Loaded {len(regions)} regions")
+    else:
+        print("  WARNING: regions.json not found")
+
+
 async def seed_subjects(session: AsyncSession) -> None:
     """Load subjects from JSON."""
     data = json.loads((SEEDS_DIR / "subjects.json").read_text(encoding="utf-8"))
@@ -102,7 +120,8 @@ async def seed_milestones(session: AsyncSession) -> None:
             category=item["category"],
             applicable_grades=item.get("applicable_grades", []),
             applicable_subjects=item.get("applicable_subjects"),
-            applicable_districts=item.get("applicable_districts"),
+            applicable_regions=item.get("applicable_regions"),
+            applicable_provinces=item.get("applicable_provinces"),
             requires_jan_english=item.get("requires_jan_english", False),
             remind_15d=item.get("remind_15d", True),
             remind_3d=item.get("remind_3d", True),
@@ -165,6 +184,9 @@ async def main() -> None:
     """Run all seed operations."""
     engine = create_async_engine(settings.database_url, echo=False)
     session_factory = async_sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
+
+    print("=== Seeding Reference Data ===")
+    await seed_reference_data()
 
     async with session_factory() as session:
         print("Seeding database...")

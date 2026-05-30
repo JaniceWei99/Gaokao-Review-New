@@ -71,9 +71,9 @@ class TestStudentCreateValidation:
         )
         assert s.selected_subjects is None
 
-    def test_district_optional(self):
-        s = StudentCreate(name="测试", grade="gao1", district="xuhui")
-        assert s.district == "xuhui"
+    def test_region_code_optional(self):
+        s = StudentCreate(name="测试", grade="gao1", region_code="xuhui")
+        assert s.region_code == "xuhui"
 
     def test_jan_english_exam_default_false(self):
         s = StudentCreate(name="测试", grade="gao3", has_selected_subjects=True,
@@ -88,6 +88,6 @@ class TestStudentUpdateValidation:
         assert s.grade is None
 
     def test_partial_update(self):
-        s = StudentUpdate(name="新名字", district="pudong")
+        s = StudentUpdate(name="新名字", region_code="pudong")
         assert s.name == "新名字"
-        assert s.district == "pudong"
+        assert s.region_code == "pudong"

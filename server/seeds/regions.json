@@ -1,0 +1,82 @@
+[
+  {
+    "id": "huangpu",
+    "name": "黄浦区",
+    "province": "shanghai"
+  },
+  {
+    "id": "xuhui",
+    "name": "徐汇区",
+    "province": "shanghai"
+  },
+  {
+    "id": "changning",
+    "name": "长宁区",
+    "province": "shanghai"
+  },
+  {
+    "id": "jingan",
+    "name": "静安区",
+    "province": "shanghai"
+  },
+  {
+    "id": "putuo",
+    "name": "普陀区",
+    "province": "shanghai"
+  },
+  {
+    "id": "hongkou",
+    "name": "虹口区",
+    "province": "shanghai"
+  },
+  {
+    "id": "yangpu",
+    "name": "杨浦区",
+    "province": "shanghai"
+  },
+  {
+    "id": "minhang",
+    "name": "闵行区",
+    "province": "shanghai"
+  },
+  {
+    "id": "baoshan",
+    "name": "宝山区",
+    "province": "shanghai"
+  },
+  {
+    "id": "jiading",
+    "name": "嘉定区",
+    "province": "shanghai"
+  },
+  {
+    "id": "pudong",
+    "name": "浦东新区",
+    "province": "shanghai"
+  },
+  {
+    "id": "jinshan",
+    "name": "金山区",
+    "province": "shanghai"
+  },
+  {
+    "id": "songjiang",
+    "name": "松江区",
+    "province": "shanghai"
+  },
+  {
+    "id": "qingpu",
+    "name": "青浦区",
+    "province": "shanghai"
+  },
+  {
+    "id": "fengxian",
+    "name": "奉贤区",
+    "province": "shanghai"
+  },
+  {
+    "id": "chongming",
+    "name": "崇明区",
+    "province": "shanghai"
+  }
+]

@@ -24,7 +24,12 @@ class Student(Base):
     grade: Mapped[str | None] = mapped_column(
         String(4), comment="gao1 | gao2 | gao3"
     )
-    district: Mapped[str | None] = mapped_column(String(20))
+    province: Mapped[str | None] = mapped_column(
+        String(30), default="shanghai", comment="省份ID (e.g. shanghai, beijing)"
+    )
+    region_code: Mapped[str | None] = mapped_column(
+        String(20), comment="地区/区县编码"
+    )
     has_selected_subjects: Mapped[bool] = mapped_column(
         Boolean, default=False
     )

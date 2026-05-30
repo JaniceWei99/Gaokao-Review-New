@@ -27,7 +27,7 @@
     "id": "physics",
     "name": "物理",
     "category": "elective",
-    "gaokao_max_score": 70,
+    "gaokao_max_score": 100,
     "display_order": 4,
     "icon": "icon-physics"
   },
@@ -35,7 +35,7 @@
     "id": "chemistry",
     "name": "化学",
     "category": "elective",
-    "gaokao_max_score": 70,
+    "gaokao_max_score": 100,
     "display_order": 5,
     "icon": "icon-chemistry"
   },
@@ -43,7 +43,7 @@
     "id": "biology",
     "name": "生物",
     "category": "elective",
-    "gaokao_max_score": 70,
+    "gaokao_max_score": 100,
     "display_order": 6,
     "icon": "icon-biology"
   },
@@ -51,7 +51,7 @@
     "id": "politics",
     "name": "政治",
     "category": "elective",
-    "gaokao_max_score": 70,
+    "gaokao_max_score": 100,
     "display_order": 7,
     "icon": "icon-politics"
   },
@@ -59,7 +59,7 @@
     "id": "history",
     "name": "历史",
     "category": "elective",
-    "gaokao_max_score": 70,
+    "gaokao_max_score": 100,
     "display_order": 8,
     "icon": "icon-history"
   },
@@ -67,7 +67,7 @@
     "id": "geography",
     "name": "地理",
     "category": "elective",
-    "gaokao_max_score": 70,
+    "gaokao_max_score": 100,
     "display_order": 9,
     "icon": "icon-geography"
   }

@@ -19,7 +19,7 @@ from app.services.llm_client import llm_client
 
 logger = logging.getLogger(__name__)
 
-MONTHLY_REPORT_SYSTEM_PROMPT = """你是"高考家长帮"的月度报告生成器，为上海高考生家长生成月度成长报告。
+MONTHLY_REPORT_SYSTEM_PROMPT = """你是"高考家长帮"的月度报告生成器，为高考生家长生成月度成长报告。
 
 你的任务：
 - 根据本月的数据（成绩变化、错题趋势、成长亮点、里程碑完成情况），生成一份温暖的月度总结

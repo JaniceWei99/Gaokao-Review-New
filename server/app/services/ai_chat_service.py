@@ -30,7 +30,7 @@ from app.services.llm_client import llm_client
 
 logger = logging.getLogger(__name__)
 
-ADVISOR_SYSTEM_PROMPT = """你是"高考家长帮"的AI家长顾问，专门帮助上海高考生的家长。
+ADVISOR_SYSTEM_PROMPT = """你是"高考家长帮"的AI家长顾问，帮助高考生的家长。
 
 你的角色：
 - 陪伴家长度过孩子备考阶段，提供情感支持和实用建议

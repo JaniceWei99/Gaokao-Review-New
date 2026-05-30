@@ -1,4 +1,4 @@
-"""Pydantic v2 request / response schemas for the Shanghai Gaokao Companion API."""
+"""Pydantic v2 request / response schemas for the Gaokao Companion API."""
 
 from app.schemas.auth import UserResponse, WxLoginRequest, WxLoginResponse
 from app.schemas.dashboard import (

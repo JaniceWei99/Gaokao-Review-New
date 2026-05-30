@@ -114,11 +114,19 @@ async def _build_countdowns(
             )
         )
 
-    if student.district:
+    if student.region_code:
         query = query.where(
             or_(
-                Milestone.applicable_districts.is_(None),
-                Milestone.applicable_districts.op("@>")(f'["{student.district}"]'),
+                Milestone.applicable_regions.is_(None),
+                Milestone.applicable_regions.op("@>")(f'["{student.region_code}"]'),
+            )
+        )
+
+    if student.province:
+        query = query.where(
+            or_(
+                Milestone.applicable_provinces.is_(None),
+                Milestone.applicable_provinces.op("@>")(f'["{student.province}"]'),
             )
         )
 

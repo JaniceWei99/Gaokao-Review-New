@@ -50,10 +50,11 @@ app.add_middleware(
 setup_error_handlers(app)
 
 # ── Routers ───────────────────────────────────────────────────
-from app.routers import auth, action_cards, ai_chat, ai_features, dashboard, error_notes, exams, growth_records, knowledge, milestones, quotes, school_progress, students, subscription, upload
+from app.routers import auth, action_cards, ai_chat, ai_features, dashboard, error_notes, exams, growth_records, knowledge, milestones, quotes, school_progress, students, subjects, subscription, upload
 
 app.include_router(auth.router, prefix="/api/auth", tags=["auth"])
 app.include_router(students.router, prefix="/api/students", tags=["students"])
+app.include_router(subjects.router, prefix="/api/subjects", tags=["subjects"])
 app.include_router(quotes.router, prefix="/api/quotes", tags=["quotes"])
 app.include_router(milestones.router, prefix="/api/students/{student_id}/milestones", tags=["milestones"])
 app.include_router(action_cards.router, prefix="/api/students/{student_id}/action-cards", tags=["action-cards"])
