@@ -98,7 +98,7 @@ Page({
   onShareAppMessage: function(e) {
     var quote = e.target.dataset;
     return {
-      title: quote.content || '每日金句 - 高考复习助手',
+      title: quote.content || '每日金句 - 高考家长帮',
       path: '/pages/index/index'
     };
   }

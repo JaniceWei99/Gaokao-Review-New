@@ -1,5 +1,5 @@
 {
-  "description": "上海高考复习助手",
+  "description": "高考家长帮",
   "packOptions": {
     "ignore": [],
     "include": []
@@ -32,9 +32,16 @@
       "disablePlugins": [],
       "outputPath": ""
     },
-    "condition": false
+    "condition": false,
+    "compileWorklet": false,
+    "localPlugins": false,
+    "useCompilerPlugins": false,
+    "swc": false,
+    "disableSWC": true
   },
   "compileType": "miniprogram",
   "condition": {},
-  "appid": ""
+  "appid": "wx478a9413e73e96cd",
+  "simulatorPluginLibVersion": {},
+  "editorSetting": {}
 }

@@ -202,7 +202,7 @@ def generate_growth_image(
         card_h = _draw_card(draw, cy, mock, body_font, small_font)
         cy += card_h + CARD_GAP
 
-    wm = "高考复习助手"
+    wm = "高考家长帮"
     wm_w = _text_width(watermark_font, wm)
     draw.text(
         (CANVAS_W - wm_w - 40, total_h - 60),

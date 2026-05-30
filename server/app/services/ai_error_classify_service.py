@@ -16,7 +16,7 @@ from app.services.llm_client import llm_client
 
 logger = logging.getLogger(__name__)
 
-CLASSIFICATION_SYSTEM_PROMPT = """你是"高考复习助手"的错题分类助手，帮助家长将孩子的错题归类到对应的知识点。
+CLASSIFICATION_SYSTEM_PROMPT = """你是"高考家长帮"的错题分类助手，帮助家长将孩子的错题归类到对应的知识点。
 
 你的任务：
 - 根据错题的描述、科目信息，判断这道题属于哪个知识模块/章节

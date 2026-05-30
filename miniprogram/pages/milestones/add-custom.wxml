@@ -20,7 +20,7 @@
 
   <view class="safe-bottom" style="position:fixed;bottom:0;left:0;right:0;padding:32rpx;">
     <button class="btn btn-primary btn-block btn-lg" bindtap="onSubmit" disabled="{{submitting}}">
-      {{submitting ? '提交中...' : '添加里程碑'}}
+      {{submitting ? '提交中...' : isEdit ? '保存修改' : '添加里程碑'}}
     </button>
   </view>
 </view>

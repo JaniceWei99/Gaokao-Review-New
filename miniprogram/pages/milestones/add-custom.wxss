@@ -18,7 +18,9 @@
   background-color: var(--color-card-bg);
   border: 2rpx solid var(--color-border);
   border-radius: var(--radius-md);
-  padding: 20rpx 24rpx;
+  padding: 0 24rpx;
+  height: 80rpx;
+  line-height: 80rpx;
   font-size: var(--font-base);
 }
 

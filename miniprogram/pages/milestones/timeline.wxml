@@ -23,18 +23,21 @@
 
   <view wx:else class="timeline-list">
     <block wx:for="{{milestones}}" wx:key="id">
-      <view wx:if="{{showPast || !item.is_past}}" class="timeline-item {{item.is_past ? 'timeline-past' : ''}} {{item.is_today ? 'timeline-today' : ''}}"
+      <view wx:if="{{showPast || !item.is_past}}" class="timeline-item {{item.is_past ? 'timeline-past' : ''}} {{item.is_today ? 'timeline-today' : ''}} {{item.type === 'custom' ? 'timeline-custom' : ''}}"
             data-id="{{item.id}}" bindtap="onMilestoneTap">
         <view class="timeline-line-group">
-          <view class="timeline-dot {{item.is_today ? 'dot-today' : item.is_past ? 'dot-past' : 'dot-future'}}"></view>
+          <view class="timeline-dot {{item.type === 'custom' ? 'dot-custom' : item.is_today ? 'dot-today' : item.is_past ? 'dot-past' : 'dot-future'}}"></view>
           <view wx:if="{{index < milestones.length - 1}}" class="timeline-line"></view>
         </view>
-        <view class="timeline-content card">
+        <view class="timeline-content card {{item.type === 'custom' ? 'card-custom' : ''}}">
           <view class="flex-between">
             <text class="timeline-name">{{item.name}}</text>
-            <view class="tag {{item.type === 'custom' ? 'tag-primary' : 'tag-outline'}}">
+            <view class="tag {{item.type === 'custom' ? 'tag-custom' : 'tag-outline'}}">
               {{item.type === 'custom' ? '自定义' : '系统'}}
             </view>
+          </view>
+          <view wx:if="{{item.description}}" class="timeline-desc">
+            <text class="text-hint">{{item.description}}</text>
           </view>
           <view class="timeline-meta flex-between mt-8">
             <text class="text-hint">{{item.date_display}}</text>
@@ -43,6 +46,7 @@
             </text>
           </view>
           <view wx:if="{{item.type === 'custom'}}" class="timeline-actions mt-8">
+            <view class="edit-link" catchtap="onEditMilestone" data-id="{{item.id}}">编辑</view>
             <view class="delete-link" catchtap="onDeleteMilestone" data-id="{{item.id}}">删除</view>
           </view>
         </view>

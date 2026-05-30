@@ -67,7 +67,7 @@ async def create_jsapi_order(
             "out_trade_no": out_trade_no,
         }
 
-    description = f"高考复习助手-{plan == 'standard' and '标准版' or '高级版'}-{billing_type == 'monthly' and '月付' or billing_type == 'yearly' and '年付' or '全程包'}"
+    description = f"高考家长帮-{plan == 'standard' and '标准版' or '高级版'}-{billing_type == 'monthly' and '月付' or billing_type == 'yearly' and '年付' or '全程包'}"
 
     body = {
         "appid": settings.wx_app_id,

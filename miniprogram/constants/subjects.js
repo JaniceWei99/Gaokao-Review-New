@@ -11,7 +11,7 @@ module.exports = {
     { id: 'english', name: '外语', category: 'required' },
     { id: 'physics', name: '物理', category: 'elective' },
     { id: 'chemistry', name: '化学', category: 'elective' },
-    { id: 'biology', name: '生命科学', category: 'elective' },
+    { id: 'biology', name: '生物', category: 'elective' },
     { id: 'politics', name: '政治', category: 'elective' },
     { id: 'history', name: '历史', category: 'elective' },
     { id: 'geography', name: '地理', category: 'elective' }

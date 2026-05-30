@@ -1,4 +1,5 @@
 var api = require('../../services/api');
+var storage = require('../../services/storage');
 var dateUtil = require('../../utils/date');
 var app = getApp();
 
@@ -42,19 +43,22 @@ Page({
 
   loadLastMaxScores: function() {
     var that = this;
-    var studentId = app.getCurrentStudentId();
-    if (!studentId) return;
 
-    api.get('/api/students/' + studentId + '/exams/last-max-scores', {}, { showError: false }).then(function(res) {
-      var lastMax = res.last_max_scores || {};
-      var scores = {};
-      SUBJECTS.forEach(function(s) {
-        if (lastMax[s.key]) {
-          scores[s.key] = { max_score: lastMax[s.key], score: '' };
-        }
-      });
-      that.setData({ scores: scores });
-    }).catch(function() {});
+    if (app.isLoggedIn()) {
+      var studentId = app.getCurrentStudentId();
+      if (studentId) {
+        api.get('/api/students/' + studentId + '/exams/last-max-scores', {}, { showError: false }).then(function(res) {
+          var lastMax = res.last_max_scores || {};
+          var scores = {};
+          SUBJECTS.forEach(function(s) {
+            if (lastMax[s.key]) {
+              scores[s.key] = { max_score: lastMax[s.key], score: '' };
+            }
+          });
+          that.setData({ scores: scores });
+        }).catch(function() {});
+      }
+    }
   },
 
   onNameInput: function(e) {
@@ -136,6 +140,7 @@ Page({
       }
       scoreList.push({
         subject_id: key,
+        subject_name: SUBJECTS.find(function(s2) { return s2.key === key; }).label,
         score: parseFloat(s.score),
         max_score: s.max_score || 150
       });
@@ -146,13 +151,28 @@ Page({
       return;
     }
 
+    that.setData({ submitting: true });
+
+    var isLoggedIn = app.isLoggedIn();
     var studentId = app.getCurrentStudentId();
-    if (!studentId) {
-      wx.showToast({ title: '请先登录', icon: 'none' });
+
+    if (!isLoggedIn || !studentId) {
+      var examData = {
+        id: 'local_' + Date.now(),
+        name: d.name.trim(),
+        exam_type: d.exam_type,
+        exam_date: d.exam_date,
+        scores: scoreList,
+        _localCreated: Date.now()
+      };
+      storage.saveExam(examData);
+
+      wx.showToast({ title: '已保存到本地', icon: 'success' });
+      setTimeout(function() {
+        wx.navigateBack();
+      }, 1000);
       return;
     }
-
-    that.setData({ submitting: true });
 
     api.post('/api/students/' + studentId + '/exams', {
       name: d.name.trim(),

@@ -1,3 +1,107 @@
-<view class="container">
-  <text>学生管理</text>
+<view class="container manage-page">
+
+  <view wx:if="{{!showEditor}}">
+    <view class="card" wx:if="{{students.length === 0}}">
+      <view class="empty-state">
+        <text class="empty-icon">👶</text>
+        <text class="empty-title">还没有添加孩子信息</text>
+        <text class="empty-desc">设置年级和选考科目，获得个性化建议</text>
+      </view>
+    </view>
+
+    <view class="student-list" wx:if="{{students.length > 0}}">
+      <view class="card student-card" wx:for="{{students}}" wx:key="id">
+        <view class="student-main" bindtap="onSwitchStudent" data-student="{{item}}">
+          <view class="student-info">
+            <view class="student-name-row">
+              <text class="student-name">{{item.name || '未命名'}}</text>
+              <view class="tag tag-primary" wx:if="{{currentStudent && currentStudent.id === item.id}}">当前</view>
+            </view>
+            <view class="student-detail">
+              <text class="caption">{{item.grade_display || '未设置年级'}}</text>
+              <text class="caption" wx:if="{{item.district_name}}"> · {{item.district_name}}</text>
+            </view>
+            <view class="student-detail" wx:if="{{item.elective_display}}">
+              <text class="caption">选考：{{item.elective_display}}</text>
+            </view>
+          </view>
+        </view>
+        <view class="student-actions">
+          <text class="action-btn" bindtap="onEditStudent" data-student="{{item}}">编辑</text>
+          <text class="action-btn action-danger" bindtap="onDeleteStudent" data-student="{{item}}">删除</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="add-btn-area">
+      <button class="btn btn-primary btn-block" bindtap="onAddStudent">+ 添加孩子</button>
+    </view>
+  </view>
+
+  <view wx:if="{{showEditor}}" class="editor-section">
+    <view class="editor-header">
+      <text class="h3">{{editingStudent ? '编辑孩子信息' : '添加孩子信息'}}</text>
+    </view>
+
+    <view class="card">
+      <view class="form-group">
+        <text class="form-label">姓名</text>
+        <input class="form-input" placeholder="请输入孩子的姓名" value="{{studentName}}" bindinput="onNameInput" />
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="form-group">
+        <text class="form-label">年级</text>
+        <view class="grade-list">
+          <view class="grade-card {{selectedGrade === item.key ? 'grade-card-selected' : ''}}"
+                wx:for="{{grades}}" wx:key="key"
+                bindtap="onSelectGrade" data-grade="{{item.key}}">
+            <text class="grade-label">{{item.label}}</text>
+            <text class="grade-desc">{{item.desc}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="form-group">
+        <text class="form-label">选考科目（选3门）</text>
+        <view class="subject-grid">
+          <view class="subject-chip {{item.selected ? 'subject-chip-selected' : ''}}"
+                wx:for="{{subjectList}}"
+                wx:key="id"
+                bindtap="onToggleSubject" data-subject="{{item.id}}">
+            <text>{{item.name}}</text>
+          </view>
+        </view>
+        <text class="form-hint">已选 {{selectedSubjects.length}}/3 门</text>
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="form-group">
+        <text class="form-label">所在区</text>
+        <picker mode="selector" range="{{districts}}" range-key="name" bindchange="onDistrictPick">
+          <view class="form-picker">
+            <text wx:if="{{selectedDistrict}}">{{districts[districtsIndex] ? districts[districtsIndex].name : '已选择'}}</text>
+            <text wx:else class="text-hint">请选择所在区</text>
+          </view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="form-group form-row">
+        <text class="form-label" style="margin-bottom:0">1月英语高考</text>
+        <switch checked="{{hasJanEnglish}}" bindchange="onToggleJanEnglish" color="#4A90D9" />
+      </view>
+    </view>
+
+    <view class="editor-footer">
+      <button class="btn btn-secondary btn-block" bindtap="onCancelEdit">取消</button>
+      <button class="btn btn-primary btn-block" bindtap="onSave">保存</button>
+    </view>
+  </view>
+
 </view>

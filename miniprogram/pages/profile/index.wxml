@@ -1,14 +1,21 @@
 <!-- pages/profile/index.wxml — Profile Page -->
 <view class="container profile-page">
 
-  <!-- User Info Section -->
-  <view class="card user-card" bindtap="onLogin" wx:if="{{!isLoggedIn}}">
-    <view class="user-avatar-placeholder flex-center">
-      <text class="avatar-text">登录</text>
+  <!-- User Info / Login Section -->
+  <view class="card user-card" wx:if="{{!isLoggedIn}}">
+    <view class="user-card-content">
+      <view class="user-avatar-placeholder flex-center">
+        <text class="avatar-text">访客</text>
+      </view>
+      <view class="user-info">
+        <text class="h3">当前身份：访客</text>
+      </view>
     </view>
-    <view class="user-info">
-      <text class="h3">点击登录</text>
-      <text class="caption mt-8">登录后同步所有数据</text>
+    <view class="user-login-tip">
+      <text>未登录状态下数据仅保存在本地手机</text>
+    </view>
+    <view class="user-login-btn" bindtap="onLogin">
+      <text>立即登录 → 数据永不丢失</text>
     </view>
   </view>
 
@@ -25,6 +32,41 @@
     </view>
   </view>
 
+  <!-- Sync Banner (shown when has local data but not logged in) -->
+  <view wx:if="{{!isLoggedIn && hasLocalData}}" class="card sync-banner">
+    <view class="sync-banner-content">
+      <text class="sync-banner-icon">☁️</text>
+      <view class="sync-banner-text">
+        <text class="sync-banner-title">有 {{localDataCount}} 条本地数据</text>
+        <text class="sync-banner-desc">登录后自动同步到云端，换手机也不丢</text>
+      </view>
+    </view>
+    <text class="btn btn-primary btn-sm" bindtap="onLogin">立即同步</text>
+  </view>
+
+  <!-- Local Data Stats (shown when not logged in) -->
+  <view wx:if="{{!isLoggedIn && hasLocalData}}" class="card data-stats-card">
+    <view class="data-stats-title">本地数据</view>
+    <view class="data-stats-grid">
+      <view class="data-stat-item">
+        <text class="data-stat-num">{{localSummary.examsCount || 0}}</text>
+        <text class="data-stat-label">考试成绩</text>
+      </view>
+      <view class="data-stat-item">
+        <text class="data-stat-num">{{localSummary.errorNotesCount || 0}}</text>
+        <text class="data-stat-label">错题记录</text>
+      </view>
+      <view class="data-stat-item">
+        <text class="data-stat-num">{{localSummary.growthRecordsCount || 0}}</text>
+        <text class="data-stat-label">成长记录</text>
+      </view>
+      <view class="data-stat-item">
+        <text class="data-stat-num">{{localSummary.quoteFavoritesCount || 0}}</text>
+        <text class="data-stat-label">收藏金句</text>
+      </view>
+    </view>
+  </view>
+
   <!-- Student Info -->
   <view class="card" wx:if="{{currentStudent}}">
     <view class="card-header">
@@ -36,6 +78,18 @@
       <text class="caption mt-8">{{currentStudent.grade_display}} · {{currentStudent.district_name}}</text>
       <text class="caption">选考科目：{{currentStudent.elective_display}}</text>
     </view>
+  </view>
+
+  <!-- No student — add student prompt (for both logged-in and local) -->
+  <view class="card add-student-card" wx:if="{{!currentStudent}}">
+    <view class="add-student-content">
+      <text class="add-student-icon">👶</text>
+      <view class="add-student-text">
+        <text class="add-student-title">添加孩子信息</text>
+        <text class="add-student-desc">设置年级和选考科目，获得个性化建议</text>
+      </view>
+    </view>
+    <navigator url="/pages/onboarding/grade-select" class="btn btn-primary btn-sm">去设置</navigator>
   </view>
 
   <!-- Settings Links -->

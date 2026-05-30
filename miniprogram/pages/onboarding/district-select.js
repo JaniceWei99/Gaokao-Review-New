@@ -1,4 +1,5 @@
 var app = getApp();
+var storage = require('../../services/storage');
 var districts = require('../../constants/districts');
 
 Page({
@@ -7,9 +8,21 @@ Page({
     selected: ''
   },
 
+  onLoad: function() {
+    var local = storage.getStudent() || {};
+    if (local.district) {
+      this.setData({ selected: local.district });
+    }
+  },
+
   onSelect: function(e) {
     var key = e.currentTarget.dataset.id;
     this.setData({ selected: key });
+
+    var local = storage.getStudent() || {};
+    local.district = key;
+    local.district_name = districts.DISTRICTS.find(function(d) { return d.id === key; })?.name || '';
+    storage.saveStudent(local);
   },
 
   onNext: function() {
@@ -33,6 +46,20 @@ Page({
     var onboarding = app.globalData.onboardingData || {};
     var api = require('../../services/api');
 
+    var isLoggedIn = app.isLoggedIn();
+    var local = storage.getStudent() || {};
+
+    if (!isLoggedIn) {
+      local.name = local.name || '我的孩子';
+      local._onboardingComplete = true;
+      storage.saveStudent(local);
+
+      app.globalData.currentStudent = local;
+      wx.setStorageSync('currentStudent', local);
+      wx.reLaunch({ url: '/pages/onboarding/complete' });
+      return;
+    }
+
     var payload = {
       grade: onboarding.grade || 'gao1',
       has_selected_subjects: onboarding.has_selected_subjects || false,
@@ -46,10 +73,19 @@ Page({
       app.globalData.currentStudent = student;
       wx.setStorageSync('currentStudent', student);
 
+      local._cloudId = student.id;
+      storage.saveStudent(local);
+
       wx.navigateTo({ url: '/pages/onboarding/complete' });
     }).catch(function(err) {
       console.warn('[DistrictSelect] submit error:', err);
-      wx.showToast({ title: '提交失败，请重试', icon: 'none' });
+      local.name = local.name || '我的孩子';
+      local._onboardingComplete = true;
+      storage.saveStudent(local);
+
+      app.globalData.currentStudent = local;
+      wx.setStorageSync('currentStudent', local);
+      wx.navigateTo({ url: '/pages/onboarding/complete' });
     });
   }
 });

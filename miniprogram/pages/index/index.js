@@ -1,6 +1,8 @@
+var app = getApp();
+var storage = require('../../services/storage');
 var api = require('../../services/api');
 var dateUtil = require('../../utils/date');
-var app = getApp();
+var localMilestones = require('../../constants/milestones');
 
 Page({
   data: {
@@ -16,17 +18,25 @@ Page({
     subscription: null,
     showSubscribeGuide: false,
     showDesktopGuide: false,
+    showVisionBanner: false,
     personalizedQuote: null,
-    loading: true
+    loading: true,
+    isLoggedIn: false,
+    localExamsCount: 0,
+    localErrorsCount: 0,
+    localGrowthCount: 0,
+    localDataCount: 0,
+    hasLocalData: false
   },
 
   onLoad: function() {
+    this.checkVisionBanner();
+    this.loadLocalData();
     this.loadDashboard();
-    this.checkSubscribeGuide();
-    this.checkDesktopGuide();
   },
 
   onShow: function() {
+    this.loadLocalData();
     if (app.isLoggedIn() && app.getCurrentStudentId()) {
       this.loadDashboard();
     }
@@ -37,6 +47,73 @@ Page({
     that.loadDashboard().finally(function() {
       wx.stopPullDownRefresh();
     });
+  },
+
+  loadLocalData: function() {
+    var summary = storage.getLocalDataSummary();
+    var totalData = (summary.examsCount || 0) + (summary.errorNotesCount || 0) + (summary.growthRecordsCount || 0);
+    var student = storage.getStudent() || app.globalData.currentStudent;
+    console.log('[Home] loadLocalData - student:', student, 'isLoggedIn:', app.isLoggedIn());
+
+    this.setData({
+      isLoggedIn: app.isLoggedIn(),
+      localExamsCount: summary.examsCount || 0,
+      localErrorsCount: summary.errorNotesCount || 0,
+      localGrowthCount: summary.growthRecordsCount || 0,
+      localDataCount: totalData,
+      hasLocalData: totalData > 0 && !app.isLoggedIn()
+    });
+
+    if (!app.isLoggedIn() && student) {
+      var grade = student.grade;
+      var now = new Date();
+      var gaokaoYear = now.getFullYear();
+      if (grade === 'gao1') gaokaoYear += 2;
+      else if (grade === 'gao2') gaokaoYear += 1;
+      var gaokaoDate = new Date(gaokaoYear, 5, 7);
+      var gaokaoDays = Math.ceil((gaokaoDate - now) / (1000 * 60 * 60 * 24));
+
+      var systemList = localMilestones.getMilestones(grade);
+      var customList = wx.getStorageSync('local_custom_milestones') || [];
+      var nearest = null;
+      var nearestDays = Infinity;
+      systemList.forEach(function(m) {
+        var days = dateUtil.daysUntil(m.event_date);
+        if (days >= 0 && days < nearestDays) {
+          nearestDays = days;
+          nearest = { title: m.name, days: days, event_date: m.event_date };
+        }
+      });
+      customList.forEach(function(m) {
+        var days = dateUtil.daysUntil(m.event_date);
+        if (days >= 0 && days < nearestDays) {
+          nearestDays = days;
+          nearest = { title: m.name, days: days, event_date: m.event_date };
+        }
+      });
+
+      this.setData({
+        gaokaoCountdown: {
+          title: '高考',
+          days: gaokaoDays >= 0 ? gaokaoDays : 0,
+          event_date: gaokaoYear + '-06-07'
+        },
+        nearestCountdown: nearest
+      });
+    } else if (!app.isLoggedIn()) {
+      var now = new Date();
+      var gaokaoYear = now.getFullYear() + 2;
+      var gaokaoDate = new Date(gaokaoYear, 5, 7);
+      var gaokaoDays = Math.ceil((gaokaoDate - now) / (1000 * 60 * 60 * 24));
+
+      this.setData({
+        gaokaoCountdown: {
+          title: '高考',
+          days: gaokaoDays >= 0 ? gaokaoDays : 0,
+          event_date: gaokaoYear + '-06-07'
+        }
+      });
+    }
   },
 
   loadDashboard: function() {
@@ -77,7 +154,7 @@ Page({
 
       that.setData({
         quote: quote.content || '每一天的努力，都是在为未来铺路。',
-        quoteAuthor: quote.author ? ('— ' + quote.author) : '',
+        quoteAuthor: quote.author ? ('- ' + quote.author) : '',
         isFavorited: quoteData.is_favorited || false,
         nearestCountdown: nearestCountdown,
         gaokaoCountdown: gaokaoCountdown,
@@ -90,6 +167,7 @@ Page({
       });
 
       that.checkDesktopGuide();
+      that.checkSubscribeGuide();
     }).catch(function(err) {
       console.warn('[Home] loadDashboard error:', err);
       that.setData({ loading: false });
@@ -139,6 +217,17 @@ Page({
   onDismissSubscribe: function() {
     wx.setStorageSync('subscribe_guide_shown', true);
     this.setData({ showSubscribeGuide: false });
+  },
+
+  checkVisionBanner: function() {
+    var dismissed = wx.getStorageSync('vision_banner_dismissed');
+    if (dismissed) return;
+    this.setData({ showVisionBanner: true });
+  },
+
+  onDismissVision: function() {
+    wx.setStorageSync('vision_banner_dismissed', true);
+    this.setData({ showVisionBanner: false });
   },
 
   checkDesktopGuide: function() {

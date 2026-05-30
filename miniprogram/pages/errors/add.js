@@ -1,4 +1,5 @@
 var app = getApp();
+var storage = require('../../services/storage');
 var imageUtil = require('../../utils/image');
 var uploadService = require('../../services/upload');
 var errorNoteService = require('../../services/errorNote');
@@ -37,7 +38,7 @@ Page({
   },
 
   onLoad: function() {
-    var student = app.globalData.currentStudent || {};
+    var student = app.globalData.currentStudent || storage.getStudent() || {};
     var grade = student.grade || 'gao1';
     var subjectList = subjects.ALL_SUBJECTS;
 
@@ -84,7 +85,10 @@ Page({
   onSelectSubject: function(e) {
     var subjectId = e.currentTarget.dataset.id;
     this.setData({ selectedSubject: subjectId, selectedKnowledgeNode: '' });
-    this._loadKnowledgeNodes(subjectId);
+
+    if (app.isLoggedIn()) {
+      this._loadKnowledgeNodes(subjectId);
+    }
   },
 
   _loadKnowledgeNodes: function(subjectId) {
@@ -141,13 +145,28 @@ Page({
     var that = this;
     if (that.data.submitting) return;
 
+    var isLoggedIn = app.isLoggedIn();
     var studentId = app.getCurrentStudentId();
-    if (!studentId) {
-      wx.showToast({ title: '请先登录', icon: 'none' });
-      return;
-    }
 
     that.setData({ submitting: true });
+
+    if (!isLoggedIn || !studentId) {
+      var note = {
+        id: 'local_' + Date.now(),
+        subject_id: that.data.selectedSubject,
+        knowledge_node_id: that.data.selectedKnowledgeNode || null,
+        error_type: that.data.selectedErrorType || null,
+        source: that.data.selectedSource || null,
+        note: that.data.note || null,
+        question_image_url: that.data.questionImagePath,
+        correction_image_url: that.data.correctionImagePath || null,
+        _localCreated: Date.now()
+      };
+      storage.saveErrorNote(note);
+      wx.showToast({ title: '已保存到本地', icon: 'success' });
+      setTimeout(function() { wx.navigateBack(); }, 1000);
+      return;
+    }
 
     that._uploadImages(studentId).then(function(urls) {
       var payload = {
@@ -163,9 +182,7 @@ Page({
       return errorNoteService.createErrorNote(studentId, payload);
     }).then(function() {
       wx.showToast({ title: '保存成功', icon: 'success' });
-      setTimeout(function() {
-        wx.navigateBack();
-      }, 1000);
+      setTimeout(function() { wx.navigateBack(); }, 1000);
     }).catch(function(err) {
       console.warn('[ErrorAdd] submit error:', err);
       that.setData({ submitting: false });

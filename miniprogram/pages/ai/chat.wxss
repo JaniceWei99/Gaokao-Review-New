@@ -213,6 +213,7 @@
 .chat-input {
   flex: 1;
   height: 72rpx;
+  line-height: 72rpx;
   background: #f5f7fa;
   border-radius: 36rpx;
   padding: 0 28rpx;

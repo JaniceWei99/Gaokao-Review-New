@@ -102,7 +102,7 @@ def generate_quote_image(content: str, author: str | None = None) -> bytes:
         x = (CANVAS_W - tw) // 2
         draw.text((x, y), author_text, fill=AUTHOR_COLOR, font=author_font)
 
-    watermark = "高考复习助手"
+    watermark = "高考家长帮"
     try:
         bbox = watermark_font.getbbox(watermark)
         tw = bbox[2] - bbox[0]

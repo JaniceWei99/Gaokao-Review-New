@@ -10,7 +10,7 @@
 ## 项目概述
 
 ### 项目名称
-上海高考复习助手（Shanghai Gaokao Companion）
+高考家长帮（Gaokao Parent Companion）
 
 ### 一句话描述
 一款面向上海高中生家长的微信小程序，通过里程碑驱动的行动提醒、每日励志金句、错题拍照归档和孩子成长记录，帮助家长在高考备考全程中不焦虑、不缺席、不越界。
@@ -1367,7 +1367,7 @@ Schedule: 每周日 03:00
   },
   "window": {
     "navigationBarBackgroundColor": "#4A90D9",
-    "navigationBarTitleText": "高考复习助手",
+    "navigationBarTitleText": "高考家长帮",
     "navigationBarTextStyle": "white",
     "backgroundColor": "#F5F7FA"
   },

@@ -1,4 +1,5 @@
 var app = getApp();
+var storage = require('../../services/storage');
 var subjects = require('../../constants/subjects');
 
 var ELECTIVES = subjects.ALL_SUBJECTS.filter(function(s) {
@@ -19,9 +20,13 @@ Page({
   onLoad: function() {
     var onboarding = app.globalData.onboardingData || {};
     var grade = onboarding.grade || 'gao1';
+    var local = storage.getStudent() || {};
+    var localSelected = local.selected_subjects || [];
+
     this.setData({
       grade: grade,
-      canSkip: grade !== 'gao3'
+      canSkip: grade !== 'gao3',
+      selected: localSelected
     });
   },
 
@@ -40,6 +45,14 @@ Page({
     }
 
     this.setData({ selected: selected });
+
+    var local = storage.getStudent() || {};
+    local.selected_subjects = selected;
+    local.elective_display = selected.map(function(s) {
+      var sub = ELECTIVES.find(function(e) { return e.key === s; });
+      return sub ? sub.label : s;
+    }).join('、');
+    storage.saveStudent(local);
   },
 
   onNext: function() {

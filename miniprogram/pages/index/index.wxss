@@ -119,6 +119,44 @@
   padding: 20rpx 0;
 }
 
+.countdown-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20rpx 0;
+}
+
+.countdown-empty-text {
+  font-size: 28rpx;
+  margin-bottom: 16rpx;
+}
+
+.countdown-empty-action {
+  font-size: 26rpx;
+  color: var(--color-primary);
+  padding: 8rpx 24rpx;
+  border: 2rpx solid var(--color-primary);
+  border-radius: 24rpx;
+}
+
+.countdown-guide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12rpx;
+  margin-top: 16rpx;
+}
+
+.countdown-guide-link {
+  font-size: 24rpx;
+  color: var(--color-primary);
+}
+
+.countdown-guide-divider {
+  font-size: 24rpx;
+  color: var(--color-text-tertiary);
+}
+
 /* Section Card */
 .section-card {
   padding: 32rpx;
@@ -209,6 +247,10 @@
 
 .quick-icon-knowledge {
   background-color: #4A90D9;
+}
+
+.quick-icon-milestone {
+  background-color: #fa8c16;
 }
 
 .quick-label {
@@ -352,4 +394,39 @@
 .ai-quote-author {
   margin-top: 8rpx;
   text-align: right;
+}
+
+.vision-banner {
+  background: linear-gradient(135deg, #e8f4ff, #d0e8ff);
+  border: 2rpx solid #91d5ff;
+  padding: 24rpx 32rpx;
+  margin-bottom: 16rpx;
+  display: flex;
+  align-items: flex-start;
+}
+
+.vision-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.vision-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1890ff;
+  margin-bottom: 8rpx;
+}
+
+.vision-text {
+  font-size: 26rpx;
+  color: #434343;
+  line-height: 1.6;
+}
+
+.vision-close {
+  font-size: 32rpx;
+  color: #999;
+  padding: 0 0 0 16rpx;
+  line-height: 1;
 }

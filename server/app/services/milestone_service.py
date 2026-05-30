@@ -30,6 +30,18 @@ from app.utils.date_utils import days_until
 logger = logging.getLogger(__name__)
 
 
+def _adjust_dynamic_date(milestone: Milestone, today: date) -> date:
+    """Adjust milestone date for dynamic dates: if expired and is_dynamic_date, increment year."""
+    if not milestone.is_dynamic_date:
+        return milestone.event_date
+    
+    event_date = milestone.event_date
+    while event_date < today:
+        from datetime import timedelta
+        event_date = date(event_date.year + 1, event_date.month, event_date.day)
+    return event_date
+
+
 def _get_student_subjects(student: Student) -> list[str]:
     """Extract the student's elective subjects as a list."""
     subjects = []
@@ -101,10 +113,15 @@ async def list_milestones(
     system_result = await db.execute(system_query)
     custom_result = await db.execute(custom_query)
 
-    all_milestones = list(system_result.scalars().all()) + list(
-        custom_result.scalars().all()
-    )
-    all_milestones.sort(key=lambda m: m.event_date)
+    system_milestones = list(system_result.scalars().all())
+    custom_milestones = list(custom_result.scalars().all())
+
+    for m in system_milestones + custom_milestones:
+        adjusted_date = _adjust_dynamic_date(m, today)
+        m._adjusted_event_date = adjusted_date
+
+    all_milestones = system_milestones + custom_milestones
+    all_milestones.sort(key=lambda m: getattr(m, '_adjusted_event_date', m.event_date))
 
     if limit:
         all_milestones = all_milestones[:limit]
@@ -112,7 +129,9 @@ async def list_milestones(
     responses = []
     for m in all_milestones:
         resp = MilestoneResponse.model_validate(m)
-        resp.days_remaining = days_until(m.event_date)
+        adjusted_date = getattr(m, '_adjusted_event_date', m.event_date)
+        resp.days_remaining = days_until(adjusted_date)
+        resp.event_date = adjusted_date
         resp.is_applicable = True
         responses.append(resp)
 
@@ -131,7 +150,6 @@ async def get_next_milestone(
 
     system_query = select(Milestone).where(
         Milestone.type == "system",
-        Milestone.event_date >= today,
         Milestone.applicable_grades.op("@>")(f'["{student.grade}"]'),
     )
 
@@ -157,29 +175,33 @@ async def get_next_milestone(
     custom_query = select(Milestone).where(
         Milestone.type == "custom",
         Milestone.student_id == student_id,
-        Milestone.event_date >= today,
     )
 
-    system_result = await db.execute(system_query.order_by(Milestone.event_date).limit(1))
-    custom_result = await db.execute(custom_query.order_by(Milestone.event_date).limit(1))
+    system_result = await db.execute(system_query)
+    custom_result = await db.execute(custom_query)
 
-    system_ms = system_result.scalar_one_or_none()
-    custom_ms = custom_result.scalar_one_or_none()
+    system_milestones = list(system_result.scalars().all())
+    custom_milestones = list(custom_result.scalars().all())
 
-    milestone = None
-    if system_ms and custom_ms:
-        milestone = system_ms if system_ms.event_date <= custom_ms.event_date else custom_ms
-    else:
-        milestone = system_ms or custom_ms
+    all_milestones = system_milestones + custom_milestones
+    for m in all_milestones:
+        m._adjusted_event_date = _adjust_dynamic_date(m, today)
 
-    if milestone is None:
+    future_milestones = [m for m in all_milestones if getattr(m, '_adjusted_event_date', m.event_date) >= today]
+    future_milestones.sort(key=lambda m: getattr(m, '_adjusted_event_date', m.event_date))
+
+    if not future_milestones:
         return NextMilestoneResponse(
             next_milestone=None, days_remaining=None, next_action_card=None
         )
 
-    days = days_until(milestone.event_date)
+    milestone = future_milestones[0]
+    adjusted_date = getattr(milestone, '_adjusted_event_date', milestone.event_date)
+
+    days = days_until(adjusted_date)
     resp = MilestoneResponse.model_validate(milestone)
     resp.days_remaining = days
+    resp.event_date = adjusted_date
     resp.is_applicable = True
 
     action_card = None

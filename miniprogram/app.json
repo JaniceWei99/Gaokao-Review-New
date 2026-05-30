@@ -66,23 +66,12 @@
   },
   "window": {
     "navigationBarBackgroundColor": "#4A90D9",
-    "navigationBarTitleText": "高考复习助手",
+    "navigationBarTitleText": "高考家长帮",
     "navigationBarTextStyle": "white",
     "backgroundColor": "#F5F7FA",
     "backgroundTextStyle": "dark"
   },
-  "permission": {
-    "scope.camera": {
-      "desc": "用于拍照记录错题和证书"
-    },
-    "scope.writePhotosAlbum": {
-      "desc": "用于保存金句分享图片到相册"
-    }
-  },
-  "requiredPrivateInfos": [
-    "chooseImage",
-    "chooseMedia"
-  ],
+  "permission": {},
   "sitemapLocation": "sitemap.json",
   "style": "v2"
 }

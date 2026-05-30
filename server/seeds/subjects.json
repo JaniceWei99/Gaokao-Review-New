@@ -41,7 +41,7 @@
   },
   {
     "id": "biology",
-    "name": "生命科学",
+    "name": "生物",
     "category": "elective",
     "gaokao_max_score": 70,
     "display_order": 6,

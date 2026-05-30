@@ -1,5 +1,5 @@
 /* ============================================
-   Global Styles — 高考复习助手
+   Global Styles — 高考家长帮
    ============================================ */
 
 /* ---------------------------
@@ -57,6 +57,18 @@ view, text, image, scroll-view, swiper, button, input, textarea, navigator {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+input {
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: var(--font-base);
+}
+
+textarea {
+  min-height: 160rpx;
+  line-height: 1.6;
+  font-size: var(--font-base);
 }
 
 button::after {

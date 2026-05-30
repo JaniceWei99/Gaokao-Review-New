@@ -3,15 +3,26 @@ var app = getApp();
 
 Page({
   data: {
-    loading: false
+    loading: false,
+    hasNavigated: false
   },
 
   onLoad: function() {
+    var that = this;
     if (app.isLoggedIn()) {
       auth.checkOnboarding().then(function(needsOnboarding) {
-        if (!needsOnboarding) {
-          wx.switchTab({ url: '/pages/index/index' });
+        if (!needsOnboarding && !that.data.hasNavigated) {
+          that.setData({ hasNavigated: true });
+          wx.switchTab({ 
+            url: '/pages/index/index',
+            fail: function(err) {
+              console.error('switchTab failed:', err);
+              that.setData({ hasNavigated: false });
+            }
+          });
         }
+      }).catch(function(err) {
+        console.error('checkOnboarding failed:', err);
       });
     }
   },

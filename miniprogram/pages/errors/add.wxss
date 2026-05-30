@@ -140,6 +140,7 @@
   border: 2rpx solid var(--color-border);
   border-radius: 12rpx;
   font-size: 28rpx;
+  line-height: 1.6;
   box-sizing: border-box;
 }
 

@@ -16,7 +16,7 @@
   <view wx:if="{{showVisionBanner}}" class="card vision-banner">
     <view class="vision-content">
       <text class="vision-title">🎓 高考家长帮</text>
-      <text class="vision-text">做高考路上，家长最安静的陪伴者。帮您记住每一个重要节点，记录每一次成长，让陪伴有据可依、有迹可循。</text>
+      <text class="vision-text">陪伴高考，让家长更从容。助力高考，做家长最稳的支撑。帮您记住每一个重要节点，记录每一次成长，让陪伴有据可依、有迹可循。</text>
     </view>
     <text class="vision-close" bindtap="onDismissVision">✕</text>
   </view>
@@ -58,8 +58,6 @@
       <navigator url="/pages/milestones/add-custom" class="countdown-empty-action">添加里程碑</navigator>
     </view>
     <view class="countdown-guide" wx:if="{{!nearestCountdown && gaokaoCountdown}}">
-      <navigator url="/pages/exams/add" class="countdown-guide-link">录入考试成绩</navigator>
-      <text class="countdown-guide-divider">·</text>
       <navigator url="/pages/milestones/add-custom" class="countdown-guide-link">添加自定义里程碑</navigator>
     </view>
   </view>
@@ -120,6 +118,10 @@
   <view class="quick-entries">
     <view class="quick-entry-title h3">快捷入口</view>
     <view class="quick-grid">
+      <navigator url="/pages/milestones/timeline" class="quick-item">
+        <view class="quick-icon quick-icon-milestone">🎯</view>
+        <text class="quick-label">里程碑</text>
+      </navigator>
       <navigator url="/pages/errors/list" class="quick-item">
         <view class="quick-icon quick-icon-errors">📸</view>
         <text class="quick-label">错题本</text>

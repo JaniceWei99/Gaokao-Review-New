@@ -46,6 +46,11 @@
   background-color: var(--color-border);
 }
 
+.dot-custom {
+  background-color: #F59E0B;
+  box-shadow: 0 0 0 6rpx #FEF3C7;
+}
+
 .timeline-line {
   width: 4rpx;
   flex: 1;
@@ -76,4 +81,39 @@
 .toggle-past {
   text-align: center;
   padding: 24rpx 0;
+}
+
+.card-custom {
+  border-left: 6rpx solid #F59E0B;
+}
+
+.tag-custom {
+  background-color: #FEF3C7;
+  color: #B45309;
+  font-size: var(--font-xs);
+  padding: 4rpx 16rpx;
+  border-radius: var(--radius-full);
+  font-weight: 500;
+}
+
+.timeline-desc {
+  margin-top: 8rpx;
+  font-size: var(--font-sm);
+}
+
+.timeline-actions {
+  display: flex;
+  gap: 32rpx;
+}
+
+.edit-link {
+  font-size: var(--font-sm);
+  color: #F59E0B;
+  padding: 4rpx 8rpx;
+}
+
+.delete-link {
+  font-size: var(--font-sm);
+  color: var(--color-error);
+  padding: 4rpx 8rpx;
 }

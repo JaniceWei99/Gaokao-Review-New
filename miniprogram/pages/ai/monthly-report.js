@@ -103,7 +103,7 @@ Page({
     var report = this.data.report;
     var title = report ? (report.title || '月度成长报告') : '月度成长报告';
     return {
-      title: title + ' - 高考复习助手',
+      title: title + ' - 高考家长帮',
       path: '/pages/index/index'
     };
   }

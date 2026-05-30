@@ -1,4 +1,4 @@
-# Development Plan - 上海高考复习助手 v5.1
+# Development Plan - 高考家长帮 v5.1
 
 > **文档版本**: 1.0
 > **对应 Spec 版本**: v5.1

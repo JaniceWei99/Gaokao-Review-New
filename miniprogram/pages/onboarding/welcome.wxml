@@ -1,7 +1,7 @@
 <view class="container welcome-page">
   <view class="welcome-hero">
     <view class="welcome-icon">🎓</view>
-    <view class="h1">高考复习助手</view>
+    <view class="h1">高考家长帮</view>
     <view class="welcome-subtitle">陪伴孩子备考，不焦虑、不缺席、不越界</view>
   </view>
 

@@ -1,6 +1,7 @@
 var api = require('../../services/api');
 var storage = require('../../services/storage');
 var dateUtil = require('../../utils/date');
+var localMilestones = require('../../constants/milestones');
 var app = getApp();
 
 Page({
@@ -18,11 +19,7 @@ Page({
   },
 
   onShow: function() {
-    var loggedIn = app.isLoggedIn();
-    if (this.data.isLoggedIn !== loggedIn) {
-      this.setData({ isLoggedIn: loggedIn });
-      this.loadMilestones();
-    }
+    this.loadMilestones();
   },
 
   onPullDownRefresh: function() {
@@ -37,24 +34,55 @@ Page({
     var studentId = app.getCurrentStudentId();
 
     if (!app.isLoggedIn() || !studentId) {
+      var student = storage.getStudent() || app.globalData.currentStudent;
+      var grade = student ? student.grade : 'gao3';
+      console.log('[Timeline] local mode - student:', student, 'grade:', grade);
+      var systemList = localMilestones.getMilestones(grade);
       var customMilestones = wx.getStorageSync('local_custom_milestones') || [];
 
+      var allList = [];
+
+      systemList.forEach(function(m) {
+        var days = dateUtil.daysUntil(m.event_date);
+        var isPast = days < 0;
+        if (grade === 'gao3' && isPast) return;
+        allList.push({
+          id: m.id,
+          name: m.name,
+          event_date: m.event_date,
+          date_display: dateUtil.formatDate(m.event_date),
+          relative: dateUtil.formatRelative(m.event_date),
+          days_away: days,
+          is_past: isPast,
+          is_today: days === 0,
+          type: 'system',
+          action_card: null
+        });
+      });
+
+      customMilestones.forEach(function(m) {
+        var days = dateUtil.daysUntil(m.event_date);
+        allList.push({
+          id: m.id,
+          name: m.name,
+          event_date: m.event_date,
+          description: m.description || '',
+          date_display: dateUtil.formatDate(m.event_date),
+          relative: dateUtil.formatRelative(m.event_date),
+          days_away: days,
+          is_past: days < 0,
+          is_today: days === 0,
+          type: 'custom',
+          action_card: null
+        });
+      });
+
+      allList.sort(function(a, b) {
+        return a.days_away - b.days_away;
+      });
+
       this.setData({
-        milestones: customMilestones.map(function(m) {
-          var days = dateUtil.daysUntil(m.event_date);
-          return {
-            id: m.id,
-            name: m.name,
-            event_date: m.event_date,
-            date_display: dateUtil.formatDate(m.event_date),
-            relative: dateUtil.formatRelative(m.event_date),
-            days_away: days,
-            is_past: days < 0,
-            is_today: days === 0,
-            type: 'custom',
-            action_card: null
-          };
-        }),
+        milestones: allList,
         loading: false,
         source: 'local'
       });
@@ -141,6 +169,11 @@ Page({
         }
       }
     });
+  },
+
+  onEditMilestone: function(e) {
+    var milestoneId = e.currentTarget.dataset.id;
+    wx.navigateTo({ url: '/pages/milestones/add-custom?id=' + milestoneId });
   },
 
   onAddCustom: function() {

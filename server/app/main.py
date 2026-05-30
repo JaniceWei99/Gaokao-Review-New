@@ -29,7 +29,7 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
 
 
 app = FastAPI(
-    title="上海高考复习助手 API",
+    title="高考家长帮 API",
     description="Shanghai Gaokao Companion - 家长备考陪伴工具后端服务",
     version="0.1.0",
     lifespan=lifespan,
@@ -79,7 +79,7 @@ async def health_check():
 async def root():
     """Root endpoint."""
     return {
-        "name": "上海高考复习助手 API",
+        "name": "高考家长帮 API",
         "version": "0.1.0",
         "docs": "/docs",
     }

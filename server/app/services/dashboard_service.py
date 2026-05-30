@@ -24,11 +24,15 @@ from app.schemas.dashboard import (
 )
 from app.schemas.milestone import ActionCardResponse, MilestoneResponse
 from app.schemas.quote import TodayQuoteResponse
-from app.services.milestone_service import _get_action_card
+from app.services.milestone_service import _get_action_card, _adjust_dynamic_date
 from app.services.quote_service import get_today_quote
 from app.utils.date_utils import days_until
 
-GAOKAO_DATE = date(2026, 6, 7)
+GAOKAO_DATES = {
+    "gao1": date(2028, 6, 7),
+    "gao2": date(2027, 6, 7),
+    "gao3": date(2026, 6, 7),
+}
 
 
 def _get_student_subjects(student: Student) -> list[str]:
@@ -92,12 +96,12 @@ async def _build_countdowns(
 ) -> DashboardCountdowns:
     nearest_exam = None
     gaokao = None
+    today = date.today()
 
     from app.models.milestone import Milestone
     from sqlalchemy import or_
 
     query = select(Milestone).where(
-        Milestone.event_date >= date.today(),
         Milestone.applicable_grades.op("@>")(f'["{student.grade}"]'),
     )
 
@@ -121,17 +125,25 @@ async def _build_countdowns(
     if student.grade == "gao3" and not student.has_jan_english_exam:
         query = query.where(Milestone.requires_jan_english == False)
 
-    query = query.order_by(Milestone.event_date).limit(1)
-
     result = await db.execute(query)
-    row = result.scalar_one_or_none()
-    if row:
-        days = days_until(row.event_date)
-        nearest_exam = CountdownInfo(title=row.title, days=days, date=row.event_date)
+    milestones = list(result.scalars().all())
 
-    if student.grade == "gao3":
-        gaokao_days = days_until(GAOKAO_DATE)
-        gaokao = CountdownInfo(title="高考", days=gaokao_days, date=GAOKAO_DATE)
+    for m in milestones:
+        m._adjusted_event_date = _adjust_dynamic_date(m, today)
+
+    future_milestones = [m for m in milestones if getattr(m, '_adjusted_event_date', m.event_date) >= today]
+    future_milestones.sort(key=lambda m: getattr(m, '_adjusted_event_date', m.event_date))
+
+    if future_milestones:
+        nearest = future_milestones[0]
+        adjusted_date = getattr(nearest, '_adjusted_event_date', nearest.event_date)
+        days = days_until(adjusted_date)
+        nearest_exam = CountdownInfo(title=nearest.title, days=days, date=adjusted_date)
+
+    gaokao_date = GAOKAO_DATES.get(student.grade)
+    if gaokao_date:
+        gaokao_days = days_until(gaokao_date)
+        gaokao = CountdownInfo(title="高考", days=gaokao_days, date=gaokao_date)
 
     return DashboardCountdowns(nearest_exam=nearest_exam, gaokao=gaokao)
 
@@ -142,8 +154,9 @@ async def _get_active_action_card(
     from app.models.milestone import Milestone
     from sqlalchemy import or_
 
+    today = date.today()
+
     query = select(Milestone).where(
-        Milestone.event_date >= date.today(),
         Milestone.applicable_grades.op("@>")(f'["{student.grade}"]'),
     )
 
@@ -159,14 +172,22 @@ async def _get_active_action_card(
     if student.grade == "gao3" and not student.has_jan_english_exam:
         query = query.where(Milestone.requires_jan_english == False)
 
-    query = query.order_by(Milestone.event_date).limit(1)
-
     result = await db.execute(query)
-    milestone = result.scalar_one_or_none()
-    if milestone is None:
+    milestones = list(result.scalars().all())
+
+    for m in milestones:
+        m._adjusted_event_date = _adjust_dynamic_date(m, today)
+
+    future_milestones = [m for m in milestones if getattr(m, '_adjusted_event_date', m.event_date) >= today]
+    future_milestones.sort(key=lambda m: getattr(m, '_adjusted_event_date', m.event_date))
+
+    if not future_milestones:
         return None
 
-    days = days_until(milestone.event_date)
+    milestone = future_milestones[0]
+    adjusted_date = getattr(milestone, '_adjusted_event_date', milestone.event_date)
+    days = days_until(adjusted_date)
+
     if days <= 3 and milestone.action_card_3d_id:
         return await _get_action_card(milestone.action_card_3d_id, db)
     if days <= 15 and milestone.action_card_15d_id:

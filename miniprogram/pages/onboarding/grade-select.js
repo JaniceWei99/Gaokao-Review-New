@@ -1,4 +1,5 @@
 var app = getApp();
+var storage = require('../../services/storage');
 
 Page({
   data: {
@@ -10,9 +11,22 @@ Page({
     selected: ''
   },
 
+  onLoad: function() {
+    var local = storage.getStudent();
+    if (local && local.grade) {
+      this.setData({ selected: local.grade });
+    }
+  },
+
   onSelectGrade: function(e) {
     var grade = e.currentTarget.dataset.grade;
     this.setData({ selected: grade });
+
+    var local = storage.getStudent() || {};
+    local.grade = grade;
+    local.grade_display = this.data.grades.find(function(g) { return g.key === grade; }).label;
+    storage.saveStudent(local);
+
     app.globalData.onboardingData = app.globalData.onboardingData || {};
     app.globalData.onboardingData.grade = grade;
   },
